@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <opencv2/opencv.hpp>
-//#include <queue>
-
-using namespace std;
+#include <queue>
+#include <vector>
 
 /*Passive object that holds collection of data associated with a node. 
   Nodes in this case will comprise the color data for a portion of an image. */
@@ -35,6 +34,17 @@ cv::Mat get_dominant_palette(std::vector<cv::Vec3b> colors) {
 
 	return ret;
 }
+
+cv::Mat get_color_rect(cv::Vec3b color) {
+	const int tile_size = 64;
+	cv::Mat ret = cv::Mat(tile_size, tile_size, CV_8UC3, cv::Scalar(0));
+	
+	cv::Rect rect(0, 0, tile_size, tile_size);
+	cv::rectangle(ret, rect, cv::Scalar(color[0], color[1], color[2]), CV_FILLED);
+
+	return ret;
+}
+
 /*what the function does, how to use it*/
 std::vector<t_color_node*> get_leaves(t_color_node *root) {
 	std::vector<t_color_node*> ret;
@@ -316,7 +326,7 @@ std::vector<cv::Vec3b> find_dominant_colors(cv::Mat img, int count) {
 	cv::Mat quantized = get_quantized_image(classes, root);
 
 	//cv::imwrite("./output/classification.png", viewable);	
-	cv::imwrite("./output/quantized.png", quantized);
+	cv::imwrite("C:/Users/Austin Pursley/Desktop/ECEN-403-Smart-Mirror-Image-Analysis/color_eye/output/quantized.png", quantized);
 
 	return colors;
 }
