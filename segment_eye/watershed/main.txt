@@ -1,0 +1,32 @@
+#include "stdafx.h"
+#include <iostream>
+#include "watershed_marker_hist.h"
+
+int main(int argc, char** argv) {
+	std::string image_name("raw0.jpg");
+	std::string image_file("C:/Users/Austin Pursley/Desktop/ECEN-403-Smart-Mirror-Image-Analysis/data/" + image_name);
+	std::string image_out("C:/Users/Austin Pursley/Desktop/ECEN-403-Smart-Mirror-Image-Analysis/data/eyes/output/" + image_name);
+	cv::Mat matImage = cv::imread(image_file, cv::IMREAD_COLOR);
+	//cv::Mat gray_image = cv::imread(imageName, 0);
+
+	if (!matImage.data) {
+		std::cout << "Unable to open the file: " << image_file;
+		return 1;
+
+	}
+
+	//display original image
+	cv::namedWindow("Original Image", cv::WINDOW_AUTOSIZE);
+	cv::imshow("Original Image", matImage);
+
+	Mat wshedWithImage = watershedWithMarkersAndHistograms(matImage);
+
+	cv::namedWindow("Final Result", cv::WINDOW_AUTOSIZE);
+	imshow("Final Result", wshedWithImage);
+
+	imwrite(image_out, wshedWithImage);
+	
+	cv::waitKey();
+
+	return 0;
+}

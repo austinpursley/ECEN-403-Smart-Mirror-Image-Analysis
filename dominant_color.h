@@ -3,49 +3,29 @@
 #include <queue>
 #include <vector>
 
-/*Passive object that holds collection of data associated with a node. 
-  Nodes in this case will comprise the color data for a portion of an image. */
+/*
+ * Passive object that holds collection of data associated with a node. 
+ * Nodes in this case will comprise the color data for a portion of an image. 
+ */
 typedef struct t_color_node {
-	//TODO: PURPOSE OF EACH DATA TYPE
 	//The mean will be the average RGB color of each pixel in node, represented 
-	//in an 3x1 matrix. [TODO:PURPOSE]
+	//in an 3x1 matrix. It is used to calculate variance and will be the color
+	//assigned to node.
 	cv::Mat       mean;
-	//The covariance is a measure to the extent to which corresponding elements
-	//from two sets of orrdered data move in the same direction. [TODO: PURPOSE]
-	cv::Mat       cov;        // The covariance of this node
+	//The variance is a measures how spread out values are from their average.
+	cv::Mat       variance;
 	//Each node is associated with a class ID number. Each pixel starts out in 
 	//class one. On first split, each pixel belongs to class 2 or 3. And this 
 	// pattern continues on.
 	uchar         classid; 
-
+	//each node will split into a "left" and "right" node
 	t_color_node  *left;
 	t_color_node  *right;
 } t_color_node;
 
-/*What the function does, how to use it*/
-cv::Mat get_dominant_palette(std::vector<cv::Vec3b> colors) {
-	const int tile_size = 64;
-	cv::Mat ret = cv::Mat(tile_size, tile_size*colors.size(), CV_8UC3, cv::Scalar(0));
-
-	for (int i = 0;i<colors.size();i++) {
-		cv::Rect rect(i*tile_size, 0, tile_size, tile_size);
-		cv::rectangle(ret, rect, cv::Scalar(colors[i][0], colors[i][1], colors[i][2]), CV_FILLED);
-	}
-
-	return ret;
-}
-
-cv::Mat get_color_rect(cv::Vec3b color) {
-	const int tile_size = 64;
-	cv::Mat ret = cv::Mat(tile_size, tile_size, CV_8UC3, cv::Scalar(0));
-	
-	cv::Rect rect(0, 0, tile_size, tile_size);
-	cv::rectangle(ret, rect, cv::Scalar(color[0], color[1], color[2]), CV_FILLED);
-
-	return ret;
-}
-
-/*what the function does, how to use it*/
+/*
+ * Returns "leaves" of a node i.e. two nodes it split into.
+ */
 std::vector<t_color_node*> get_leaves(t_color_node *root) {
 	std::vector<t_color_node*> ret;
 	std::queue<t_color_node*> queue;
@@ -66,13 +46,17 @@ std::vector<t_color_node*> get_leaves(t_color_node *root) {
 
 	return ret;
 }
-/*what the function does, how to use it*/
+
+/*
+ * Return the mean/dominant color of node.
+ */
 std::vector<cv::Vec3b> get_dominant_colors(t_color_node *root) {
 	std::vector<t_color_node*> leaves = get_leaves(root);
 	std::vector<cv::Vec3b> ret;
 
 	for (int i = 0;i<leaves.size();i++) {
 		cv::Mat mean = leaves[i]->mean;
+		//multiply by 255 to make a viable opencv color.
 		ret.push_back(cv::Vec3b(mean.at<double>(0)*255.0f,
 			mean.at<double>(1)*255.0f,
 			mean.at<double>(2)*255.0f));
@@ -81,7 +65,9 @@ std::vector<cv::Vec3b> get_dominant_colors(t_color_node *root) {
 	return ret;
 }
 
-/*what the function does, how to use it*/
+/*
+ * Return the IDs of node's two classes i.e. two nodes split into.
+ */
 int get_next_classid(t_color_node *root) {
 	int maxid = 0;
 	std::queue<t_color_node*> queue;
@@ -104,14 +90,17 @@ int get_next_classid(t_color_node *root) {
 	return maxid + 1;
 }
 
-/*what the function does, how to use it*/
-void get_class_mean_cov(cv::Mat img, cv::Mat classes, t_color_node *node) {
+/*
+ * Calculates the mean and variance for each class/segment of image. 
+ * Does not return mean or variance associated with node.
+ */
+void get_class_mean_var(cv::Mat img, cv::Mat classes, t_color_node *node) {
 	const int width = img.cols;
 	const int height = img.rows;
 	const uchar classid = node->classid;
-	//3x1 matrix and 3x3 matrix of 0s for mean and covariance, repectively.
+	//3x1 matrix and 3x3 matrix of 0s for mean and variance, repectively.
 	cv::Mat mean = cv::Mat(3, 1, CV_64FC1, cv::Scalar(0));
-	cv::Mat cov = cv::Mat(3, 3, CV_64FC1, cv::Scalar(0));
+	cv::Mat variance = cv::Mat(3, 3, CV_64FC1, cv::Scalar(0));
 	
 	double pixcount = 0; //track number of pixels in class
 	for (int y = 0;y<height;y++) {
@@ -129,25 +118,27 @@ void get_class_mean_cov(cv::Mat img, cv::Mat classes, t_color_node *node) {
 			scaled.at<double>(0) = color[0] / 255.0f;
 			scaled.at<double>(1) = color[1] / 255.0f;
 			scaled.at<double>(2) = color[2] / 255.0f;
-			//See aishack tutorial for mean and covariance forumals.
+			//See aishack tutorial for mean and variance forumals.
 			//From that tutorial, these are Rn, mn, and Nn
 			mean += scaled;
-			cov = cov + (scaled * scaled.t());
+			variance = variance + (scaled * scaled.t());
 			pixcount++;
 		}
 	}
-	cov = cov - (mean * mean.t()) / pixcount;
+	variance = variance - (mean * mean.t()) / pixcount;
 	mean = mean / pixcount;
 
-	// The node mean and covariance
+	// The node mean and variance
 	node->mean = mean.clone();
-	node->cov = cov.clone();
+	node->variance = variance.clone();
 
 	return;
 }
 
-/*what the function does, how to use it*/
-void partition_class(cv::Mat img, cv::Mat classes, uchar nextid, t_color_node *node) {
+/*
+ * Given a node split it into two classes, or in other words just two new nodes.
+ */
+void split_class(cv::Mat img, cv::Mat classes, uchar nextid, t_color_node *node) {
 	const int width = img.cols;
 	const int height = img.rows;
 	const int classid = node->classid;
@@ -156,11 +147,14 @@ void partition_class(cv::Mat img, cv::Mat classes, uchar nextid, t_color_node *n
 	const uchar newidright = nextid + 1;
 
 	cv::Mat mean = node->mean;
-	cv::Mat cov = node->cov;
+	cv::Mat variance = node->variance;
 	cv::Mat eigenvalues, eigenvectors;
-	cv::eigen(cov, eigenvalues, eigenvectors);
+	//opencv's function for caluclting egienvalue and eigenvectors. Notice we are using
+	// the variance matrix associated with node.
+	cv::eigen(variance, eigenvalues, eigenvectors);
 
 	cv::Mat eig = eigenvectors.row(0);
+	//scaled by mean color of node
 	cv::Mat comparison_value = eig * mean;
 
 	node->left = new t_color_node();
@@ -168,8 +162,7 @@ void partition_class(cv::Mat img, cv::Mat classes, uchar nextid, t_color_node *n
 
 	node->left->classid = newidleft;
 	node->right->classid = newidright;
-
-	// We start out with the average color
+	//go through each pixel and determine if it's in the left or right side of split.
 	for (int y = 0;y<height;y++) {
 		cv::Vec3b* ptr = img.ptr<cv::Vec3b>(y);
 		uchar* ptrClass = classes.ptr<uchar>(y);
@@ -178,16 +171,18 @@ void partition_class(cv::Mat img, cv::Mat classes, uchar nextid, t_color_node *n
 				continue;
 
 			cv::Vec3b color = ptr[x];
-			cv::Mat scaled = cv::Mat(3, 1,
+			cv::Mat scaled_color = cv::Mat(3, 1,
 				CV_64FC1,
 				cv::Scalar(0));
 
-			scaled.at<double>(0) = color[0] / 255.0f;
-			scaled.at<double>(1) = color[1] / 255.0f;
-			scaled.at<double>(2) = color[2] / 255.0f;
+			scaled_color.at<double>(0) = color[0] / 255.0f;
+			scaled_color.at<double>(1) = color[1] / 255.0f;
+			scaled_color.at<double>(2) = color[2] / 255.0f;
 
-			cv::Mat this_value = eig * scaled;
-
+			//scaled by color of pixel
+			cv::Mat this_value = eig * scaled_color;
+			
+			//split comparison
 			if (this_value.at<double>(0, 0) <= comparison_value.at<double>(0, 0)) {
 				ptrClass[x] = newidleft;
 			}
@@ -199,7 +194,60 @@ void partition_class(cv::Mat img, cv::Mat classes, uchar nextid, t_color_node *n
 	return;
 }
 
-/*what the function does, how to use it*/
+/*
+ * When splitting the classes, this funciton determines which class to split next
+ */
+t_color_node* get_max_eigenvalue_node(t_color_node *current) {
+	double max_eigen = -1;
+	cv::Mat eigenvalues, eigenvectors;
+
+	std::queue<t_color_node*> queue;
+	queue.push(current);
+	
+	t_color_node *ret = current;
+	if (!current->left && !current->right)
+		return current;
+
+	while (queue.size() > 0) {
+		t_color_node *node = queue.front();
+		queue.pop();
+
+		if (node->left && node->right) {
+			queue.push(node->left);
+			queue.push(node->right);
+			continue;
+		}
+
+		cv::eigen(node->variance, eigenvalues, eigenvectors);
+		double val = eigenvalues.at<double>(0);
+		if (val > max_eigen) {
+			max_eigen = val;
+			ret = node;
+		}
+	}
+
+	return ret;
+}
+
+/*
+* Helps visualize the dominant colors. It outputs a open CV
+* matrix that is a palette visual of the dominant colors.
+*/
+cv::Mat get_dominant_palette(std::vector<cv::Vec3b> colors) {
+	const int tile_size = 64;
+	cv::Mat ret = cv::Mat(tile_size, tile_size*colors.size(), CV_8UC3, cv::Scalar(0));
+
+	for (int i = 0;i<colors.size();i++) {
+		cv::Rect rect(i*tile_size, 0, tile_size, tile_size);
+		cv::rectangle(ret, rect, cv::Scalar(colors[i][0], colors[i][1], colors[i][2]), CV_FILLED);
+	}
+
+	return ret;
+}
+
+/*
+ * Outputs what it looks like when each a pixel is associated with mean color of its respective class.
+ */
 cv::Mat get_quantized_image(cv::Mat classes, t_color_node *root) {
 	std::vector<t_color_node*> leaves = get_leaves(root);
 
@@ -225,77 +273,20 @@ cv::Mat get_quantized_image(cv::Mat classes, t_color_node *root) {
 	return ret;
 }
 
-/*what the function does, how to use it*/
-cv::Mat get_viewable_image(cv::Mat classes) {
-	const int height = classes.rows;
-	const int width = classes.cols;
+cv::Mat get_color_rect(cv::Vec3b color) {
+	const int tile_size = 64;
+	cv::Mat ret = cv::Mat(tile_size, tile_size, CV_8UC3, cv::Scalar(0));
 
-	const int max_color_count = 12;
-	cv::Vec3b *palette = new cv::Vec3b[max_color_count];
-	palette[0] = cv::Vec3b(0, 0, 0);
-	palette[1] = cv::Vec3b(255, 0, 0);
-	palette[2] = cv::Vec3b(0, 255, 0);
-	palette[3] = cv::Vec3b(0, 0, 255);
-	palette[4] = cv::Vec3b(255, 255, 0);
-	palette[5] = cv::Vec3b(0, 255, 255);
-	palette[6] = cv::Vec3b(255, 0, 255);
-	palette[7] = cv::Vec3b(128, 128, 128);
-	palette[8] = cv::Vec3b(128, 255, 128);
-	palette[9] = cv::Vec3b(32, 32, 32);
-	palette[10] = cv::Vec3b(255, 128, 128);
-	palette[11] = cv::Vec3b(128, 128, 255);
-
-	cv::Mat ret = cv::Mat(height, width, CV_8UC3, cv::Scalar(0, 0, 0));
-	for (int y = 0;y<height;y++) {
-		cv::Vec3b *ptr = ret.ptr<cv::Vec3b>(y);
-		uchar *ptrClass = classes.ptr<uchar>(y);
-		for (int x = 0;x<width;x++) {
-			int color = ptrClass[x];
-			if (color >= max_color_count) {
-				printf("You should increase the number of predefined colors!\n");
-				continue;
-			}
-			ptr[x] = palette[color];
-		}
-	}
+	cv::Rect rect(0, 0, tile_size, tile_size);
+	cv::rectangle(ret, rect, cv::Scalar(color[0], color[1], color[2]), CV_FILLED);
 
 	return ret;
 }
 
-/*what the funciton does, how to use it*/
-t_color_node* get_max_eigenvalue_node(t_color_node *current) {
-	double max_eigen = -1;
-	cv::Mat eigenvalues, eigenvectors;
-
-	std::queue<t_color_node*> queue;
-	queue.push(current);
-
-	t_color_node *ret = current;
-	if (!current->left && !current->right)
-		return current;
-
-	while (queue.size() > 0) {
-		t_color_node *node = queue.front();
-		queue.pop();
-
-		if (node->left && node->right) {
-			queue.push(node->left);
-			queue.push(node->right);
-			continue;
-		}
-
-		cv::eigen(node->cov, eigenvalues, eigenvectors);
-		double val = eigenvalues.at<double>(0);
-		if (val > max_eigen) {
-			max_eigen = val;
-			ret = node;
-		}
-	}
-
-	return ret;
-}
-
-/*what the function does, how to use it*/
+/* 
+ * Use statistics and linear algebra to find the most dominant color of an image.
+ * Can also be thought of reducing the number of colors of an image.
+ */
 std::vector<cv::Vec3b> find_dominant_colors(cv::Mat img, int count) {
 	const int width = img.cols;
 	const int height = img.rows;
@@ -311,13 +302,13 @@ std::vector<cv::Vec3b> find_dominant_colors(cv::Mat img, int count) {
 	root->left = NULL;
 	root->right = NULL;
 	t_color_node *next = root;
-	get_class_mean_cov(img, classes, root);
+	get_class_mean_var(img, classes, root);
 	//Each iteration creates a node.
 	for (int i = 0;i<count - 1;i++) {
 		next = get_max_eigenvalue_node(root);
-		partition_class(img, classes, get_next_classid(root), next);
-		get_class_mean_cov(img, classes, next->left);
-		get_class_mean_cov(img, classes, next->right);
+		split_class(img, classes, get_next_classid(root), next);
+		get_class_mean_var(img, classes, next->left);
+		get_class_mean_var(img, classes, next->right);
 	}
 	std::vector<cv::Vec3b> colors = get_dominant_colors(root);
 	printf("Dominate color(s) found!\n");
@@ -326,7 +317,7 @@ std::vector<cv::Vec3b> find_dominant_colors(cv::Mat img, int count) {
 	cv::Mat quantized = get_quantized_image(classes, root);
 
 	//cv::imwrite("./output/classification.png", viewable);	
-	cv::imwrite("C:/Users/Austin Pursley/Desktop/ECEN-403-Smart-Mirror-Image-Analysis/color_eye/output/quantized.png", quantized);
+	cv::imwrite("C:/Users/Austin Pursley/Desktop/ECEN-403-Smart-Mirror-Image-Analysis/color_face/output/quantized.jpg", quantized);
 
 	return colors;
 }
