@@ -1,0 +1,7 @@
+ksize_e1.height = 3;
+
+ksize_e2.height = 31;
+
+cv::threshold(e2_img, e2_max, 125, 255, cv::THRESH_BINARY);
+
+cv::threshold(e1_img, otsu, 10, 255, cv::THRESH_BINARY);

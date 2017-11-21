@@ -1,0 +1,15 @@
+1 red
+2 red
+...
+12 red
+13 dark
+14 red
+15 red
+...
+23 red
+24 dark
+25 red
+26 red
+27 red
+28 red
+29 dark

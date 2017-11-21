@@ -1,0 +1,169 @@
+------MEAN------ 
+blue:    133 
+green:   151 
+red:     182 
+
+lab0_L:  165 
+lab1_GR: 137 
+lab2_BY: 142 
+
+hue:     11 
+satur:   69 
+value:   182 
+
+------lesion0------ 
+blue:    133 
+green:   152 
+red:     182 
+
+lab0_L:  166 
+lab1_GR: 136 
+lab2_BY: 142 
+
+hue:     12 
+satur:   69 
+value:   182 
+
+------lesion1------ 
+blue:    132 
+green:   123 
+red:     200 
+
+lab0_L:  153 
+lab1_GR: 159 
+lab2_BY: 136 
+
+hue:     176 
+satur:   98 
+value:   200 
+
+------lesion2------ 
+blue:    128 
+green:   115 
+red:     190 
+
+lab0_L:  145 
+lab1_GR: 159 
+lab2_BY: 134 
+
+hue:     175 
+satur:   101 
+value:   190 
+
+------lesion3------ 
+blue:    152 
+green:   151 
+red:     213 
+
+lab0_L:  175 
+lab1_GR: 151 
+lab2_BY: 137 
+
+hue:     0 
+satur:   74 
+value:   213 
+
+------lesion4------ 
+blue:    120 
+green:   111 
+red:     155 
+
+lab0_L:  131 
+lab1_GR: 147 
+lab2_BY: 130 
+
+hue:     174 
+satur:   72 
+value:   155 
+
+------lesion5------ 
+blue:    160 
+green:   149 
+red:     209 
+
+lab0_L:  173 
+lab1_GR: 152 
+lab2_BY: 131 
+
+hue:     175 
+satur:   73 
+value:   209 
+
+------lesion6------ 
+blue:    160 
+green:   154 
+red:     205 
+
+lab0_L:  175 
+lab1_GR: 148 
+lab2_BY: 132 
+
+hue:     176 
+satur:   63 
+value:   205 
+
+------lesion7------ 
+blue:    139 
+green:   135 
+red:     189 
+
+lab0_L:  157 
+lab1_GR: 149 
+lab2_BY: 134 
+
+hue:     178 
+satur:   73 
+value:   189 
+
+------lesion8------ 
+blue:    113 
+green:   116 
+red:     175 
+
+lab0_L:  140 
+lab1_GR: 151 
+lab2_BY: 139 
+
+hue:     1 
+satur:   90 
+value:   175 
+
+------lesion9------ 
+blue:    89 
+green:   99 
+red:     143 
+
+lab0_L:  118 
+lab1_GR: 145 
+lab2_BY: 141 
+
+hue:     6 
+satur:   96 
+value:   143 
+
+------lesion10------ 
+blue:    83 
+green:   89 
+red:     132 
+
+lab0_L:  108 
+lab1_GR: 145 
+lab2_BY: 139 
+
+hue:     4 
+satur:   95 
+value:   132 
+
+------lesion11------ 
+blue:    85 
+green:   103 
+red:     130 
+
+lab0_L:  117 
+lab1_GR: 136 
+lab2_BY: 142 
+
+hue:     12 
+satur:   88 
+value:   130 
+
