@@ -1,31 +1,34 @@
+
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "stdafx.h"
 
-std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image) {
+std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, int n) {
+	//put all tuning parameters in one neat placee
+	int gauss_ksize = 37;
+	int blocksize = 39;
+	int size_close = 4;
+	int size_open = 4;
+	int size_dilate = 0;
 	//guassian Blur
 	cv::Size ksize;
-	ksize.height = 39;
+	ksize.height = gauss_ksize;
 	ksize.width = ksize.height;
 	//thresholding
 	int thresh = 0;
 	int maxValue = 255;
-	int blocksize = 25;
 	int thresholdType = cv::THRESH_BINARY_INV;
 	int adaptMethod = cv::ADAPTIVE_THRESH_GAUSSIAN_C;
 	//morphology
 	int shape = cv::MORPH_ELLIPSE;
 	int open = cv::MORPH_OPEN;
 	int close = cv::MORPH_CLOSE;
-	int size_close = 4;
 	cv::Mat elem_close = cv::getStructuringElement(shape,
 		cv::Size(2 * size_close + 1, 2 * size_close + 1),
 		cv::Point(size_close, size_close));
-	int size_open = 2;
 	cv::Mat elem_open = cv::getStructuringElement(shape,
 		cv::Size(2 * size_open + 1, 2 * size_open + 1),
 		cv::Point(size_open, size_open));
-	int size_dilate = 0;
 	cv::Mat elem_dilate = cv::getStructuringElement(shape,
 		cv::Size(2 * size_dilate + 1, 2 * size_dilate + 1),
 		cv::Point(size_dilate, size_dilate));
@@ -52,7 +55,7 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image) {
 	cv::morphologyEx(close_img, open_img, open, elem_open);
 
 	//dilate what's left to make them more prominent
-	cv::erode(open_img, dilate_img, elem_dilate);
+	cv::dilate(open_img, dilate_img, elem_dilate);
 
 	//----------debug/output, delete later-------------------
 	//output this for now
@@ -68,7 +71,7 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image) {
 	cv::cvtColor(dilate_img, color, CV_GRAY2BGR);
 	cv::bitwise_and(color, image, masked);
 
-	cv::imwrite(image_out + "5_masked.jpg", masked);
+	//cv::imwrite(image_out + "5_masked.jpg", masked);
 	//-------------------------------------------------------
 
 	//find contours
@@ -76,6 +79,10 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image) {
 	int compCount = 0;
 	std::vector<std::vector<cv::Point> > contours;
 	cv::findContours(dilate_img, contours, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
+	int size = contours.size() - 1;
+	printf("# lesions: %d \n", size);
+
+	cv::imwrite(image_out + std::to_string(n) + "_size" + std::to_string(size) + "_m.jpg", masked);
 
 	return contours;
 }
