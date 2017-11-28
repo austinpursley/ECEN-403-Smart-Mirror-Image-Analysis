@@ -1,0 +1,325 @@
+------lesion0------ 
+blue:    154 
+green:   178 
+red:     232 
+
+lab0_L:  196 
+lab1_GR: 144 
+lab2_BY: 148 
+
+hue:     9 
+satur:   86 
+value:   232 
+
+------lesion1------ 
+blue:    128 
+green:   151 
+red:     225 
+
+lab0_L:  177 
+lab1_GR: 153 
+lab2_BY: 152 
+
+hue:     7 
+satur:   110 
+value:   225 
+
+------lesion2------ 
+blue:    110 
+green:   121 
+red:     207 
+
+lab0_L:  153 
+lab1_GR: 160 
+lab2_BY: 149 
+
+hue:     3 
+satur:   119 
+value:   207 
+
+------lesion3------ 
+blue:    134 
+green:   150 
+red:     223 
+
+lab0_L:  176 
+lab1_GR: 153 
+lab2_BY: 148 
+
+hue:     5 
+satur:   102 
+value:   223 
+
+------lesion4------ 
+blue:    130 
+green:   143 
+red:     222 
+
+lab0_L:  171 
+lab1_GR: 157 
+lab2_BY: 147 
+
+hue:     4 
+satur:   106 
+value:   222 
+
+------lesion5------ 
+blue:    153 
+green:   171 
+red:     236 
+
+lab0_L:  193 
+lab1_GR: 149 
+lab2_BY: 147 
+
+hue:     7 
+satur:   90 
+value:   236 
+
+------lesion6------ 
+blue:    104 
+green:   126 
+red:     191 
+
+lab0_L:  151 
+lab1_GR: 151 
+lab2_BY: 150 
+
+hue:     8 
+satur:   116 
+value:   191 
+
+------lesion7------ 
+blue:    157 
+green:   173 
+red:     237 
+
+lab0_L:  195 
+lab1_GR: 149 
+lab2_BY: 145 
+
+hue:     6 
+satur:   86 
+value:   237 
+
+------lesion8------ 
+blue:    143 
+green:   172 
+red:     230 
+
+lab0_L:  191 
+lab1_GR: 145 
+lab2_BY: 151 
+
+hue:     10 
+satur:   96 
+value:   230 
+
+------lesion9------ 
+blue:    115 
+green:   119 
+red:     174 
+
+lab0_L:  142 
+lab1_GR: 149 
+lab2_BY: 139 
+
+hue:     2 
+satur:   86 
+value:   174 
+
+------lesion10------ 
+blue:    92 
+green:   105 
+red:     146 
+
+lab0_L:  123 
+lab1_GR: 143 
+lab2_BY: 142 
+
+hue:     7 
+satur:   94 
+value:   146 
+
+------lesion11------ 
+blue:    134 
+green:   141 
+red:     180 
+
+lab0_L:  158 
+lab1_GR: 142 
+lab2_BY: 137 
+
+hue:     5 
+satur:   65 
+value:   180 
+
+------lesion12------ 
+blue:    96 
+green:   106 
+red:     153 
+
+lab0_L:  126 
+lab1_GR: 145 
+lab2_BY: 141 
+
+hue:     5 
+satur:   95 
+value:   153 
+
+------lesion13------ 
+blue:    141 
+green:   152 
+red:     185 
+
+lab0_L:  167 
+lab1_GR: 139 
+lab2_BY: 138 
+
+hue:     8 
+satur:   61 
+value:   185 
+
+------lesion14------ 
+blue:    106 
+green:   111 
+red:     156 
+
+lab0_L:  131 
+lab1_GR: 145 
+lab2_BY: 138 
+
+hue:     3 
+satur:   82 
+value:   156 
+
+------lesion15------ 
+blue:    79 
+green:   111 
+red:     126 
+
+lab0_L:  121 
+lab1_GR: 129 
+lab2_BY: 148 
+
+hue:     20 
+satur:   95 
+value:   126 
+
+------lesion16------ 
+blue:    124 
+green:   135 
+red:     167 
+
+lab0_L:  151 
+lab1_GR: 138 
+lab2_BY: 139 
+
+hue:     8 
+satur:   66 
+value:   167 
+
+------lesion17------ 
+blue:    95 
+green:   98 
+red:     140 
+
+lab0_L:  117 
+lab1_GR: 144 
+lab2_BY: 137 
+
+hue:     2 
+satur:   82 
+value:   140 
+
+------lesion18------ 
+blue:    77 
+green:   110 
+red:     133 
+
+lab0_L:  122 
+lab1_GR: 132 
+lab2_BY: 150 
+
+hue:     18 
+satur:   107 
+value:   133 
+
+------lesion19------ 
+blue:    92 
+green:   95 
+red:     141 
+
+lab0_L:  115 
+lab1_GR: 146 
+lab2_BY: 137 
+
+hue:     2 
+satur:   89 
+value:   141 
+
+------lesion20------ 
+blue:    83 
+green:   92 
+red:     134 
+
+lab0_L:  110 
+lab1_GR: 144 
+lab2_BY: 140 
+
+hue:     5 
+satur:   97 
+value:   134 
+
+------lesion21------ 
+blue:    80 
+green:   109 
+red:     133 
+
+lab0_L:  122 
+lab1_GR: 133 
+lab2_BY: 148 
+
+hue:     16 
+satur:   102 
+value:   133 
+
+------lesion22------ 
+blue:    84 
+green:   104 
+red:     131 
+
+lab0_L:  118 
+lab1_GR: 136 
+lab2_BY: 143 
+
+hue:     13 
+satur:   91 
+value:   131 
+
+------lesion23------ 
+blue:    77 
+green:   109 
+red:     129 
+
+lab0_L:  120 
+lab1_GR: 131 
+lab2_BY: 149 
+
+hue:     18 
+satur:   103 
+value:   129 
+
+------lesion24------ 
+blue:    83 
+green:   104 
+red:     133 
+
+lab0_L:  118 
+lab1_GR: 137 
+lab2_BY: 144 
+
+hue:     13 
+satur:   96 
+value:   133 
+

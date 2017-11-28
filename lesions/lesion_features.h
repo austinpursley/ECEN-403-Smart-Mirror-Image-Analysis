@@ -1,5 +1,6 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
+#include "lesions.h"
 #include "stdafx.h"
 
 std::vector<cv::Scalar> lesion_colors(const cv::Mat & image, const std::vector<std::vector<cv::Point> > & contours) {
@@ -17,7 +18,6 @@ std::vector<cv::Scalar> lesion_colors(const cv::Mat & image, const std::vector<s
 		color = cv::mean(image, mask);
 
 		//------------------for output testing delete later ---------------
-		std::string image_out("C:/Users/Austin Pursley/Desktop/ECEN-403-Smart-Mirror-Image-Analysis/data/lesions/output/");
 		cv::Mat show = image.clone();
 		cv::drawContours(show, contours, i, cv::Scalar(255), 1, 1);
 		cv::imwrite(image_out + "les_" + std::to_string(i) + ".jpg", show);

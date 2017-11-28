@@ -1,25 +1,25 @@
-
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
+#include "lesions.h"
 #include "stdafx.h"
 
 std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, int n) {
-	//put all tuning parameters in one neat placee
-	int gauss_ksize = 37;
-	int blocksize = 39;
+	// put all tuning parameters in one placee
+	int gauss_ksize = 15;
+	int blocksize = 19;
 	int size_close = 4;
-	int size_open = 4;
+	int size_open = 3;
 	int size_dilate = 0;
-	//guassian Blur
+	// guassian Blur setting
 	cv::Size ksize;
 	ksize.height = gauss_ksize;
 	ksize.width = ksize.height;
-	//thresholding
+	// thresholding setting
 	int thresh = 0;
 	int maxValue = 255;
 	int thresholdType = cv::THRESH_BINARY_INV;
 	int adaptMethod = cv::ADAPTIVE_THRESH_GAUSSIAN_C;
-	//morphology
+	// morphology
 	int shape = cv::MORPH_ELLIPSE;
 	int open = cv::MORPH_OPEN;
 	int close = cv::MORPH_CLOSE;
@@ -32,11 +32,11 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, int 
 	cv::Mat elem_dilate = cv::getStructuringElement(shape,
 		cv::Size(2 * size_dilate + 1, 2 * size_dilate + 1),
 		cv::Point(size_dilate, size_dilate));
-	//output matrix for each progression of processing
+	// output matrix for each progression of processing
 	cv::Mat gray_gr_img, blurr_img, thresh_img, close_img, open_img, dilate_img;
 
-	//removing blue channel removes noise, making lesions clearer
-	//green-reg image
+	// removing blue channel removes noise, making lesions clearer
+	// green-red image
 	cv::Mat gr_image = image & cv::Scalar(0, 255, 255);
 
 	//convert color image to gray scale
@@ -59,7 +59,7 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, int 
 
 	//----------debug/output, delete later-------------------
 	//output this for now
-	std::string image_out("C:/Users/Austin Pursley/Desktop/ECEN-403-Smart-Mirror-Image-Analysis/data/lesions/output/");
+	
 	//cv::imwrite(image_out + "0_blurr.jpg",  blurr_img);
 	//cv::imwrite(image_out + "1_thresh.jpg", thresh_img);
 	//cv::imwrite(image_out + "2_close.jpg",  close_img);
@@ -81,8 +81,8 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, int 
 	cv::findContours(dilate_img, contours, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
 	int size = contours.size() - 1;
 	printf("# lesions: %d \n", size);
-
-	cv::imwrite(image_out + std::to_string(n) + "_size" + std::to_string(size) + "_m.jpg", masked);
+	//cv::imwrite(image_out + std::to_string(n) + "_size" + std::to_string(size) + "_m.jpg", masked);
+	cv::imwrite(image_out + std::to_string(n) + "_test.jpg", masked);
 
 	return contours;
 }

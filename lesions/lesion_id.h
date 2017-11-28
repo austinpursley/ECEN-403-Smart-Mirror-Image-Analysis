@@ -1,15 +1,16 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
+#include "lesions.h"
 #include "stdafx.h"
 
 std::vector<int> lesion_id(std::vector<cv::Scalar> & lesion_colors) {
 	std::vector<int> lesion_id;
 	
-	std::string image_out("C:/Users/Austin Pursley/Desktop/ECEN-403-Smart-Mirror-Image-Analysis/data/lesions/output/");
+	//std::string image_out("C:/Users/Austin Pursley/Desktop/ECEN-403-Smart-Mirror-Image-Analysis/data/lesions/output/");
 	
 	//file stuff for testing
 	FILE * pFile;
-	pFile = fopen ("C:/Users/Austin Pursley/Desktop/ECEN-403-Smart-Mirror-Image-Analysis/data/lesions/output/color_data.txt", "w");
+	pFile = fopen ("C:/Users/Austin Pursley/Desktop/ECEN-403-Smart-Mirror-Image-Analysis/lesions/output/color_data.txt", "w");
 
 	for (int i = 0;i < lesion_colors.size();i++) {
 		//----------------------testing----------------------------
