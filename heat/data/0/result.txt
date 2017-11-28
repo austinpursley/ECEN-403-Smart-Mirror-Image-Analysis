@@ -1,0 +1,2 @@
+largest heat pixel: 8423.000000 @(34, 11) 
+largest heat pixel: 7887.000000 @(72, 9) 
