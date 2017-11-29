@@ -7,6 +7,9 @@ std::vector<cv::Scalar> lesion_colors(const cv::Mat & image, const std::vector<s
 	std::vector<cv::Scalar> contour_colors;
 	cv::Scalar color;
 	cv::Mat mask;
+	//the first is going to be the mean
+	cv::Scalar mean_color = cv::mean(image);
+	contour_colors.push_back(mean_color);
 
 	for (int i = 0; i < contours.size(); i++) {
 		//clear mask (set it all black)
@@ -23,10 +26,8 @@ std::vector<cv::Scalar> lesion_colors(const cv::Mat & image, const std::vector<s
 		cv::imwrite(image_out + "les_" + std::to_string(i) + ".jpg", show);
 		//---------------------delete---------------------------------------
 		
-
 		contour_colors.push_back(color);
 	}
-
 
 	return(contour_colors);
 }

@@ -5,10 +5,10 @@
 
 std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, int n) {
 	// put all tuning parameters in one placee
-	int gauss_ksize = 15;
-	int blocksize = 19;
-	int size_close = 4;
-	int size_open = 3;
+	int gauss_ksize = 71;
+	int blocksize = 71;
+	int size_close = 5;
+	int size_open = 8;
 	int size_dilate = 0;
 	// guassian Blur setting
 	cv::Size ksize;
