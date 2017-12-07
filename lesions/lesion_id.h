@@ -3,7 +3,7 @@
 #include "lesions.h"
 #include "stdafx.h"
 
-std::vector<int> lesion_id(std::vector<cv::Scalar> & lesion_colors) {
+std::vector<int> lesion_id(std::vector<cv::Scalar> & lesion_colors, std::vector<double> lesion_area) {
 	std::vector<int> lesion_id;
 	
 	//std::string image_out("C:/Users/Austin Pursley/Desktop/ECEN-403-Smart-Mirror-Image-Analysis/data/lesions/output/");
@@ -25,6 +25,7 @@ std::vector<int> lesion_id(std::vector<cv::Scalar> & lesion_colors) {
 	fprintf(pFile, "hue:     %f \n", mean_hsv_color[0]);
 	fprintf(pFile, "satur:   %f \n", mean_hsv_color[1]);
 	fprintf(pFile, "value:   %f \n\n", mean_hsv_color[2]);
+
 	/*
 	cv::Mat show_cyy(64, 64, CV_32FC3);
 	cv::cvtColor(show_mean, show_cyy, CV_BGR2YCrCb);
@@ -35,10 +36,12 @@ std::vector<int> lesion_id(std::vector<cv::Scalar> & lesion_colors) {
 	*/
 
 	//--------------------testing-----------------------------
-	
+
 	for (int i = 1; i < lesion_colors.size();i++) {
+		
 		//----------------------testing----------------------------
 		fprintf(pFile, "------lesion%d------ \n", (i-1));
+		fprintf(pFile, "lesion%d size is %.2f \n", (i-1), lesion_area[i-1]);
 		cv::Mat show(64, 64, CV_32FC3);
 		show = cv::Scalar(lesion_colors[i]);
 		cv::imwrite(image_out + "les_color_" + std::to_string(i-1) + ".jpg", show);

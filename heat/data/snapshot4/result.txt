@@ -1,0 +1,4 @@
+Simple Threshold 
+Largest thermal value: 8425.000000 @(33, 9) 
+Smallest thermal value: 8118.000000 @(28, 14) 
+
