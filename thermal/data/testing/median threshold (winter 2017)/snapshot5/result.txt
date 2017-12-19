@@ -1,0 +1,5 @@
+threshold is median: 8044.000000 
+Simple Threshold 
+Largest thermal value: 8427.000000 @(34, 11) 
+Smallest thermal value: 8012.000000 @(44, 0) 
+

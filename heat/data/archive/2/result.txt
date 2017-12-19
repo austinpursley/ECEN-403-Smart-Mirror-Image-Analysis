@@ -1,7 +1,0 @@
-Simple Threshold 
-Largest thermal value: 8423.000000 @(34, 11) 
-Smallest thermal value: 8201.000000 @(33, 26) 
-
-Otsu Threshold 
-Largest thermal value: 0.000000 @(-1, -1) 
-Sallest thermal value: 0.000000 @(-1, -1) 

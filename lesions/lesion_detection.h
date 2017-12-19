@@ -5,9 +5,9 @@
 
 std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, int n) {
 	// put all tuning parameters in one placee
-	int gauss_ksize = 21;
-	int blocksize = 17;
-	int size_close = 3;
+	int gauss_ksize = 45;
+	int blocksize = 57;
+	int size_close = 7;
 	int size_open = 4;
 	int size_dilate = 0;
 	// guassian Blur setting
@@ -59,13 +59,16 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, int 
 
 	//----------debug/output, delete later-------------------
 	//output this for now
-	
-	//cv::imwrite(image_out + "0_blurr.jpg",  blurr_img);
-	//cv::imwrite(image_out + "1_thresh.jpg", thresh_img);
-	//cv::imwrite(image_out + "2_close.jpg",  close_img);
-	//cv::imwrite(image_out + "3_open.jpg",   open_img);
-	//cv::imwrite(image_out + "4_dilate.jpg", dilate_img);
-
+	/*
+	cv::imwrite(image_out + "0_grb.jpg", gr_image);
+	cv::imwrite(image_out + "1_gr.jpg", gr_image);
+	cv::imwrite(image_out + "2_gr_gray.jpg", gray_gr_img);
+	cv::imwrite(image_out + "3_blurr.jpg",  blurr_img);
+	cv::imwrite(image_out + "4_thresh.jpg", thresh_img);
+	cv::imwrite(image_out + "5_close.jpg",  close_img);
+	cv::imwrite(image_out + "6_open.jpg",   open_img);
+	cv::imwrite(image_out + "7_dilate.jpg", dilate_img);
+	*/
 	cv::bitwise_not(dilate_img, dilate_img);
 	cv::Mat masked, color;
 	cv::cvtColor(dilate_img, color, CV_GRAY2BGR);
