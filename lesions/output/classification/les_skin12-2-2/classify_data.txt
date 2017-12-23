@@ -1,0 +1,104 @@
+------MEAN------ 
+hue:     223.753616 
+satur:   0.269761 
+value:   142.587540 
+
+------lesion0------ 
+lesion0 size is 77.50 
+hue:     220.386414 
+satur:   0.276566 
+value:   122.136841 
+perc_diff_hue: -1.504871 
+perc_diff_sat: 2.522578 
+perc_diff_val: 14.342557 
+
+lesion0 is too similar to skin 
+
+------lesion1------ 
+lesion1 size is 280.00 
+hue:     221.834427 
+satur:   0.373156 
+value:   106.914825 
+perc_diff_hue: -0.857724 
+perc_diff_sat: 38.328106 
+perc_diff_val: 25.018114 
+
+lesion1 is dark 
+
+------lesion2------ 
+lesion2 size is 275.50 
+hue:     230.671539 
+satur:   0.310943 
+value:   131.657974 
+perc_diff_hue: 3.091759 
+perc_diff_sat: 15.265854 
+perc_diff_val: 7.665162 
+
+lesion2 is dark 
+
+------lesion3------ 
+lesion3 size is 189.50 
+hue:     229.975266 
+satur:   0.305142 
+value:   148.574768 
+perc_diff_hue: 2.780580 
+perc_diff_sat: 13.115615 
+perc_diff_val: -4.198985 
+
+lesion3 is red, but light 
+
+------lesion4------ 
+lesion4 size is 163.50 
+hue:     228.564987 
+satur:   0.353002 
+value:   134.491974 
+perc_diff_hue: 2.150299 
+perc_diff_sat: 30.857082 
+perc_diff_val: 5.677611 
+
+lesion4 is dark 
+
+------lesion5------ 
+lesion5 size is 84.00 
+hue:     226.210052 
+satur:   0.371403 
+value:   132.196075 
+perc_diff_hue: 1.097831 
+perc_diff_sat: 37.678356 
+perc_diff_val: 7.287779 
+
+lesion5 is dark 
+
+------lesion6------ 
+lesion6 size is 298.50 
+hue:     235.980698 
+satur:   0.280450 
+value:   154.993927 
+perc_diff_hue: 5.464529 
+perc_diff_sat: 3.962342 
+perc_diff_val: -8.700891 
+
+lesion6 is too similar to skin 
+
+------lesion7------ 
+lesion7 size is 171.00 
+hue:     225.892349 
+satur:   0.439419 
+value:   133.216080 
+perc_diff_hue: 0.955843 
+perc_diff_sat: 62.891735 
+perc_diff_val: 6.572425 
+
+lesion7 is dark 
+
+------lesion8------ 
+lesion8 size is 150.00 
+hue:     230.881500 
+satur:   0.355522 
+value:   144.873566 
+perc_diff_hue: 3.185595 
+perc_diff_sat: 31.791294 
+perc_diff_val: -1.603244 
+
+lesion8 is red, but light 
+

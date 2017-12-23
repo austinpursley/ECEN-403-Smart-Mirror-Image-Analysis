@@ -1,0 +1,27 @@
+------MEAN------ 
+hue:     240.445541 
+satur:   0.150831 
+value:   215.634460 
+
+------lesion0------ 
+lesion0 size is 1106.50 
+hue:     245.345825 
+satur:   0.195764 
+value:   192.846588 
+perc_diff_hue: 2.038002 
+perc_diff_sat: 29.790228 
+perc_diff_val: 10.567825 
+
+lesion0 is dark 
+
+------lesion1------ 
+lesion1 size is 204.00 
+hue:     229.728867 
+satur:   0.337698 
+value:   194.826279 
+perc_diff_hue: -4.457007 
+perc_diff_sat: 123.891235 
+perc_diff_val: 9.649748 
+
+lesion1 is dark 
+

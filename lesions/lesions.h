@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <string>
+#include <direct.h>
 
-extern std::string image_out;
+extern std::string input_dir;
 
-extern std::string image_in;
+extern std::string output_dir;

@@ -1,0 +1,104 @@
+------MEAN------ 
+hue:     218.499191 
+satur:   0.506585 
+value:   161.330978 
+
+------lesion0------ 
+lesion0 size is 286.00 
+hue:     216.444321 
+satur:   0.511239 
+value:   101.837349 
+perc_diff_hue: -0.940448 
+perc_diff_sat: 0.918758 
+perc_diff_val: 36.876755 
+
+lesion0 is dark 
+
+------lesion1------ 
+lesion1 size is 200.50 
+hue:     219.754898 
+satur:   0.505620 
+value:   171.293854 
+perc_diff_hue: 0.574696 
+perc_diff_sat: -0.190444 
+perc_diff_val: -6.175426 
+
+lesion1 is too similar to skin 
+
+------lesion2------ 
+lesion2 size is 266.00 
+hue:     217.102600 
+satur:   0.535416 
+value:   145.505051 
+perc_diff_hue: -0.639175 
+perc_diff_sat: 5.691236 
+perc_diff_val: 9.809603 
+
+lesion2 is too similar to skin 
+
+------lesion3------ 
+lesion3 size is 1053.50 
+hue:     222.252869 
+satur:   0.544179 
+value:   187.332748 
+perc_diff_hue: 1.717936 
+perc_diff_sat: 7.420998 
+perc_diff_val: -16.117035 
+
+lesion3 is too similar to skin 
+
+------lesion4------ 
+lesion4 size is 377.50 
+hue:     217.155563 
+satur:   0.658071 
+value:   109.466019 
+perc_diff_hue: -0.614935 
+perc_diff_sat: 29.903368 
+perc_diff_val: 32.148170 
+
+lesion4 is dark 
+
+------lesion5------ 
+lesion5 size is 447.00 
+hue:     218.209122 
+satur:   0.623242 
+value:   144.386368 
+perc_diff_hue: -0.132755 
+perc_diff_sat: 23.028065 
+perc_diff_val: 10.503011 
+
+lesion5 is dark 
+
+------lesion6------ 
+lesion6 size is 292.00 
+hue:     221.701935 
+satur:   0.536899 
+value:   193.733749 
+perc_diff_hue: 1.465792 
+perc_diff_sat: 5.984020 
+perc_diff_val: -20.084656 
+
+lesion6 is too similar to skin 
+
+------lesion7------ 
+lesion7 size is 466.00 
+hue:     223.138245 
+satur:   0.561265 
+value:   181.809906 
+perc_diff_hue: 2.123144 
+perc_diff_sat: 10.793879 
+perc_diff_val: -12.693736 
+
+lesion7 is too similar to skin 
+
+------lesion8------ 
+lesion8 size is 803.00 
+hue:     218.063736 
+satur:   0.648891 
+value:   84.758232 
+perc_diff_hue: -0.199294 
+perc_diff_sat: 28.091267 
+perc_diff_val: 47.463139 
+
+lesion8 is dark 
+

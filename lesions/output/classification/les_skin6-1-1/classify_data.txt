@@ -1,0 +1,203 @@
+------MEAN------ 
+hue:     216.667999 
+satur:   0.367271 
+value:   211.855469 
+
+------lesion0------ 
+lesion0 size is 19.00 
+hue:     217.206436 
+satur:   0.459531 
+value:   195.551727 
+perc_diff_hue: 0.248508 
+perc_diff_sat: 25.120466 
+perc_diff_val: 7.695691 
+
+lesion0 is dark 
+
+------lesion1------ 
+lesion1 size is 339.50 
+hue:     216.568100 
+satur:   0.492560 
+value:   186.328873 
+perc_diff_hue: -0.046107 
+perc_diff_sat: 34.113441 
+perc_diff_val: 12.049062 
+
+lesion1 is dark 
+
+------lesion2------ 
+lesion2 size is 316.50 
+hue:     218.716156 
+satur:   0.474750 
+value:   197.163788 
+perc_diff_hue: 0.945297 
+perc_diff_sat: 29.264187 
+perc_diff_val: 6.934766 
+
+lesion2 is dark 
+
+------lesion3------ 
+lesion3 size is 94.00 
+hue:     216.108521 
+satur:   0.472320 
+value:   207.412277 
+perc_diff_hue: -0.258219 
+perc_diff_sat: 28.602579 
+perc_diff_val: 2.097275 
+
+lesion3 is red, but light 
+
+------lesion4------ 
+lesion4 size is 1266.00 
+hue:     217.578705 
+satur:   0.459192 
+value:   191.472748 
+perc_diff_hue: 0.420323 
+perc_diff_sat: 25.028059 
+perc_diff_val: 9.621050 
+
+lesion4 is dark 
+
+------lesion5------ 
+lesion5 size is 65.50 
+hue:     222.100067 
+satur:   0.412800 
+value:   193.679016 
+perc_diff_hue: 2.507093 
+perc_diff_sat: 12.396511 
+perc_diff_val: 8.579647 
+
+lesion5 is dark 
+
+------lesion6------ 
+lesion6 size is 271.50 
+hue:     217.306442 
+satur:   0.410513 
+value:   195.320129 
+perc_diff_hue: 0.294664 
+perc_diff_sat: 11.774013 
+perc_diff_val: 7.805009 
+
+lesion6 is too similar to skin 
+
+------lesion7------ 
+lesion7 size is 279.50 
+hue:     223.080048 
+satur:   0.286644 
+value:   202.894409 
+perc_diff_hue: 2.959389 
+perc_diff_sat: -21.953064 
+perc_diff_val: 4.229798 
+
+lesion7 is too similar to skin 
+
+------lesion8------ 
+lesion8 size is 179.50 
+hue:     218.912689 
+satur:   0.394481 
+value:   208.470871 
+perc_diff_hue: 1.036004 
+perc_diff_sat: 7.408831 
+perc_diff_val: 1.597598 
+
+lesion8 is too similar to skin 
+
+------lesion9------ 
+lesion9 size is 2139.00 
+hue:     219.417847 
+satur:   0.496866 
+value:   189.511658 
+perc_diff_hue: 1.269153 
+perc_diff_sat: 35.285999 
+perc_diff_val: 10.546723 
+
+lesion9 is dark 
+
+------lesion10------ 
+lesion10 size is 441.00 
+hue:     221.126358 
+satur:   0.341989 
+value:   202.440399 
+perc_diff_hue: 2.057692 
+perc_diff_sat: -6.883804 
+perc_diff_val: 4.444100 
+
+lesion10 is too similar to skin 
+
+------lesion11------ 
+lesion11 size is 258.50 
+hue:     221.002991 
+satur:   0.410292 
+value:   194.062943 
+perc_diff_hue: 2.000753 
+perc_diff_sat: 11.713625 
+perc_diff_val: 8.398426 
+
+lesion11 is too similar to skin 
+
+------lesion12------ 
+lesion12 size is 392.00 
+hue:     217.490631 
+satur:   0.578671 
+value:   195.906387 
+perc_diff_hue: 0.379674 
+perc_diff_sat: 57.559662 
+perc_diff_val: 7.528284 
+
+lesion12 is dark 
+
+------lesion13------ 
+lesion13 size is 1220.50 
+hue:     217.897156 
+satur:   0.326386 
+value:   214.467422 
+perc_diff_hue: 0.567299 
+perc_diff_sat: -11.131974 
+perc_diff_val: -1.232894 
+
+lesion13 is too similar to skin 
+
+------lesion14------ 
+lesion14 size is 94.00 
+hue:     218.443848 
+satur:   0.257076 
+value:   220.508926 
+perc_diff_hue: 0.819617 
+perc_diff_sat: -30.003761 
+perc_diff_val: -4.084604 
+
+lesion14 is too similar to skin 
+
+------lesion15------ 
+lesion15 size is 141.00 
+hue:     214.718964 
+satur:   0.323057 
+value:   216.122086 
+perc_diff_hue: -0.899549 
+perc_diff_sat: -12.038465 
+perc_diff_val: -2.013928 
+
+lesion15 is too similar to skin 
+
+------lesion16------ 
+lesion16 size is 363.50 
+hue:     218.200134 
+satur:   0.398195 
+value:   208.390549 
+perc_diff_hue: 0.707135 
+perc_diff_sat: 8.420032 
+perc_diff_val: 1.635511 
+
+lesion16 is too similar to skin 
+
+------lesion17------ 
+lesion17 size is 679.50 
+hue:     218.305069 
+satur:   0.432177 
+value:   213.101654 
+perc_diff_hue: 0.755566 
+perc_diff_sat: 17.672436 
+perc_diff_val: -0.588224 
+
+lesion17 is red, but light 
+

@@ -1,0 +1,104 @@
+------MEAN------ 
+hue:     220.446014 
+satur:   0.798625 
+value:   168.926300 
+
+------lesion0------ 
+lesion0 size is 42.00 
+hue:     219.393219 
+satur:   0.898502 
+value:   157.305084 
+perc_diff_hue: -0.477575 
+perc_diff_sat: 12.506199 
+perc_diff_val: 6.879459 
+
+lesion0 is dark 
+
+------lesion1------ 
+lesion1 size is 266.00 
+hue:     219.466492 
+satur:   0.929209 
+value:   129.458862 
+perc_diff_hue: -0.444337 
+perc_diff_sat: 16.351101 
+perc_diff_val: 23.363703 
+
+lesion1 is dark 
+
+------lesion2------ 
+lesion2 size is 209.50 
+hue:     220.178619 
+satur:   0.860476 
+value:   182.839661 
+perc_diff_hue: -0.121297 
+perc_diff_sat: 7.744707 
+perc_diff_val: -8.236349 
+
+lesion2 is too similar to skin 
+
+------lesion3------ 
+lesion3 size is 277.50 
+hue:     219.136932 
+satur:   0.850158 
+value:   172.074188 
+perc_diff_hue: -0.593833 
+perc_diff_sat: 6.452797 
+perc_diff_val: -1.863468 
+
+lesion3 is too similar to skin 
+
+------lesion4------ 
+lesion4 size is 552.00 
+hue:     226.944992 
+satur:   0.853223 
+value:   68.674271 
+perc_diff_hue: 2.948104 
+perc_diff_sat: 6.836536 
+perc_diff_val: 59.346611 
+
+lesion4 is dark 
+
+------lesion5------ 
+lesion5 size is 376.50 
+hue:     224.121887 
+satur:   0.769874 
+value:   192.493942 
+perc_diff_hue: 1.667471 
+perc_diff_sat: -3.600006 
+perc_diff_val: -13.951434 
+
+lesion5 is too similar to skin 
+
+------lesion6------ 
+lesion6 size is 63.00 
+hue:     223.028107 
+satur:   0.958749 
+value:   105.253166 
+perc_diff_hue: 1.171304 
+perc_diff_sat: 20.050028 
+perc_diff_val: 37.692848 
+
+lesion6 is dark 
+
+------lesion7------ 
+lesion7 size is 170.50 
+hue:     223.046478 
+satur:   0.966626 
+value:   122.634018 
+perc_diff_hue: 1.179637 
+perc_diff_sat: 21.036324 
+perc_diff_val: 27.403835 
+
+lesion7 is dark 
+
+------lesion8------ 
+lesion8 size is 26.50 
+hue:     225.382431 
+satur:   0.955463 
+value:   106.947365 
+perc_diff_hue: 2.239286 
+perc_diff_sat: 19.638487 
+perc_diff_val: 36.689926 
+
+lesion8 is dark 
+

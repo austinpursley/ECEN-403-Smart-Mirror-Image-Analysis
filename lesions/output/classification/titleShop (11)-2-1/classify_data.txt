@@ -1,0 +1,214 @@
+------MEAN------ 
+hue:     231.085236 
+satur:   0.890916 
+value:   76.724342 
+
+------lesion0------ 
+lesion0 size is 35.50 
+hue:     230.496674 
+satur:   0.865313 
+value:   60.306122 
+perc_diff_hue: -0.254695 
+perc_diff_sat: -2.873816 
+perc_diff_val: 21.398972 
+
+lesion0 is too similar to skin 
+
+------lesion1------ 
+lesion1 size is 83.50 
+hue:     230.311539 
+satur:   0.851422 
+value:   57.108910 
+perc_diff_hue: -0.334810 
+perc_diff_sat: -4.433049 
+perc_diff_val: 25.566113 
+
+lesion1 is dark 
+
+------lesion2------ 
+lesion2 size is 159.00 
+hue:     230.635056 
+satur:   0.662420 
+value:   37.093407 
+perc_diff_hue: -0.194811 
+perc_diff_sat: -25.647297 
+perc_diff_val: 51.653664 
+
+lesion2 is dark 
+
+------lesion3------ 
+lesion3 size is 78.50 
+hue:     231.045197 
+satur:   0.898916 
+value:   73.831581 
+perc_diff_hue: -0.017327 
+perc_diff_sat: 0.897967 
+perc_diff_val: 3.770330 
+
+lesion3 is too similar to skin 
+
+------lesion4------ 
+lesion4 size is 153.50 
+hue:     231.511429 
+satur:   0.890722 
+value:   68.280220 
+perc_diff_hue: 0.184431 
+perc_diff_sat: -0.021837 
+perc_diff_val: 11.005793 
+
+lesion4 is too similar to skin 
+
+------lesion5------ 
+lesion5 size is 46.00 
+hue:     244.500000 
+satur:   0.458365 
+value:   20.777779 
+perc_diff_hue: 5.805115 
+perc_diff_sat: -48.551266 
+perc_diff_val: 72.918922 
+
+lesion5 is dark (red) 
+
+------lesion6------ 
+lesion6 size is 321.00 
+hue:     231.025528 
+satur:   0.828402 
+value:   58.855114 
+perc_diff_hue: -0.025838 
+perc_diff_sat: -7.016881 
+perc_diff_val: 23.290167 
+
+lesion6 is too similar to skin 
+
+------lesion7------ 
+lesion7 size is 487.50 
+hue:     229.965729 
+satur:   0.855468 
+value:   67.196968 
+perc_diff_hue: -0.484456 
+perc_diff_sat: -3.978880 
+perc_diff_val: 12.417668 
+
+lesion7 is too similar to skin 
+
+------lesion8------ 
+lesion8 size is 157.50 
+hue:     235.322296 
+satur:   0.500873 
+value:   25.466667 
+perc_diff_hue: 1.833549 
+perc_diff_sat: -43.780060 
+perc_diff_val: 66.807579 
+
+lesion8 is dark 
+
+------lesion9------ 
+lesion9 size is 233.50 
+hue:     231.637970 
+satur:   0.920422 
+value:   85.363983 
+perc_diff_hue: 0.239191 
+perc_diff_sat: 3.311821 
+perc_diff_val: -11.260626 
+
+lesion9 is too similar to skin 
+
+------lesion10------ 
+lesion10 size is 64.00 
+hue:     230.752060 
+satur:   0.888537 
+value:   90.724998 
+perc_diff_hue: -0.144179 
+perc_diff_sat: -0.267095 
+perc_diff_val: -18.247997 
+
+lesion10 is too similar to skin 
+
+------lesion11------ 
+lesion11 size is 1072.00 
+hue:     233.989838 
+satur:   0.699362 
+value:   39.001709 
+perc_diff_hue: 1.256940 
+perc_diff_sat: -21.500853 
+perc_diff_val: 49.166447 
+
+lesion11 is dark 
+
+------lesion12------ 
+lesion12 size is 790.50 
+hue:     231.895020 
+satur:   0.823463 
+value:   58.624706 
+perc_diff_hue: 0.350426 
+perc_diff_sat: -7.571197 
+perc_diff_val: 23.590473 
+
+lesion12 is too similar to skin 
+
+------lesion13------ 
+lesion13 size is 265.50 
+hue:     232.530426 
+satur:   0.850245 
+value:   72.728813 
+perc_diff_hue: 0.625393 
+perc_diff_sat: -4.565148 
+perc_diff_val: 5.207642 
+
+lesion13 is too similar to skin 
+
+------lesion14------ 
+lesion14 size is 69.50 
+hue:     231.868759 
+satur:   0.748332 
+value:   43.569767 
+perc_diff_hue: 0.339063 
+perc_diff_sat: -16.004232 
+perc_diff_val: 43.212589 
+
+lesion14 is dark 
+
+------lesion15------ 
+lesion15 size is 169.00 
+hue:     231.609192 
+satur:   0.909205 
+value:   87.536461 
+perc_diff_hue: 0.226737 
+perc_diff_sat: 2.052740 
+perc_diff_val: -14.092162 
+
+lesion15 is too similar to skin 
+
+------lesion16------ 
+lesion16 size is 359.00 
+hue:     230.759262 
+satur:   0.821526 
+value:   70.287529 
+perc_diff_hue: -0.141062 
+perc_diff_sat: -7.788703 
+perc_diff_val: 8.389532 
+
+lesion16 is too similar to skin 
+
+------lesion17------ 
+lesion17 size is 30.00 
+hue:     231.107437 
+satur:   0.908636 
+value:   95.119049 
+perc_diff_hue: 0.009608 
+perc_diff_sat: 1.988901 
+perc_diff_val: -23.975060 
+
+lesion17 is too similar to skin 
+
+------lesion18------ 
+lesion18 size is 30.00 
+hue:     231.561356 
+satur:   0.924719 
+value:   82.790695 
+perc_diff_hue: 0.206037 
+perc_diff_sat: 3.794155 
+perc_diff_val: -7.906686 
+
+lesion18 is too similar to skin 
+

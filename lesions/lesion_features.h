@@ -3,11 +3,11 @@
 #include "lesions.h"
 #include "stdafx.h"
 
-std::vector<cv::Scalar> lesion_colors(const cv::Mat & image, const std::vector<std::vector<cv::Point> > & contours) {
+std::vector<cv::Scalar> lesion_colors(const cv::Mat & image, const std::vector<std::vector<cv::Point> > & contours, std::string img_name) {
 	std::vector<cv::Scalar> contour_colors;
 	cv::Scalar color;
 	cv::Mat mask;
-	//the first is going to be the mean
+	//calculate the mean color of entire image
 	cv::Scalar mean_color = cv::mean(image);
 	contour_colors.push_back(mean_color);
 
@@ -16,17 +16,20 @@ std::vector<cv::Scalar> lesion_colors(const cv::Mat & image, const std::vector<s
 		mask = cv::Mat::zeros(image.rows, image.cols, CV_8UC1);
 		//on black background, draw white contour area corresponding to lesion
 		cv::drawContours(mask, contours, i, cv::Scalar(255), -1);
-		//calculate mean lesion color
 		//mask means we are only considering white contour section
 		color = cv::mean(image, mask);
+		contour_colors.push_back(color);
 
-		//------------------for output testing delete later ---------------
+		//------------------ PRESENTATION / DEBUG ---------------
+		std::string img_out_dir = output_dir + "/classification/";
+		_mkdir(img_out_dir.c_str());
+		img_out_dir = img_out_dir + img_name + "/";
+		_mkdir(img_out_dir.c_str());
+
 		cv::Mat show = image.clone();
 		cv::drawContours(show, contours, i, cv::Scalar(255), 1, 1);
-		cv::imwrite(image_out + "les_" + std::to_string(i) + ".jpg", show);
-		//---------------------delete---------------------------------------
-		
-		contour_colors.push_back(color);
+		cv::imwrite(img_out_dir  + std::to_string(i) + "_les" +  ".jpg", show);
+		//------------------------------------------------------------------
 	}
 
 	return(contour_colors);

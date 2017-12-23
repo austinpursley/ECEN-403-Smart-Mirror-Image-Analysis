@@ -1,0 +1,49 @@
+------MEAN------ 
+hue:     238.830338 
+satur:   0.586773 
+value:   167.300110 
+
+------lesion0------ 
+lesion0 size is 35.00 
+hue:     233.180099 
+satur:   0.650082 
+value:   126.875000 
+perc_diff_hue: -2.365796 
+perc_diff_sat: 10.789362 
+perc_diff_val: 24.163229 
+
+lesion0 is too similar to skin 
+
+------lesion1------ 
+lesion1 size is 87.00 
+hue:     234.077774 
+satur:   0.620957 
+value:   133.603775 
+perc_diff_hue: -1.989933 
+perc_diff_sat: 5.825829 
+perc_diff_val: 20.141251 
+
+lesion1 is too similar to skin 
+
+------lesion2------ 
+lesion2 size is 41.00 
+hue:     233.996521 
+satur:   0.626979 
+value:   153.203705 
+perc_diff_hue: -2.023954 
+perc_diff_sat: 6.852096 
+perc_diff_val: 8.425819 
+
+lesion2 is too similar to skin 
+
+------lesion3------ 
+lesion3 size is 942.00 
+hue:     248.935043 
+satur:   0.599900 
+value:   167.695740 
+perc_diff_hue: 4.230914 
+perc_diff_sat: 2.237054 
+perc_diff_val: -0.236479 
+
+lesion3 is too similar to skin 
+

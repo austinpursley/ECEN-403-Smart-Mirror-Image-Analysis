@@ -1,0 +1,38 @@
+------MEAN------ 
+hue:     239.198135 
+satur:   0.290353 
+value:   245.418716 
+
+------lesion0------ 
+lesion0 size is 213.00 
+hue:     240.669312 
+satur:   0.250735 
+value:   223.455643 
+perc_diff_hue: 0.615045 
+perc_diff_sat: -13.644626 
+perc_diff_val: 8.949225 
+
+lesion0 is too similar to skin 
+
+------lesion1------ 
+lesion1 size is 680.00 
+hue:     240.949478 
+satur:   0.357466 
+value:   245.669830 
+perc_diff_hue: 0.732172 
+perc_diff_sat: 23.114412 
+perc_diff_val: -0.102321 
+
+lesion1 is red, but light 
+
+------lesion2------ 
+lesion2 size is 6.00 
+hue:     236.814163 
+satur:   0.337313 
+value:   243.636368 
+perc_diff_hue: -0.996652 
+perc_diff_sat: 16.173605 
+perc_diff_val: 0.726248 
+
+lesion2 is red, but light 
+
