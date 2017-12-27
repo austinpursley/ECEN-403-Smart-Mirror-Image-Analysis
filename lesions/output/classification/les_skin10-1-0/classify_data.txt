@@ -1,0 +1,35 @@
+------MEAN------ 
+hue:     212.868866 
+satur:   0.327932 
+value:   239.143799 
+
+------lesion0------ 
+hue:     222.320541 
+satur:   0.411685 
+value:   232.514847 
+perc_diff_hue: 4.440140 
+perc_diff_sat: 25.539654 
+perc_diff_val: 2.771952 
+
+lesion0 is red (1) 
+
+------lesion1------ 
+hue:     219.338715 
+satur:   0.448498 
+value:   208.219299 
+perc_diff_hue: 3.039359 
+perc_diff_sat: 36.765652 
+perc_diff_val: 12.931341 
+
+lesion1 is dark 
+
+------lesion2------ 
+hue:     219.001266 
+satur:   0.407037 
+value:   236.459457 
+perc_diff_hue: 2.880835 
+perc_diff_sat: 24.122423 
+perc_diff_val: 1.122480 
+
+lesion2 is red, but light 
+

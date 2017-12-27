@@ -1,0 +1,25 @@
+------MEAN------ 
+hue:     232.328110 
+satur:   0.549638 
+value:   224.505081 
+
+------lesion0------ 
+hue:     240.104538 
+satur:   0.626653 
+value:   206.937042 
+perc_diff_hue: 3.347175 
+perc_diff_sat: 14.012037 
+perc_diff_val: 7.825230 
+
+lesion0 is red (1) 
+
+------lesion1------ 
+hue:     233.673370 
+satur:   0.554095 
+value:   213.326080 
+perc_diff_hue: 0.579035 
+perc_diff_sat: 0.810897 
+perc_diff_val: 4.979398 
+
+lesion1 is too similar to skin 
+

@@ -3,9 +3,9 @@
 #include "lesions.h"
 #include "stdafx.h"
 
-std::vector<int> lesion_id(std::vector<cv::Scalar> & lesion_colors, std::vector<double> lesion_area, std::string img_name) {
+std::vector<int> lesion_id(std::vector<cv::Scalar> & lesion_colors, std::string img_name) {
 	
-	//------------- PRESENTATION / DEBUG ---------------------
+	///------------- TESTING / DEBUG ---------------------
 	std::string img_out_dir = output_dir + "/classification/";
 	_mkdir(img_out_dir.c_str());
 	img_out_dir = img_out_dir + img_name + "/";
@@ -25,6 +25,7 @@ std::vector<int> lesion_id(std::vector<cv::Scalar> & lesion_colors, std::vector<
 	fprintf(pFile, "satur:   %f \n", mean_hsv_color[1]);
 	fprintf(pFile, "value:   %f \n\n", mean_hsv_color[2]);
 	/*
+	//code for YCrCb lab space
 	cv::Mat show_cyy(64, 64, CV_32FC3);
 	cv::cvtColor(show_mean, show_cyy, CV_BGR2YCrCb);
 	cv::Vec3f cyy_color = show_cyy.at<cv::Vec3f>(cv::Point(0, 0));
@@ -32,7 +33,7 @@ std::vector<int> lesion_id(std::vector<cv::Scalar> & lesion_colors, std::vector<
 	fprintf(pFile, "lab1_GR: %f \n", cyy_color[1]);
 	fprintf(pFile, "lab2_BY: %f \n\n", cyy_color[2]);
 	*/
-	//--------------------------------------------------------
+	///---------------------------------------------------
 
 	std::vector<int> lesion_id;
 
@@ -48,17 +49,16 @@ std::vector<int> lesion_id(std::vector<cv::Scalar> & lesion_colors, std::vector<
 		double perc_diff_sat = ((hsv_color[1] - mean_hsv_color[1]) / mean_hsv_color[1]) * 100;
 		double perc_diff_val = ((mean_hsv_color[2] - hsv_color[2]) / mean_hsv_color[2]) * 100;
 		
-		//--------------------testing-----------------------------
+		///------------- TESTING / DEBUG ---------------------
 		cv::imwrite(img_out_dir + std::to_string(i - 1) + "_les_color" + ".jpg", show);
 		fprintf(pFile, "------lesion%d------ \n", (i - 1));
-		fprintf(pFile, "lesion%d size is %.2f \n", (i - 1), lesion_area[i - 1]);
 		fprintf(pFile, "hue:     %f \n", hsv_color[0]);
 		fprintf(pFile, "satur:   %f \n", hsv_color[1]);
 		fprintf(pFile, "value:   %f \n", hsv_color[2]);
 		fprintf(pFile, "perc_diff_hue: %f \n", perc_diff_hue);
 		fprintf(pFile, "perc_diff_sat: %f \n", perc_diff_sat);
 		fprintf(pFile, "perc_diff_val: %f \n\n", perc_diff_val);
-		//-------------------------------------------------------
+		///---------------------------------------------------
 
 		if (perc_diff_sat > 12.0 || perc_diff_val > 25.0) {
 			if ((perc_diff_hue > 3.25)) {

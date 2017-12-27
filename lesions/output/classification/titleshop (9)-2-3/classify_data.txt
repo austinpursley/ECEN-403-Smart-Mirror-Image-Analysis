@@ -1,0 +1,15 @@
+------MEAN------ 
+hue:     239.334641 
+satur:   0.555260 
+value:   198.107437 
+
+------lesion0------ 
+hue:     252.925751 
+satur:   0.625117 
+value:   172.851776 
+perc_diff_hue: 5.678706 
+perc_diff_sat: 12.580948 
+perc_diff_val: 12.748466 
+
+lesion0 is red (2) 
+

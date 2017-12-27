@@ -2,19 +2,21 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "lesions.h"
 #include "stdafx.h"
+#include <time.h>
 
 std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, std::string img_name) {
+	///VARIABLES / SETTINGS
 	//all tuning/performance parameters in one place.
-	int gauss_ksize = 45;
-	int blocksize = 57;
-	int size_close = 7;
-	int size_open = 4;
+	int gauss_ksize = 25;
+	int blocksize = 25;
+	int size_close = 3;
+	int size_open = 3;
 	int size_dilate = 0;
-	//guassian Blur
+	//guassian blur
 	cv::Size ksize;
 	ksize.height = gauss_ksize;
 	ksize.width = ksize.height;
-	// thresholding
+	//thresholding
 	int thresh = 0;
 	int maxValue = 255;
 	int thresholdType = cv::THRESH_BINARY_INV;
@@ -34,7 +36,7 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, std:
 		cv::Point(size_dilate, size_dilate));
 	//countour
 	std::vector<std::vector<cv::Point>> contours;
-	//Mats for each step of process
+	//matrices for each step of process
 	cv::Mat gr_img, blur_img, gray_img, thresh_img, close_img, open_img, dilate_img;
 	
 	///PROCESS
@@ -49,6 +51,7 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, std:
 	 	7: dilate what's left to make them more prominent
 	 	8: find contours, the points that make up border of area on the original image 
 	*/
+	
 	gr_img = image & cv::Scalar(0, 255, 255);      
 	cv::GaussianBlur(gr_img, blur_img, ksize, 0); 
 	cv::cvtColor(blur_img, gray_img, CV_BGR2GRAY); 
@@ -57,8 +60,9 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, std:
 	cv::morphologyEx(close_img, open_img, open, elem_open); 
 	cv::dilate(open_img, dilate_img, elem_dilate); 
 	cv::findContours(dilate_img, contours, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
-		
-	///PRESENTATION / DEBUG
+
+
+	///------------- TESTING / DEBUG ---------------------
 	std::string img_out_dir = output_dir + "/detection/";
 	_mkdir(img_out_dir.c_str());
 	img_out_dir = img_out_dir + img_name + "/";
@@ -72,7 +76,7 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, std:
 	cv::Mat masked, color;
 	cv::cvtColor(dilate_img, color, CV_GRAY2BGR);
 	cv::bitwise_and(color, image, masked);
-	
+
 	cv::imwrite(img_out_dir + "_0_bgr.jpg", image);
 	cv::imwrite(img_out_dir + "_1_gr_" + img_name + ".jpg", gr_img);
 	cv::imwrite(img_out_dir + "_2_blur_" + img_name + ".jpg", blur_img);
@@ -85,6 +89,7 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, std:
 	
 	int num_lesions = contours.size() - 1;
 	fprintf(file, "# lesions: %d \n", num_lesions);
-	
+	///--------------------------------------------------------
+
 	return contours;
 }

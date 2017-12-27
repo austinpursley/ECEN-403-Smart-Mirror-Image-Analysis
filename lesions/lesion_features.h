@@ -12,7 +12,7 @@ std::vector<cv::Scalar> lesion_colors(const cv::Mat & image, const std::vector<s
 	contour_colors.push_back(mean_color);
 
 	for (int i = 0; i < contours.size(); i++) {
-		//clear mask (set it all black)
+		//mask is a black image
 		mask = cv::Mat::zeros(image.rows, image.cols, CV_8UC1);
 		//on black background, draw white contour area corresponding to lesion
 		cv::drawContours(mask, contours, i, cv::Scalar(255), -1);
@@ -20,7 +20,7 @@ std::vector<cv::Scalar> lesion_colors(const cv::Mat & image, const std::vector<s
 		color = cv::mean(image, mask);
 		contour_colors.push_back(color);
 
-		//------------------ PRESENTATION / DEBUG ---------------
+		///------------------ PRESENTATION / DEBUG ---------------
 		std::string img_out_dir = output_dir + "/classification/";
 		_mkdir(img_out_dir.c_str());
 		img_out_dir = img_out_dir + img_name + "/";
@@ -29,7 +29,7 @@ std::vector<cv::Scalar> lesion_colors(const cv::Mat & image, const std::vector<s
 		cv::Mat show = image.clone();
 		cv::drawContours(show, contours, i, cv::Scalar(255), 1, 1);
 		cv::imwrite(img_out_dir  + std::to_string(i) + "_les" +  ".jpg", show);
-		//------------------------------------------------------------------
+		///--------------------------------------------------------
 	}
 
 	return(contour_colors);
