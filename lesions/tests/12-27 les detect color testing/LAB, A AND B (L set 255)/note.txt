@@ -1,0 +1,3 @@
+detect red lesions
+
+settings not all the same, adjust block size arcording to how large lesions are (depends on how close camera was when taken picture, or if lesions are particularily big)

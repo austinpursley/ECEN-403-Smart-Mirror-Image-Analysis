@@ -1,0 +1,5 @@
+Cr and and AB(sans L) = just red lesions
+
+also for just red lesions, combine the above [AB + Cr]
+
+Cb and B(blue-yellow) = catch-all for all lesions

@@ -1,1 +1,1 @@
-# lesions: 28 
+# lesions: 21 
