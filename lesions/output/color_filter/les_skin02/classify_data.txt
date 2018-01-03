@@ -1,2 +1,0 @@
-size of contours now: 0.000000 
-

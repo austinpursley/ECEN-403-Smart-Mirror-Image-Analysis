@@ -19,51 +19,72 @@ void lesion_filter(cv::Mat src, const std::vector<std::vector<cv::Point> > & src
 	 std::vector<cv::Scalar> les_colors;
 	 les_colors = lesion_colors(src, src_contours);
 	 
-	 cv::Mat show_mean(64, 64, CV_32FC3);
-	 show_mean = cv::Scalar(les_colors[0]);
+	 cv::Mat color_mean(64, 64, CV_32FC3, cv::Scalar(les_colors[0]));
+	 cv::Mat color_hsv(64, 64, CV_32FC3);
+	 cv::Mat color_lab(64, 64, CV_32FC3);
 
-	 cv::Mat show_hsv(64, 64, CV_32FC3);
-	 cv::cvtColor(show_mean, show_hsv, CV_RGB2HSV);
+	cv::Mat color_mean_scale = color_mean * 1. / 255;
 
-	 cv::imwrite(img_out_dir + "mean_skin_color.jpg", show_mean);
+	 cv::cvtColor(color_mean, color_hsv, CV_RGB2HSV);
+	 cv::cvtColor(color_mean_scale, color_lab, CV_BGR2Lab);
 
-	 cv::Vec3f mean_hsv_color = show_hsv.at<cv::Vec3f>(cv::Point(0, 0));
-	 cv::Vec3f hsv_color = show_hsv.at<cv::Vec3f>(cv::Point(0, 0));
+	 cv::imwrite(img_out_dir + "mean_skin_color.jpg", color_mean);
+
+	 cv::Vec3f mean_hsv_color = color_hsv.at<cv::Vec3f>(cv::Point(0, 0));
+	 cv::Vec3f mean_lab_color = color_lab.at<cv::Vec3f>(cv::Point(0, 0));
+
 	 int  contour_cnt = src_contours.size();
+	 cv::Mat color(64, 64, CV_32FC3);
+	 cv::Mat color_scale(64, 64, CV_32FC3);
+	 ///------------- TESTING / DEBUG ---------------------
+	 fprintf(pFile, "------mean------ \n");
+	 fprintf(pFile, "hue:     %f \n", mean_hsv_color[0]);
+	 fprintf(pFile, "satur:   %f \n", mean_hsv_color[1]);
+	 fprintf(pFile, "value:   %f \n", mean_hsv_color[2]);
+	 fprintf(pFile, "A:   %f \n", mean_lab_color[1]);
+	 fprintf(pFile, "B:   %f \n\n", mean_lab_color[2]);
+	 ///---------------------------------------------------
+
 	 for (int i = 0; i < contour_cnt;i++) {
 
-		 cv::Mat show(64, 64, CV_32FC3);
-		 show = cv::Scalar(les_colors[i+1]);
-		 cv::Mat show_hsv(64, 64, CV_32FC3);
-		 cv::cvtColor(show, show_hsv, CV_RGB2HSV);
-		 cv::Vec3f hsv_color = show_hsv.at<cv::Vec3f>(cv::Point(0, 0));
+		 color = cv::Scalar(les_colors[i+1]);
+		 color_scale = color * 1. / 255;
+		 cv::cvtColor(color, color_hsv, CV_RGB2HSV);
+		 cv::cvtColor(color_scale, color_lab, CV_BGR2Lab);
+		 cv::Vec3f hsv_color = color_hsv.at<cv::Vec3f>(cv::Point(0, 0));
+		 cv::Vec3f lab_color = color_lab.at<cv::Vec3f>(cv::Point(0, 0));
 
 		 double perc_diff_hue = ((hsv_color[0] - mean_hsv_color[0]) / mean_hsv_color[0]) * 100;
 		 double perc_diff_sat = ((hsv_color[1] - mean_hsv_color[1]) / mean_hsv_color[1]) * 100;
 		 double perc_diff_val = ((mean_hsv_color[2] - hsv_color[2]) / mean_hsv_color[2]) * 100;
-
+		 double perc_diff_A = ((lab_color[1] - mean_lab_color[1]) / mean_lab_color[1]) * 100;
+		 double perc_diff_B = ((lab_color[2] - mean_lab_color[2]) / mean_lab_color[2]) * 100;
 		 ///------------- TESTING / DEBUG ---------------------
 		 
 		 fprintf(pFile, "------lesion%d------ \n", (i));
 		 fprintf(pFile, "hue:     %f \n", hsv_color[0]);
 		 fprintf(pFile, "satur:   %f \n", hsv_color[1]);
 		 fprintf(pFile, "value:   %f \n", hsv_color[2]);
+		 fprintf(pFile, "A:   %f \n", lab_color[1]);
+		 fprintf(pFile, "B:   %f \n", lab_color[2]);
 		 fprintf(pFile, "perc_diff_hue: %f \n", perc_diff_hue);
 		 fprintf(pFile, "perc_diff_sat: %f \n", perc_diff_sat);
-		 fprintf(pFile, "perc_diff_val: %f \n\n", perc_diff_val);
+		 fprintf(pFile, "perc_diff_val: %f \n", perc_diff_val);
+		 fprintf(pFile, "perc_diff_A: %f \n", perc_diff_A);
+		 fprintf(pFile, "perc_diff_B: %f \n\n", perc_diff_B);
 		 ///---------------------------------------------------
 
-		 if (perc_diff_sat > 10.0 || perc_diff_val > 5.0) {
+		 //if (perc_diff_sat > 10.0 || (perc_diff_val > 60.0 && perc_diff_sat > 0)) {
+		 if ((perc_diff_val > 2.50 && perc_diff_sat > 0) && perc_diff_B > 5) {
 			 fprintf(pFile, "lesion%d is different enough \n\n", i);
 			 dst.push_back(src_contours[i]);
-			 cv::imwrite(img_out_dir + std::to_string(i) + "_les_color" + ".jpg", show);
+			 cv::imwrite(img_out_dir + std::to_string(i) + "_les_color" + ".jpg", color);
 		 }
 		 else {
 
 			 fprintf(pFile, "lesion%d is too similar to skin \n\n", i);
-			 cv::imwrite(img_out_dir + "NO" + std::to_string(i) + "_les_color" + ".jpg", show);
+			 cv::imwrite(img_out_dir + "NO" + std::to_string(i) + "_les_color" + ".jpg", color);
 			 //dst.erase(dst.begin() + (i));
-			 contour_cnt--;
 		 }
 	 }
 	 fprintf(pFile, "size of contours now: %f \n\n", dst.size());

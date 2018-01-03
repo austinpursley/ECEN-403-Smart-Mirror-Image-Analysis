@@ -8,8 +8,8 @@
 std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, std::string img_name) {
 	///VARIABLES / SETTINGS
 	//all tuning/performance parameters in one place.
-	int gauss_ksize = 25;
-	int blocksize = 27;
+	int gauss_ksize = 35;
+	int blocksize = 35;
 	int size_close = 2;
 	int size_open = 2;
 
@@ -102,10 +102,16 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, std:
 
 	std::vector<std::vector<cv::Point>> contours0_fil;
 	lesion_filter(image, contours0, contours0_fil, (img_name + "_0"));
+
+	/*
 	std::vector<std::vector<cv::Point>> contours1_fil;
-	lesion_filter(image, contours1, contours1_fil, (img_name + "1"));
+	lesion_filter(image, contours1, contours1_fil, (img_name + "_1"));
+	
+	cv::Mat not_image;
+	cv::bitwise_not(image, not_image);
 	std::vector<std::vector<cv::Point>> contours2_fil;
-	lesion_filter(image, contours2, contours2_fil, (img_name + "2"));
+	lesion_filter(not_image, contours2, contours2_fil, (img_name + "_2"));
+	*/
 
 	///------------- TESTING / DEBUG ---------------------
 	std::string img_out_dir = output_dir + "/detection/";
@@ -170,7 +176,7 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, std:
 	cv::bitwise_not(morph0_img, morph0_img);
 	cv::cvtColor(morph0_img, color, CV_GRAY2BGR);
 	cv::bitwise_and(color, image, masked0);
-
+	
 	cv::bitwise_not(morph1_img, morph1_img);
 	cv::cvtColor(morph1_img, color, CV_GRAY2BGR);
 	cv::bitwise_and(color, image, masked1);
@@ -178,22 +184,20 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, std:
 	cv::bitwise_not(morph2_img, morph2_img);
 	cv::cvtColor(morph2_img, color, CV_GRAY2BGR);
 	cv::bitwise_and(color, image, masked2);
+	
 
 	cv::Mat masked0_filter;
 	image.copyTo(masked0_filter);
 	printf("cont vec size: %d \n", contours0_fil.size());
 	for (int i = 0; i < contours0_fil.size(); i++) {
-		//mask is a black image
-		//on black background, draw white contour area corresponding to lesion
 		cv::drawContours(masked0_filter, contours0_fil, i, cv::Scalar(255), -1);
 	}
 
+	/*
 	cv::Mat masked1_filter;
 	image.copyTo(masked1_filter);
 	printf("cont vec size: %d \n", contours1_fil.size());
 	for (int i = 0; i < contours1_fil.size(); i++) {
-		//mask is a black image
-		//on black background, draw white contour area corresponding to lesion
 		cv::drawContours(masked1_filter, contours1_fil, i, cv::Scalar(255), -1);
 	}
 
@@ -201,10 +205,9 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, std:
 	image.copyTo(masked2_filter);
 	printf("cont vec size: %d \n", contours2_fil.size());
 	for (int i = 0; i < contours2_fil.size(); i++) {
-		//mask is a black image
-		//on black background, draw white contour area corresponding to lesion
 		cv::drawContours(masked2_filter, contours2_fil, i, cv::Scalar(255), -1);
 	}
+	*/
 
 	cv::imwrite(img_out_dir + img_name + "_0_bgr.jpg", image);
 	
@@ -221,11 +224,14 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, std:
 	cv::imwrite(img_out_dir + img_name + "_0_masked_value_" + ".jpg", masked0);
 	cv::imwrite(img_out_dir + img_name + "_0_masked_value_filter_" + ".jpg", masked0_filter);
 
+	/*
 	cv::imwrite(img_out_dir + img_name + "_1_masked_value_" + ".jpg", masked1);
 	cv::imwrite(img_out_dir + img_name + "_1_masked_value_filter_" + ".jpg", masked1_filter);
-
+	
 	cv::imwrite(img_out_dir + img_name + "_2_masked_value_" + ".jpg", masked2);
 	cv::imwrite(img_out_dir + img_name + "_2_masked_value_filter_" + ".jpg", masked2_filter);
+	*/
+
 	//cv::imwrite(img_out_dir + img_name + "_8_masked_Cr_" + ".jpg", masked1);
 	//cv::imwrite(img_out_dir + img_name + "_9_masked_notB_" + ".jpg", masked2);
 	

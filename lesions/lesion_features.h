@@ -21,16 +21,17 @@ std::vector<cv::Scalar> lesion_colors(const cv::Mat & image, const std::vector<s
 		contour_colors.push_back(color);
 
 		///------------------ PRESENTATION / DEBUG ---------------
-		/*
+		
 		std::string img_out_dir = output_dir + "/classification/";
 		_mkdir(img_out_dir.c_str());
-		img_out_dir = img_out_dir + img_name + "/";
+		//img_out_dir = img_out_dir + img_name + "/";
+		img_out_dir = img_out_dir + "/";
 		_mkdir(img_out_dir.c_str());
 
 		cv::Mat show = image.clone();
 		cv::drawContours(show, contours, i, cv::Scalar(255), 1, 1);
 		cv::imwrite(img_out_dir  + std::to_string(i) + "_les" +  ".jpg", show);
-		*/
+		
 		///--------------------------------------------------------
 	}
 
