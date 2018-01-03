@@ -1,0 +1,102 @@
+------lesion0------ 
+hue:     263.739197 
+satur:   0.468992 
+value:   193.880951 
+perc_diff_hue: 9.512253 
+perc_diff_sat: -9.409177 
+perc_diff_val: -8.721670 
+
+lesion0 is too similar to skin 
+
+------lesion1------ 
+hue:     275.086426 
+satur:   0.459096 
+value:   204.750000 
+perc_diff_hue: 14.223955 
+perc_diff_sat: -11.320565 
+perc_diff_val: -14.816654 
+
+lesion1 is too similar to skin 
+
+------lesion2------ 
+hue:     252.990295 
+satur:   0.362740 
+value:   189.300003 
+perc_diff_hue: 5.048994 
+perc_diff_sat: -29.932865 
+perc_diff_val: -6.152834 
+
+lesion2 is too similar to skin 
+
+------lesion3------ 
+hue:     246.186020 
+satur:   0.399827 
+value:   204.058823 
+perc_diff_hue: 2.223659 
+perc_diff_sat: -22.769094 
+perc_diff_val: -14.429066 
+
+lesion3 is too similar to skin 
+
+------lesion4------ 
+hue:     246.199173 
+satur:   0.485985 
+value:   190.730774 
+perc_diff_hue: 2.229120 
+perc_diff_sat: -6.126735 
+perc_diff_val: -6.955161 
+
+lesion4 is too similar to skin 
+
+------lesion5------ 
+hue:     248.879837 
+satur:   0.418525 
+value:   195.527771 
+perc_diff_hue: 3.342211 
+perc_diff_sat: -19.157316 
+perc_diff_val: -9.645149 
+
+lesion5 is too similar to skin 
+
+------lesion6------ 
+hue:     252.862854 
+satur:   0.441938 
+value:   182.071426 
+perc_diff_hue: 4.996077 
+perc_diff_sat: -14.634904 
+perc_diff_val: -2.099301 
+
+lesion6 is too similar to skin 
+
+------lesion7------ 
+hue:     267.417969 
+satur:   0.339785 
+value:   216.045456 
+perc_diff_hue: 11.039787 
+perc_diff_sat: -34.366783 
+perc_diff_val: -21.150751 
+
+lesion7 is too similar to skin 
+
+------lesion8------ 
+hue:     258.163513 
+satur:   0.398508 
+value:   191.066666 
+perc_diff_hue: 7.197066 
+perc_diff_sat: -23.023813 
+perc_diff_val: -7.143517 
+
+lesion8 is too similar to skin 
+
+------lesion9------ 
+hue:     278.809418 
+satur:   0.322532 
+value:   199.651520 
+perc_diff_hue: 15.769852 
+perc_diff_sat: -37.699516 
+perc_diff_val: -11.957603 
+
+lesion9 is too similar to skin 
+
+size of contours now: 0.000000 
+

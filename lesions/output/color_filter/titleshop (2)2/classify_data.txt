@@ -1,0 +1,42 @@
+------lesion0------ 
+hue:     239.610168 
+satur:   0.283110 
+value:   166.111115 
+perc_diff_hue: -5.459671 
+perc_diff_sat: -22.719006 
+perc_diff_val: 12.498899 
+
+lesion0 is different enough 
+
+------lesion1------ 
+hue:     240.679764 
+satur:   0.266935 
+value:   183.703705 
+perc_diff_hue: -5.037652 
+perc_diff_sat: -27.134291 
+perc_diff_val: 3.231781 
+
+lesion1 is too similar to skin 
+
+------lesion2------ 
+hue:     256.584717 
+satur:   0.280470 
+value:   198.740738 
+perc_diff_hue: 1.237789 
+perc_diff_sat: -23.439854 
+perc_diff_val: -4.689163 
+
+lesion2 is too similar to skin 
+
+------lesion3------ 
+hue:     270.589447 
+satur:   0.321102 
+value:   182.665421 
+perc_diff_hue: 6.763480 
+perc_diff_sat: -12.348329 
+perc_diff_val: 3.778711 
+
+lesion3 is too similar to skin 
+
+size of contours now: 0.000000 
+

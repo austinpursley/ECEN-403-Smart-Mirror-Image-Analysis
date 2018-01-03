@@ -1,0 +1,112 @@
+------lesion0------ 
+hue:     267.349243 
+satur:   0.715658 
+value:   108.968750 
+perc_diff_hue: 7.328981 
+perc_diff_sat: 65.212807 
+perc_diff_val: -12.558839 
+
+lesion0 is different enough 
+
+------lesion1------ 
+hue:     261.823975 
+satur:   0.709289 
+value:   80.575760 
+perc_diff_hue: 5.110828 
+perc_diff_sat: 63.742508 
+perc_diff_val: 16.769588 
+
+lesion1 is different enough 
+
+------lesion2------ 
+hue:     276.461548 
+satur:   0.552251 
+value:   69.235291 
+perc_diff_hue: 10.987171 
+perc_diff_sat: 27.489647 
+perc_diff_val: 28.483681 
+
+lesion2 is different enough 
+
+------lesion3------ 
+hue:     277.148285 
+satur:   0.548488 
+value:   73.769234 
+perc_diff_hue: 11.262866 
+perc_diff_sat: 26.620844 
+perc_diff_val: 23.800364 
+
+lesion3 is different enough 
+
+------lesion4------ 
+hue:     245.614029 
+satur:   0.649093 
+value:   91.192307 
+perc_diff_hue: -1.396753 
+perc_diff_sat: 49.845989 
+perc_diff_val: 5.803268 
+
+lesion4 is different enough 
+
+------lesion5------ 
+hue:     237.551025 
+satur:   0.556028 
+value:   88.125000 
+perc_diff_hue: -4.633695 
+perc_diff_sat: 28.361565 
+perc_diff_val: 8.971630 
+
+lesion5 is different enough 
+
+------lesion6------ 
+hue:     249.480331 
+satur:   0.520944 
+value:   113.895836 
+perc_diff_hue: 0.155398 
+perc_diff_sat: 20.262157 
+perc_diff_val: -17.648252 
+
+lesion6 is different enough 
+
+------lesion7------ 
+hue:     254.003403 
+satur:   0.527403 
+value:   85.615387 
+perc_diff_hue: 1.971212 
+perc_diff_sat: 21.753368 
+perc_diff_val: 11.563926 
+
+lesion7 is different enough 
+
+------lesion8------ 
+hue:     266.263611 
+satur:   0.458680 
+value:   90.150002 
+perc_diff_hue: 6.893147 
+perc_diff_sat: 5.888272 
+perc_diff_val: 6.879913 
+
+lesion8 is different enough 
+
+------lesion9------ 
+hue:     260.310303 
+satur:   0.429697 
+value:   97.058823 
+perc_diff_hue: 4.503156 
+perc_diff_sat: -0.802586 
+perc_diff_val: -0.256526 
+
+lesion9 is too similar to skin 
+
+------lesion10------ 
+hue:     261.009857 
+satur:   0.386851 
+value:   92.602943 
+perc_diff_hue: 4.783996 
+perc_diff_sat: -10.693790 
+perc_diff_val: 4.346157 
+
+lesion10 is too similar to skin 
+
+size of contours now: 0.000000 
+

@@ -3,7 +3,7 @@
 #include "lesions.h"
 #include "stdafx.h"
 
-std::vector<cv::Scalar> lesion_colors(const cv::Mat & image, const std::vector<std::vector<cv::Point> > & contours, std::string img_name) {
+std::vector<cv::Scalar> lesion_colors(const cv::Mat & image, const std::vector<std::vector<cv::Point> > & contours) {
 	std::vector<cv::Scalar> contour_colors;
 	cv::Scalar color;
 	cv::Mat mask;
@@ -21,6 +21,7 @@ std::vector<cv::Scalar> lesion_colors(const cv::Mat & image, const std::vector<s
 		contour_colors.push_back(color);
 
 		///------------------ PRESENTATION / DEBUG ---------------
+		/*
 		std::string img_out_dir = output_dir + "/classification/";
 		_mkdir(img_out_dir.c_str());
 		img_out_dir = img_out_dir + img_name + "/";
@@ -29,6 +30,7 @@ std::vector<cv::Scalar> lesion_colors(const cv::Mat & image, const std::vector<s
 		cv::Mat show = image.clone();
 		cv::drawContours(show, contours, i, cv::Scalar(255), 1, 1);
 		cv::imwrite(img_out_dir  + std::to_string(i) + "_les" +  ".jpg", show);
+		*/
 		///--------------------------------------------------------
 	}
 
@@ -45,3 +47,4 @@ std::vector<cv::Scalar> lesion_colors(const cv::Mat & image, const std::vector<s
 	 }
 	 return(contour_areas);
  }
+

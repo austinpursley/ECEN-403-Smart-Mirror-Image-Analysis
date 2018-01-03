@@ -1,0 +1,72 @@
+------lesion0------ 
+hue:     215.386932 
+satur:   0.438406 
+value:   79.894737 
+perc_diff_hue: -8.420404 
+perc_diff_sat: 52.859272 
+perc_diff_val: 39.957520 
+
+lesion0 is different enough 
+
+------lesion1------ 
+hue:     226.288849 
+satur:   0.412519 
+value:   78.000000 
+perc_diff_hue: -3.785058 
+perc_diff_sat: 43.833248 
+perc_diff_val: 41.381454 
+
+lesion1 is different enough 
+
+------lesion2------ 
+hue:     218.705032 
+satur:   0.188404 
+value:   103.750000 
+perc_diff_hue: -7.009594 
+perc_diff_sat: -34.309174 
+perc_diff_val: 22.029819 
+
+lesion2 is different enough 
+
+------lesion3------ 
+hue:     49.834763 
+satur:   0.052268 
+value:   53.837208 
+perc_diff_hue: -78.810936 
+perc_diff_sat: -81.775742 
+perc_diff_val: 59.540272 
+
+lesion3 is different enough 
+
+------lesion4------ 
+hue:     174.054001 
+satur:   0.023383 
+value:   53.337078 
+perc_diff_hue: -25.994604 
+perc_diff_sat: -91.846985 
+perc_diff_val: 59.916126 
+
+lesion4 is different enough 
+
+------lesion5------ 
+hue:     60.000000 
+satur:   0.038925 
+value:   59.944443 
+perc_diff_hue: -74.488815 
+perc_diff_sat: -86.428032 
+perc_diff_val: 54.950565 
+
+lesion5 is different enough 
+
+------lesion6------ 
+hue:     214.366196 
+satur:   0.214834 
+value:   108.310921 
+perc_diff_hue: -8.854408 
+perc_diff_sat: -25.093552 
+perc_diff_val: 18.602198 
+
+lesion6 is different enough 
+
+size of contours now: 0.000000 
+

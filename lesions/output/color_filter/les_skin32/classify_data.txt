@@ -1,0 +1,22 @@
+------lesion0------ 
+hue:     238.787872 
+satur:   0.106815 
+value:   231.708328 
+perc_diff_hue: 9.712183 
+perc_diff_sat: -60.176540 
+perc_diff_val: -27.208324 
+
+lesion0 is too similar to skin 
+
+------lesion1------ 
+hue:     231.921753 
+satur:   0.150816 
+value:   221.615387 
+perc_diff_hue: 6.557512 
+perc_diff_sat: -43.772079 
+perc_diff_val: -21.667282 
+
+lesion1 is too similar to skin 
+
+size of contours now: 0.000000 
+

@@ -1,0 +1,462 @@
+------lesion0------ 
+hue:     230.383881 
+satur:   0.434348 
+value:   199.916672 
+perc_diff_hue: 2.252185 
+perc_diff_sat: -48.296444 
+perc_diff_val: -28.147326 
+
+lesion0 is too similar to skin 
+
+------lesion1------ 
+hue:     225.964798 
+satur:   0.677140 
+value:   177.500000 
+perc_diff_hue: 0.290846 
+perc_diff_sat: -19.395134 
+perc_diff_val: -13.778156 
+
+lesion1 is too similar to skin 
+
+------lesion2------ 
+hue:     227.740768 
+satur:   0.986678 
+value:   140.750000 
+perc_diff_hue: 1.079082 
+perc_diff_sat: 17.451509 
+perc_diff_val: 9.778729 
+
+lesion2 is different enough 
+
+------lesion3------ 
+hue:     231.658539 
+satur:   0.427083 
+value:   192.000000 
+perc_diff_hue: 2.817922 
+perc_diff_sat: -49.161167 
+perc_diff_val: -23.072710 
+
+lesion3 is too similar to skin 
+
+------lesion4------ 
+hue:     228.388672 
+satur:   0.587256 
+value:   191.181824 
+perc_diff_hue: 1.366644 
+perc_diff_sat: -30.094614 
+perc_diff_val: -22.548256 
+
+lesion4 is too similar to skin 
+
+------lesion5------ 
+hue:     228.873306 
+satur:   0.981075 
+value:   122.368423 
+perc_diff_hue: 1.581741 
+perc_diff_sat: 16.784521 
+perc_diff_val: 21.561388 
+
+lesion5 is different enough 
+
+------lesion6------ 
+hue:     222.745483 
+satur:   0.856468 
+value:   172.629623 
+perc_diff_hue: -1.137995 
+perc_diff_sat: 1.951670 
+perc_diff_val: -10.656226 
+
+lesion6 is too similar to skin 
+
+------lesion7------ 
+hue:     233.354355 
+satur:   0.470163 
+value:   186.068970 
+perc_diff_hue: 3.570582 
+perc_diff_sat: -44.033070 
+perc_diff_val: -19.270897 
+
+lesion7 is too similar to skin 
+
+------lesion8------ 
+hue:     229.195831 
+satur:   0.981426 
+value:   145.318588 
+perc_diff_hue: 1.724888 
+perc_diff_sat: 16.826298 
+perc_diff_val: 6.850248 
+
+lesion8 is different enough 
+
+------lesion9------ 
+hue:     229.273529 
+satur:   0.548640 
+value:   190.084747 
+perc_diff_hue: 1.759373 
+perc_diff_sat: -34.691364 
+perc_diff_val: -21.845026 
+
+lesion9 is too similar to skin 
+
+------lesion10------ 
+hue:     227.441864 
+satur:   0.697297 
+value:   185.000000 
+perc_diff_hue: 0.946418 
+perc_diff_sat: -16.995638 
+perc_diff_val: -18.585684 
+
+lesion10 is too similar to skin 
+
+------lesion11------ 
+hue:     223.047897 
+satur:   0.890469 
+value:   168.818176 
+perc_diff_hue: -1.003773 
+perc_diff_sat: 5.998941 
+perc_diff_val: -8.213076 
+
+lesion11 is too similar to skin 
+
+------lesion12------ 
+hue:     231.368576 
+satur:   0.543065 
+value:   181.838242 
+perc_diff_hue: 2.689226 
+perc_diff_sat: -35.355011 
+perc_diff_val: -16.558985 
+
+lesion12 is too similar to skin 
+
+------lesion13------ 
+hue:     224.685471 
+satur:   0.923693 
+value:   161.864868 
+perc_diff_hue: -0.276963 
+perc_diff_sat: 9.953947 
+perc_diff_val: -3.755979 
+
+lesion13 is too similar to skin 
+
+------lesion14------ 
+hue:     224.181412 
+satur:   0.767465 
+value:   181.388062 
+perc_diff_hue: -0.500681 
+perc_diff_sat: -8.643085 
+perc_diff_val: -16.270418 
+
+lesion14 is too similar to skin 
+
+------lesion15------ 
+hue:     224.440506 
+satur:   0.947959 
+value:   148.921875 
+perc_diff_hue: -0.385686 
+perc_diff_sat: 12.842485 
+perc_diff_val: 4.540528 
+
+lesion15 is different enough 
+
+------lesion16------ 
+hue:     227.085495 
+satur:   0.725459 
+value:   176.571426 
+perc_diff_hue: 0.788250 
+perc_diff_sat: -13.643402 
+perc_diff_val: -13.182937 
+
+lesion16 is too similar to skin 
+
+------lesion17------ 
+hue:     228.669266 
+satur:   0.686676 
+value:   184.065567 
+perc_diff_hue: 1.491181 
+perc_diff_sat: -18.259949 
+perc_diff_val: -17.986710 
+
+lesion17 is too similar to skin 
+
+------lesion18------ 
+hue:     225.014374 
+satur:   0.953893 
+value:   159.234177 
+perc_diff_hue: -0.130984 
+perc_diff_sat: 13.548853 
+perc_diff_val: -2.069696 
+
+lesion18 is different enough 
+
+------lesion19------ 
+hue:     223.269073 
+satur:   0.938822 
+value:   163.458328 
+perc_diff_hue: -0.905608 
+perc_diff_sat: 11.754845 
+perc_diff_val: -4.777393 
+
+lesion19 is different enough 
+
+------lesion20------ 
+hue:     228.175690 
+satur:   0.990376 
+value:   149.865387 
+perc_diff_hue: 1.272115 
+perc_diff_sat: 17.891651 
+perc_diff_val: 3.935733 
+
+lesion20 is different enough 
+
+------lesion21------ 
+hue:     229.704651 
+satur:   0.647783 
+value:   175.655731 
+perc_diff_hue: 1.950720 
+perc_diff_sat: -22.889627 
+perc_diff_val: -12.595972 
+
+lesion21 is too similar to skin 
+
+------lesion22------ 
+hue:     228.263077 
+satur:   0.642818 
+value:   167.727280 
+perc_diff_hue: 1.310900 
+perc_diff_sat: -23.480648 
+perc_diff_val: -7.513806 
+
+lesion22 is too similar to skin 
+
+------lesion23------ 
+hue:     224.748901 
+satur:   0.797947 
+value:   175.604935 
+perc_diff_hue: -0.248810 
+perc_diff_sat: -5.014550 
+perc_diff_val: -12.563412 
+
+lesion23 is too similar to skin 
+
+------lesion24------ 
+hue:     228.214127 
+satur:   0.984152 
+value:   137.333328 
+perc_diff_hue: 1.289175 
+perc_diff_sat: 17.150761 
+perc_diff_val: 11.968829 
+
+lesion24 is different enough 
+
+------lesion25------ 
+hue:     233.408066 
+satur:   0.981750 
+value:   119.918030 
+perc_diff_hue: 3.594421 
+perc_diff_sat: 16.864817 
+perc_diff_val: 23.132099 
+
+lesion25 is different enough 
+
+------lesion26------ 
+hue:     226.622955 
+satur:   0.774034 
+value:   170.898438 
+perc_diff_hue: 0.582959 
+perc_diff_sat: -7.861077 
+perc_diff_val: -9.546530 
+
+lesion26 is too similar to skin 
+
+------lesion27------ 
+hue:     224.275497 
+satur:   0.958012 
+value:   166.714279 
+perc_diff_hue: -0.458923 
+perc_diff_sat: 14.039129 
+perc_diff_val: -6.864470 
+
+lesion27 is different enough 
+
+------lesion28------ 
+hue:     223.716110 
+satur:   0.826120 
+value:   180.636368 
+perc_diff_hue: -0.707198 
+perc_diff_sat: -1.660959 
+perc_diff_val: -15.788579 
+
+lesion28 is too similar to skin 
+
+------lesion29------ 
+hue:     230.625000 
+satur:   0.979167 
+value:   118.153847 
+perc_diff_hue: 2.359202 
+perc_diff_sat: 16.557320 
+perc_diff_val: 24.262947 
+
+lesion29 is different enough 
+
+------lesion30------ 
+hue:     230.639099 
+satur:   0.966661 
+value:   142.224716 
+perc_diff_hue: 2.365460 
+perc_diff_sat: 15.068730 
+perc_diff_val: 8.833431 
+
+lesion30 is different enough 
+
+------lesion31------ 
+hue:     229.014084 
+satur:   0.620010 
+value:   190.857147 
+perc_diff_hue: 1.644223 
+perc_diff_sat: -26.195707 
+perc_diff_val: -22.340137 
+
+lesion31 is too similar to skin 
+
+------lesion32------ 
+hue:     226.028671 
+satur:   0.699605 
+value:   185.134460 
+perc_diff_hue: 0.319195 
+perc_diff_sat: -16.720919 
+perc_diff_val: -18.671873 
+
+lesion32 is too similar to skin 
+
+------lesion33------ 
+hue:     225.824646 
+satur:   0.918270 
+value:   160.589279 
+perc_diff_hue: 0.228642 
+perc_diff_sat: 9.308322 
+perc_diff_val: -2.938322 
+
+lesion33 is too similar to skin 
+
+------lesion34------ 
+hue:     230.504517 
+satur:   0.981820 
+value:   139.580643 
+perc_diff_hue: 2.305727 
+perc_diff_sat: 16.873125 
+perc_diff_val: 10.528292 
+
+lesion34 is different enough 
+
+------lesion35------ 
+hue:     231.665680 
+satur:   0.988365 
+value:   122.785713 
+perc_diff_hue: 2.821091 
+perc_diff_sat: 17.652304 
+perc_diff_val: 21.293903 
+
+lesion35 is different enough 
+
+------lesion36------ 
+hue:     230.166077 
+satur:   0.865211 
+value:   160.844452 
+perc_diff_hue: 2.155516 
+perc_diff_sat: 2.992404 
+perc_diff_val: -3.101888 
+
+lesion36 is too similar to skin 
+
+------lesion37------ 
+hue:     231.508255 
+satur:   0.971954 
+value:   147.572220 
+perc_diff_hue: 2.751220 
+perc_diff_sat: 15.698689 
+perc_diff_val: 5.405662 
+
+lesion37 is different enough 
+
+------lesion38------ 
+hue:     226.872299 
+satur:   0.986410 
+value:   140.857147 
+perc_diff_hue: 0.693626 
+perc_diff_sat: 17.419519 
+perc_diff_val: 9.710048 
+
+lesion38 is different enough 
+
+------lesion39------ 
+hue:     233.465775 
+satur:   0.975574 
+value:   127.515923 
+perc_diff_hue: 3.620034 
+perc_diff_sat: 16.129715 
+perc_diff_val: 18.261822 
+
+lesion39 is different enough 
+
+------lesion40------ 
+hue:     228.990387 
+satur:   0.975000 
+value:   142.222229 
+perc_diff_hue: 1.633705 
+perc_diff_sat: 16.061331 
+perc_diff_val: 8.835025 
+
+lesion40 is different enough 
+
+------lesion41------ 
+hue:     234.411621 
+satur:   0.943579 
+value:   137.289581 
+perc_diff_hue: 4.039833 
+perc_diff_sat: 12.321011 
+perc_diff_val: 11.996871 
+
+lesion41 is different enough 
+
+------lesion42------ 
+hue:     225.417831 
+satur:   0.736977 
+value:   177.136368 
+perc_diff_hue: 0.048084 
+perc_diff_sat: -12.272253 
+perc_diff_val: -13.545066 
+
+lesion42 is too similar to skin 
+
+------lesion43------ 
+hue:     224.607117 
+satur:   0.835578 
+value:   178.199997 
+perc_diff_hue: -0.311739 
+perc_diff_sat: -0.535083 
+perc_diff_val: -14.226857 
+
+lesion43 is too similar to skin 
+
+------lesion44------ 
+hue:     233.312103 
+satur:   0.982786 
+value:   127.800003 
+perc_diff_hue: 3.551830 
+perc_diff_sat: 16.988117 
+perc_diff_val: 18.079725 
+
+lesion44 is different enough 
+
+------lesion45------ 
+hue:     237.093430 
+satur:   0.992369 
+value:   100.807693 
+perc_diff_hue: 5.230111 
+perc_diff_sat: 18.128929 
+perc_diff_val: 35.381897 
+
+lesion45 is different enough 
+
+size of contours now: 0.000000 
+

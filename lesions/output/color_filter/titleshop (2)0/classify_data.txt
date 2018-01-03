@@ -1,0 +1,202 @@
+------lesion1------ 
+hue:     230.737656 
+satur:   0.466361 
+value:   109.227272 
+perc_diff_hue: -8.962455 
+perc_diff_sat: 27.301067 
+perc_diff_val: 42.469398 
+
+lesion1 is too similar to skin 
+
+------lesion2------ 
+hue:     256.780853 
+satur:   0.394049 
+value:   206.968246 
+perc_diff_hue: 1.312889 
+perc_diff_sat: 7.562069 
+perc_diff_val: -9.011304 
+
+lesion2 is too similar to skin 
+
+------lesion3------ 
+hue:     253.460831 
+satur:   0.390118 
+value:   183.657410 
+perc_diff_hue: 0.002974 
+perc_diff_sat: 6.489278 
+perc_diff_val: 3.266641 
+
+lesion3 is too similar to skin 
+
+------lesion4------ 
+hue:     229.186050 
+satur:   0.496536 
+value:   101.882355 
+perc_diff_hue: -9.574640 
+perc_diff_sat: 35.537643 
+perc_diff_val: 46.338005 
+
+lesion4 is too similar to skin 
+
+------lesion5------ 
+hue:     255.269150 
+satur:   0.351327 
+value:   204.781815 
+perc_diff_hue: 0.716446 
+perc_diff_sat: -4.099407 
+perc_diff_val: -7.859698 
+
+lesion5 is too similar to skin 
+
+------lesion6------ 
+hue:     254.480927 
+satur:   0.379169 
+value:   212.306122 
+perc_diff_hue: 0.405453 
+perc_diff_sat: 3.500563 
+perc_diff_val: -11.822792 
+
+lesion6 is too similar to skin 
+
+------lesion7------ 
+hue:     250.504852 
+satur:   0.468968 
+value:   158.798080 
+perc_diff_hue: -1.163307 
+perc_diff_sat: 28.012457 
+perc_diff_val: 16.360186 
+
+lesion7 is too similar to skin 
+
+------lesion8------ 
+hue:     257.243195 
+satur:   0.395518 
+value:   223.131866 
+perc_diff_hue: 1.495306 
+perc_diff_sat: 7.963256 
+perc_diff_val: -17.524771 
+
+lesion8 is too similar to skin 
+
+------lesion9------ 
+hue:     256.640533 
+satur:   0.373478 
+value:   205.933823 
+perc_diff_hue: 1.257526 
+perc_diff_sat: 1.946991 
+perc_diff_val: -8.466467 
+
+lesion9 is too similar to skin 
+
+------lesion10------ 
+hue:     239.873337 
+satur:   0.377244 
+value:   136.078812 
+perc_diff_hue: -5.357972 
+perc_diff_sat: 2.975080 
+perc_diff_val: 28.326548 
+
+lesion10 is too similar to skin 
+
+------lesion11------ 
+hue:     247.158340 
+satur:   0.352333 
+value:   162.403336 
+perc_diff_hue: -2.483674 
+perc_diff_sat: -3.824980 
+perc_diff_val: 14.461277 
+
+lesion11 is too similar to skin 
+
+------lesion12------ 
+hue:     245.881271 
+satur:   0.419579 
+value:   147.971436 
+perc_diff_hue: -2.987541 
+perc_diff_sat: 14.531045 
+perc_diff_val: 22.062639 
+
+lesion12 is too similar to skin 
+
+------lesion13------ 
+hue:     257.649231 
+satur:   0.427780 
+value:   159.526321 
+perc_diff_hue: 1.655507 
+perc_diff_sat: 16.769514 
+perc_diff_val: 15.976617 
+
+lesion13 is too similar to skin 
+
+------lesion14------ 
+hue:     260.898590 
+satur:   0.462837 
+value:   220.772720 
+perc_diff_hue: 2.937542 
+perc_diff_sat: 26.339024 
+perc_diff_val: -16.282194 
+
+lesion14 is too similar to skin 
+
+------lesion15------ 
+hue:     268.136627 
+satur:   0.445760 
+value:   231.517990 
+perc_diff_hue: 5.793310 
+perc_diff_sat: 21.677536 
+perc_diff_val: -21.941788 
+
+lesion15 is too similar to skin 
+
+------lesion16------ 
+hue:     250.863373 
+satur:   0.373630 
+value:   187.823532 
+perc_diff_hue: -1.021853 
+perc_diff_sat: 1.988431 
+perc_diff_val: 1.072322 
+
+lesion16 is too similar to skin 
+
+------lesion17------ 
+hue:     254.090591 
+satur:   0.381142 
+value:   221.470581 
+perc_diff_hue: 0.251446 
+perc_diff_sat: 4.039021 
+perc_diff_val: -16.649761 
+
+lesion17 is too similar to skin 
+
+------lesion18------ 
+hue:     251.854904 
+satur:   0.424621 
+value:   155.818176 
+perc_diff_hue: -0.630644 
+perc_diff_sat: 15.907232 
+perc_diff_val: 17.929716 
+
+lesion18 is too similar to skin 
+
+------lesion19------ 
+hue:     256.043030 
+satur:   0.405369 
+value:   200.576920 
+perc_diff_hue: 1.021781 
+perc_diff_sat: 10.652186 
+perc_diff_val: -5.644957 
+
+lesion19 is too similar to skin 
+
+------lesion20------ 
+hue:     259.406952 
+satur:   0.453984 
+value:   208.000000 
+perc_diff_hue: 2.349016 
+perc_diff_sat: 23.922293 
+perc_diff_val: -9.554734 
+
+lesion20 is too similar to skin 
+
+size of contours now: 0.000000 
+

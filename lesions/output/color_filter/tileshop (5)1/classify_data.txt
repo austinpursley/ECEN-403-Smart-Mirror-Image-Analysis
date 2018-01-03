@@ -1,0 +1,32 @@
+------lesion0------ 
+hue:     266.426880 
+satur:   0.646834 
+value:   88.881355 
+perc_diff_hue: 10.605209 
+perc_diff_sat: 22.911772 
+perc_diff_val: -6.449911 
+
+lesion0 is different enough 
+
+------lesion1------ 
+hue:     240.912552 
+satur:   0.629940 
+value:   98.235291 
+perc_diff_hue: 0.013119 
+perc_diff_sat: 19.701490 
+perc_diff_val: -17.652775 
+
+lesion1 is different enough 
+
+------lesion2------ 
+hue:     237.249283 
+satur:   0.648699 
+value:   94.941177 
+perc_diff_hue: -1.507661 
+perc_diff_sat: 23.266052 
+perc_diff_val: -13.707537 
+
+lesion2 is different enough 
+
+size of contours now: 0.000000 
+
