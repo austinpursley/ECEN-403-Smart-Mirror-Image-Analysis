@@ -5,3 +5,4 @@
 extern std::string input_dir;
 
 extern std::string output_dir;
+

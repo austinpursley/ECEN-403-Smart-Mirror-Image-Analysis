@@ -84,8 +84,28 @@ double threshold_with_mask(cv::Mat1b& src, cv::Mat1b& dst, double thresh, double
 	return thresh;
 }
 
+/*
 ///SOURCE: https://stackoverflow.com/questions/20371053/finding-entropy-in-opencv
 static int32_t sub_to_ind(int32_t *coords, int32_t *cumprod, int32_t num_dims)
+{
+	int index = 0;
+	int k;
+
+	assert(coords != NULL);
+	assert(cumprod != NULL);
+	assert(num_dims > 0);
+
+	for (k = 0; k < num_dims; k++)
+	{
+		index += coords[k] * cumprod[k];
+	}
+
+	return index;
+}
+*/
+
+///SOURCE: https://stackoverflow.com/questions/20371053/finding-entropy-in-opencv
+static int sub_to_ind(int *coords, int *cumprod, int num_dims)
 {
 	int index = 0;
 	int k;
@@ -192,9 +212,10 @@ void getLocalEntropyImage(cv::Mat &gray, cv::Rect &roi, cv::Mat &entropy)
 	float e;
 	int current_index = 0;
 	int current_index_in_origin = 0;
-	///changes made here from source, "roi.height + roi.y" and "roi.width + roi.x"
+	///changes made here from source: "roi.height + roi.y" and "roi.width + roi.x"
+	///changed: "current_index = y * pad_src->cols + roi.y;"
 	for (int y = roi.y; y < roi.height + roi.y; y++) {
-		current_index = y * pad_src->cols;
+		current_index = y * pad_src->cols + roi.y;
 		current_index_in_origin = (y - roi.y) * gray.cols;
 		for (int x = roi.x; x < roi.width + roi.x; x++, current_index++, current_index_in_origin++) {
 			for (int j = 0;j<neighbood_num;j++) {

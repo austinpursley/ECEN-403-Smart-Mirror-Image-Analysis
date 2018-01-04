@@ -55,7 +55,7 @@ void lesion_filter(cv::Mat src, const std::vector<std::vector<cv::Point> > & src
 		 cv::Vec3f lab_color = color_lab.at<cv::Vec3f>(cv::Point(0, 0));
 
 		 double perc_diff_hue = ((hsv_color[0] - mean_hsv_color[0]) / mean_hsv_color[0]) * 100;
-		 double perc_diff_sat = ((hsv_color[1] - mean_hsv_color[1]) / mean_hsv_color[1]) * 100;
+		 double perc_diff_sat = std::abs(((hsv_color[1] - mean_hsv_color[1]) / mean_hsv_color[1]) * 100);
 		 double perc_diff_val = ((mean_hsv_color[2] - hsv_color[2]) / mean_hsv_color[2]) * 100;
 		 double perc_diff_A = ((lab_color[1] - mean_lab_color[1]) / mean_lab_color[1]) * 100;
 		 double perc_diff_B = ((lab_color[2] - mean_lab_color[2]) / mean_lab_color[2]) * 100;
@@ -75,7 +75,7 @@ void lesion_filter(cv::Mat src, const std::vector<std::vector<cv::Point> > & src
 		 ///---------------------------------------------------
 
 		 //if (perc_diff_sat > 10.0 || (perc_diff_val > 60.0 && perc_diff_sat > 0)) {
-		 if ((perc_diff_val > 2.50 && perc_diff_sat > 0) && perc_diff_B > 5) {
+		 if (perc_diff_A > 20) {
 			 fprintf(pFile, "lesion%d is different enough \n\n", i);
 			 dst.push_back(src_contours[i]);
 			 cv::imwrite(img_out_dir + std::to_string(i) + "_les_color" + ".jpg", color);
@@ -91,3 +91,60 @@ void lesion_filter(cv::Mat src, const std::vector<std::vector<cv::Point> > & src
 
 	 return;
  }
+
+void entropy_filter(cv::Mat1b src_gray, const std::vector<std::vector<cv::Point> > & src_contours, std::vector<std::vector<cv::Point>> & dst, std::string img_name) {
+
+	///------------- TESTING / DEBUG ---------------------
+	std::string img_out_dir = output_dir + "/entropy_filter/";
+	_mkdir(img_out_dir.c_str());
+	img_out_dir = img_out_dir + img_name + "/";
+	_mkdir(img_out_dir.c_str());
+
+	FILE * pFile;
+	std::string out_file = img_out_dir + "/classify_data.txt";
+	pFile = fopen(out_file.c_str(), "w");
+	///-----------------------------------------------------
+
+	std::vector<cv::Scalar> les_entropy;
+	les_entropy = lesion_entropies(src_gray, src_contours);
+
+	double entropy_mean = (cv::Scalar(les_entropy[0])).val[0];
+
+	int  contour_cnt = src_contours.size();
+	//cv::Mat entropy(64, 64, CV_32FC1);
+	double entropy;
+	double entropy_scale;
+	///------------- TESTING / DEBUG ---------------------
+	fprintf(pFile, "------mean------ \n");
+	fprintf(pFile, "entropy_mean:     %f \n", entropy_mean);
+	///---------------------------------------------------
+
+	for (int i = 0; i < contour_cnt;i++) {
+
+		entropy = (cv::Scalar(les_entropy[i + 1])).val[0];
+		//entropy_scale = entropy * 1. / 255;
+
+		double perc_diff_entropy = ((entropy - entropy_mean) / entropy_mean) * 100;
+		///------------- TESTING / DEBUG ---------------------
+
+		fprintf(pFile, "------lesion%d------ \n", (i));
+		fprintf(pFile, "entropy:     %f \n", entropy);
+		fprintf(pFile, "perc_diff_entroppy: %f \n\n", perc_diff_entropy);
+		///---------------------------------------------------
+
+		if (perc_diff_entropy > 0) {
+			fprintf(pFile, "lesion%d is different enough \n\n", i);
+			dst.push_back(src_contours[i]);
+			//cv::imwrite(img_out_dir + std::to_string(i) + "_les_color" + ".jpg", entropy);
+		}
+		else {
+
+			fprintf(pFile, "lesion%d is too similar to skin \n\n", i);
+			//cv::imwrite(img_out_dir + "NO" + std::to_string(i) + "_les_color" + ".jpg", entropy);
+			//dst.erase(dst.begin() + (i));
+		}
+	}
+	fprintf(pFile, "size of contours now: %f \n\n", dst.size());
+
+	return;
+}
