@@ -139,7 +139,7 @@ static void ind_to_sub(int p, int num_dims, const int size[],
 }
 
 ///ADAPTED FROM SOURCE: https://stackoverflow.com/questions/20371053/finding-entropy-in-opencv
-void getLocalEntropyImage(cv::Mat &gray, cv::Rect &roi, cv::Mat &entropy)
+void entropy_filter(const cv::Mat &gray, cv::Mat &entropy)
 {
 	clock_t func_begin, func_end;
 	func_begin = clock();
@@ -158,7 +158,7 @@ void getLocalEntropyImage(cv::Mat &gray, cv::Rect &roi, cv::Mat &entropy)
 	int bottom = top;
 	cv::copyMakeBorder(gray_src_mat, pad_mat, top, bottom, left, right, cv::BORDER_REPLICATE, 0);
 	cv::Mat *pad_src = &pad_mat;
-	roi = cv::Rect(roi.x + top, roi.y + left, roi.width, roi.height);
+	cv::Rect roi = cv::Rect(top, left, gray.cols, gray.rows);
 
 	//3.initial neighbood object,reference to Matlab build-in neighbood object system
 	//        int element_num = roi_rect.area();
@@ -241,7 +241,7 @@ void getLocalEntropyImage(cv::Mat &gray, cv::Rect &roi, cv::Mat &entropy)
 
 	func_end = clock();
 	double func_time = (double)(func_end - func_begin) / CLOCKS_PER_SEC;
-	std::cout << "func time" << func_time << std::endl;
+	std::cout << "func time " << func_time << std::endl;
 }
 
 //attempt at entropy based lesion detection/localization.
@@ -282,7 +282,7 @@ std::vector<std::vector<cv::Point>> lesion_detect_entropy(const cv::Mat & image,
 		cv::Point(size_close2, size_close2));
 	//entropy
 	cv::Rect roi(0, 0, image.cols, image.rows);
-	cv::Mat dst = cv::Mat::zeros(image.rows, image.cols, CV_32F);
+	cv::Mat1f dst = cv::Mat::zeros(image.rows, image.cols, CV_32F);
 	cv::Mat dst_show(image.rows, image.cols, CV_32FC1);
 	//countour
 	std::vector<std::vector<cv::Point>> contours;
@@ -307,7 +307,7 @@ std::vector<std::vector<cv::Point>> lesion_detect_entropy(const cv::Mat & image,
 	cv::GaussianBlur(gr_img, blur_img, ksize, 0);
 	cv::cvtColor(blur_img, gray_img, CV_BGR2GRAY);
 	//entropy
-	getLocalEntropyImage(gray_img, roi, dst);
+	entropy_filter(gray_img, dst);
 	cv::normalize(dst, dst_show, 0.0, 255.0, cv::NORM_MINMAX, CV_32FC1);
 	dst_show.convertTo(entropy, CV_8U);
 	

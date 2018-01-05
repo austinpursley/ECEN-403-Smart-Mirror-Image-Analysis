@@ -35,11 +35,20 @@ cv::Mat1b getMean(const std::vector<cv::Mat1b>& images)
 std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, std::string img_name) {
 	///VARIABLES / SETTINGS
 	//all tuning/performance parameters in one place.
+	/*
+	//light red
 	int gauss_ksize = 9;
 	int blocksize = 39;
 	int size_close = 1;
 	int size_open = 2;
+	int size_close2 = 4;
+	int size_open2 = 3;
+	*/
 
+	int gauss_ksize = 9;
+	int blocksize = 39;
+	int size_close = 1;
+	int size_open = 2;
 	int size_close2 = 4;
 	int size_open2 = 3;
 	
@@ -86,13 +95,16 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, std:
 	 	7: dilate what's left to make them more prominent
 	 	8: find contours, the points that make up border of area on the original image 
 	*/
+
 	cv::GaussianBlur(image, blur_img, ksize, 0);
 	gr_img = blur_img & cv::Scalar(0, 255, 255);      
 	cv::cvtColor(gr_img, gray_img, CV_BGR2GRAY); 
+	/*
 	cv::adaptiveThreshold(gray_img, thresh_img, maxValue, adaptMethod, thresholdType, blocksize, 2);  
 	cv::morphologyEx(thresh_img, close_img, close, elem_close);
 	cv::morphologyEx(close_img, open_img, open, elem_open); 
 	cv::findContours(open_img, contours, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
+	*/
 
 
 	///------------- TESTING / DEBUG ---------------------
@@ -108,10 +120,7 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, std:
 	*/
 
 	///COLOR SPACE EXPERIMENTS
-	cv::Scalar mean_color = cv::mean(image);
-	cv::Mat mean_gray_img;
-	cv::Mat mean_color_img(image.rows, image.cols, CV_8UC3, mean_color);
-	cv::cvtColor(mean_color_img, mean_gray_img, CV_BGR2GRAY, 1);
+	
 
 	cv::Mat3b lab_img(image.rows, image.cols, CV_8UC3);
 	cv::Mat3b yrb_img(image.rows, image.cols, CV_8UC3);
@@ -130,66 +139,80 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, std:
 	cv::split(yrb_img, yrb);
 	cv::split(hsv_img, hsv);
 	
+	//------- LIGHT RED -----------//
+	cv::Scalar mean_color = cv::mean(image);
+	cv::Mat mean_gray_img, light_red;
+	cv::Mat mean_color_img(image.rows, image.cols, CV_8UC3, mean_color);
+	cv::cvtColor(mean_color_img, mean_gray_img, CV_BGR2GRAY, 1);
 	cv::bitwise_not(yrb[1], yrb[1]);
-	cv::Mat1b comb_img;
-	cv::addWeighted(yrb[1], 0.7, mean_gray_img, 0.3, 0, comb_img);
+	cv::addWeighted(yrb[1], 0.7, mean_gray_img, 0.3, 0, light_red);
 
-	cv::bitwise_not(hsv[1], hsv[1]);
-	//cv::bitwise_not(lab[0], lab[0]);
-	//cv::bitwise_not(lab[1], lab[1]);
-	//cv::bitwise_not(lab[2], lab[2]);
-
-	//cv::bitwise_not(yrb[0], yrb[0]);
-	//cv::bitwise_not(yrb[1], yrb[1]);
-	//cv::bitwise_not(yrb[2], yrb[2]);
-
-	std::vector<cv::Mat1b> channels;
-
-	//channels.push_back(hsv[1]);
-	//channels.push_back(hsv[2]);
-	//channels.push_back(lab[0]);
-	//channels.push_back(lab[1]);
-	//channels.push_back(lab[2]);
-	//channels.push_back(yrb[0]);
-	//channels.push_back(yrb[1]);
-	//channels.push_back(yrb[2]);
-	// Compute the mean
-	//cv::Mat1b mean_img = getMean(channels);
+	//---------- ALL ------------//
+	cv::Mat AB, LAB;
+	cv::addWeighted(lab[1], 0.5, lab[2], 0.5, 0, AB);
+	cv::addWeighted(AB, 0.6, lab[0], 0.4, 0, LAB);
 	
+	std::vector<std::vector<cv::Point>> contours1;
+	std::vector<std::vector<cv::Point>> contours2;
+	cv::Mat morph1;
+	cv::Mat morph2;
 
-	//uchar cool = mean_img.at<uchar>(cv::Point(0, 0));
-	//printf("value: %u \n", cool);
-
-	cv::adaptiveThreshold(comb_img, thresh_img, maxValue, adaptMethod, thresholdType, blocksize, 2);
-	//cv::bitwise_not(thresh_img, thresh_img);
-	//cv::morphologyEx(thresh_img, thresh_img, open, elem_open);
+	cv::adaptiveThreshold(light_red, thresh_img, maxValue, adaptMethod, thresholdType, blocksize, 2);
 	cv::morphologyEx(thresh_img, close_img, close, elem_close);
 	cv::morphologyEx(close_img, open_img, open, elem_open);
 	cv::morphologyEx(open_img, close_img, close, elem_close2);
-	cv::morphologyEx(close_img, open_img, open, elem_open2);
-	cv::findContours(open_img, contours, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
+	cv::morphologyEx(close_img, morph1, open, elem_open2);
+	cv::findContours(morph1, contours1, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
 
-
+	cv::adaptiveThreshold(LAB, thresh_img, maxValue, adaptMethod, thresholdType, blocksize, 2);
+	cv::morphologyEx(thresh_img, close_img, close, elem_close);
+	cv::morphologyEx(close_img, open_img, open, elem_open);
+	cv::morphologyEx(open_img, close_img, close, elem_close2);
+	cv::morphologyEx(close_img, morph2, open, elem_open2);
+	cv::findContours(morph2, contours2, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
+	
+	//entropy filtering
 	cv::GaussianBlur(image, blur_img, ksize, 0);
 	cv::cvtColor(blur_img, gray_img, CV_BGR2GRAY);
-	std::vector<std::vector<cv::Point>> contours_fil;
-	lesion_filter(image, contours, contours_fil, (img_name + "_0"));
+	std::vector<std::vector<cv::Point>> contours1_filt;
+	std::vector<std::vector<cv::Point>> contours2_filt;
+	filter_lesions_by_entropy(gray_img, contours1, contours1_filt, (img_name + "_0"), 5, 0.3);
+	filter_lesions_by_entropy(gray_img, contours2, contours2_filt, (img_name + "_1"), 5, 0.3);
+
+	//combining?
+	cv::Mat comb = cv::Mat::zeros(image.rows, image.cols, CV_8UC1);
+	cv::drawContours(comb, contours1_filt, -1, cv::Scalar(255), -1);
+	cv::drawContours(comb, contours2_filt, -1, cv::Scalar(255), -1);
+
+	//color filtering
+	//std::vector<std::vector<cv::Point>> filtered_cnts;
+	//color_filter(blur_img, contours, filtered_cnts, (img_name + "_0"), 5, 0.25);
 
 	///---------------------
-	cv::Mat masked0_filter;
-	image.copyTo(masked0_filter);
-	printf("cont vec size: %d \n", contours_fil.size());
-	for (int i = 0; i < contours_fil.size(); i++) {
-		cv::drawContours(masked0_filter, contours_fil, i, cv::Scalar(255), -1);
-	}
-	cv::imwrite(img_out_dir + img_name + "_9_masked_entropy_filter_" + ".jpg", masked0_filter);
+	cv::Mat masked1_filter, masked2_filter, masked3_combined;
+	cv::Mat masked1, masked2, color;
+	image.copyTo(masked1_filter);
+	image.copyTo(masked2_filter);
+	image.copyTo(masked3_combined);
+	cv::drawContours(masked1_filter, contours1_filt, -1, cv::Scalar(255), -1);
+	cv::drawContours(masked2_filter, contours2_filt, -1, cv::Scalar(255), -1);
 
-	cv::bitwise_not(open_img, open_img);
-	cv::Mat masked, color;
-	cv::cvtColor(open_img, color, CV_GRAY2BGR);
-	cv::bitwise_and(color, image, masked);
+	cv::drawContours(masked3_combined, contours1_filt, -1, cv::Scalar(255), -1);
+	cv::drawContours(masked3_combined, contours2_filt, -1, cv::Scalar(255), -1);
+	
+	cv::bitwise_not(morph1, morph1);
+	cv::cvtColor(morph1, color, CV_GRAY2BGR);
+	cv::bitwise_and(color, image, masked1);
+	cv::bitwise_not(morph2, morph2);
+	cv::cvtColor(morph2, color, CV_GRAY2BGR);
+	cv::bitwise_and(color, image, masked2);
 	
 	cv::imwrite(img_out_dir + img_name + "_0_bgr.jpg", image);
+	//cv::imwrite(img_out_dir + img_name + "_1_masked1_" + ".jpg", masked1);
+	//cv::imwrite(img_out_dir + img_name + "_2_masked2_" + ".jpg", masked2);
+	cv::imwrite(img_out_dir + img_name + "_3_masked1_entropy_filter_" + ".jpg", masked1_filter);
+	cv::imwrite(img_out_dir + img_name + "_4_masked2_entropy_filter_" + ".jpg", masked2_filter);
+	cv::imwrite(img_out_dir + img_name + "_5_combined_masks_" + ".jpg", masked3_combined);
 	//cv::imwrite(img_out_dir + img_name + "_1_hsv_" + ".jpg", hsv[1]);
 	//cv::imwrite(img_out_dir + img_name + "_4_thresh_" + ".jpg", thresh_img);
 	/*
@@ -202,7 +225,7 @@ std::vector<std::vector<cv::Point>> lesion_detection(const cv::Mat & image, std:
 	cv::imwrite(img_out_dir + img_name + "_5_close_" + ".jpg",  close_img);
 	cv::imwrite(img_out_dir + img_name + "_6_open_" + ".jpg",   open_img);
 	*/
-	cv::imwrite(img_out_dir + img_name + "_8_masked_" + ".jpg", masked);
+	
 	
 	//int num_lesions = contours.size() - 1;
 	//fprintf(file, "# lesions: %d \n", num_lesions);
