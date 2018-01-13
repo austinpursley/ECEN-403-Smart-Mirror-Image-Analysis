@@ -1,43 +1,82 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
-#include "lesions.h"
+#include "fix_me_lesions.h"
 #include "lesion_entropy_detect.h"
 #include "stdafx.h"
 
 ///to do: get rid of return (more like other opencv function). Use this to get local mean color as well (instead of global mean)
-std::vector<cv::Scalar> lesion_colors(const cv::Mat & image, const std::vector<std::vector<cv::Point> > & contours) {
-	std::vector<cv::Scalar> contour_colors;
-	cv::Scalar color;
-	cv::Mat mask;
-	//calculate the mean color of entire image
-	cv::Scalar mean_color = cv::mean(image);
-	contour_colors.push_back(mean_color);
+void lesion_colors(const cv::Mat & image, std::vector<std::vector<cv::Point> > & contours, std::vector<cv::Scalar> & lesion_colors, std::vector<cv::Scalar> & background_colors, const double roi_scale = 0.25) {
 	
+	///------------------ PRESENTATION / DEBUG ---------------
+	std::string img_out_dir = output_dir + "/colors/";
+	_mkdir(img_out_dir.c_str());
+	//img_out_dir = img_out_dir + img_name + "/";
+	img_out_dir = img_out_dir + "/";
+	_mkdir(img_out_dir.c_str());
+	///-------------------------------------------------------
+
+	//cv::Mat mask;
+	//calculate the mean color of entire image
+	
+	double size = image.cols*roi_scale;
+
+	std::vector<std::vector<cv::Point> > copycontours;
+
+	cv::Mat all_mask = cv::Mat::zeros(image.rows, image.cols, CV_8UC1);
+	cv::Mat pad_mask;
+	cv::drawContours(all_mask, contours, -1, cv::Scalar(255), -1);
+	cv::bitwise_not(all_mask, all_mask);
+	cv::copyMakeBorder(all_mask, pad_mask, size, size, size, size, cv::BORDER_CONSTANT, 0);
+	int lesion_num = 0;
 	for (int i = 0; i < contours.size(); i++) {
-		//mask is a black image
-		mask = cv::Mat::zeros(image.rows, image.cols, CV_8UC1);
-		//on black background, draw white contour area corresponding to lesion
-		cv::drawContours(mask, contours, i, cv::Scalar(255), -1);
-		//mask means we are only considering white contour section
-		color = cv::mean(image, mask);
-		contour_colors.push_back(color);
-
-		///------------------ PRESENTATION / DEBUG ---------------
 		
-		std::string img_out_dir = output_dir + "/classification/";
-		_mkdir(img_out_dir.c_str());
-		//img_out_dir = img_out_dir + img_name + "/";
-		img_out_dir = img_out_dir + "/";
-		_mkdir(img_out_dir.c_str());
-
-		cv::Mat show = image.clone();
-		cv::drawContours(show, contours, i, cv::Scalar(255), 1, 1);
-		cv::imwrite(img_out_dir  + std::to_string(i) + "_les" +  ".jpg", show);
+		cv::Mat pad_mat;
+		cv::Rect cnt_roi = cv::boundingRect(contours[i]);
+		cv::copyMakeBorder(image, pad_mat, size, size, size, size, cv::BORDER_REPLICATE, 0);
+		cv::Size inflationSize(size * 2, size * 2);
+		cnt_roi += inflationSize;
 		
-		///--------------------------------------------------------
+		//should make this a seperate function, filter lesion that do not pass this test
+		if (cnt_roi.x >= 0 && cnt_roi.y >= 0 && cnt_roi.width + cnt_roi.x < pad_mat.cols && cnt_roi.height + cnt_roi.y < pad_mat.rows) {
+			
+			copycontours.push_back(contours[i]);
+			//lesion color
+			cv::Mat single_mask = cv::Mat::zeros(image.rows, image.cols, CV_8UC1);
+			cv::drawContours(single_mask, contours, i, cv::Scalar(255), -1);
+			cv::Scalar les_color = cv::mean(image, single_mask);
+			lesion_colors.push_back(les_color);
+			//background color
+			cv::Mat image_roi = pad_mat(cnt_roi);
+			cv::Mat image_roi_mask = pad_mask(cnt_roi);
+			cv::Scalar bg_color = cv::mean(image_roi, image_roi_mask);
+			background_colors.push_back(bg_color);
+
+			///------------------ PRESENTATION / DEBUG ---------------
+			cv::Mat show = image.clone();
+			cv::drawContours(show, contours, i, cv::Scalar(255), 1, 1);
+			//cv::imwrite(img_out_dir + std::to_string(lesion_num) + "_les_roi" + ".jpg", image_roi);
+			//cv::imwrite(img_out_dir + std::to_string(lesion_num) + "_mask" + ".jpg", image_roi_mask);
+			cv::imwrite(img_out_dir + std::to_string(lesion_num) + "_les" + ".jpg", show);
+			lesion_num++;
+			///--------------------------------------------------------
+		}
+		else {
+			
+			printf("SKIPPED LESION: %D \n", i);
+			continue;
+		}
+		
 	}
+	contours = copycontours;
+	//at the end of the vectors, put average global background color and avg color of all lesions.
+	cv::Scalar average_les_color = cv::mean(image, all_mask);
+	lesion_colors.push_back(average_les_color);
+	
+	cv::bitwise_not(all_mask, all_mask);
+	cv::Scalar global_bg_color = cv::mean(image, all_mask);
+	background_colors.push_back(global_bg_color);
 
-	return(contour_colors);
+	return;
 }
 
 //Input array of contours/lesions, grayscale. Output array of entropy values corresponding to lesions, as well as image of entropy image.

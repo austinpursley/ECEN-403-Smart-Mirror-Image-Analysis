@@ -1,6 +1,6 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
-#include "lesions.h"
+#include "fix_me_lesions.h"
 #include "stdafx.h"
 
 std::vector<int> lesion_id(std::vector<cv::Scalar> & lesion_colors, std::string img_name) {
