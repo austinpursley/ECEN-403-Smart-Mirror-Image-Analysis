@@ -1,10 +1,9 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
-#include "lesion_features.h"
 #include "stdafx.h"
  
 void color_filter(cv::Mat src, std::vector<std::vector<cv::Point> > & lesion_contours, std::string img_name, int thresh = 30, double roi_scale = 0.25) {
-
+	/*--------------------------------------------------------------------------------------------------------------------------------------------------
 	 ///------------- TESTING / DEBUG ---------------------
 	 std::string img_out_dir = output_dir + "/color_filter/";
 	 _mkdir(img_out_dir.c_str());
@@ -146,7 +145,9 @@ void color_filter(cv::Mat src, std::vector<std::vector<cv::Point> > & lesion_con
 				//cv::imwrite(img_out_dir + std::to_string(i) + "_les_color" + ".jpg", color);
 			}
 			*/
+			/*----------------------------------------------------------------------------------------------------------------------------------------------------
 		}
+		
 		else {
 			fprintf(pFile, "lesion%d is too similar to skin \n\n", i);
 			//cv::imwrite(img_out_dir + "NO_" + std::to_string(i) + "_les_color" + ".jpg", color);
@@ -163,11 +164,14 @@ void color_filter(cv::Mat src, std::vector<std::vector<cv::Point> > & lesion_con
 
 	 printf("size of filtered contours now: %d \n", filtered_les_cnts.size());
 	 //printf("size of contours now: %d \n\n", lesion_contours.size());
-
+	 ---------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 	 return;
+	 
  }
 
+
 void filter_lesions_by_entropy(const cv::Mat1b & src_gray, const std::vector<std::vector<cv::Point> > & src_contours, std::vector<std::vector<cv::Point>> & dst, std::string img_name, int thresh = 30, double roi_scale = 0.25) {
+	/*
 	///------------- TESTING / DEBUG ---------------------
 	std::string img_out_dir = output_dir + "/entropy_filter/";
 	_mkdir(img_out_dir.c_str());
@@ -220,6 +224,7 @@ void filter_lesions_by_entropy(const cv::Mat1b & src_gray, const std::vector<std
 			double perc_diff_entropy = std::abs(((les_entropy - local_entropy) / local_entropy) * 100);
 			cv::imwrite(img_out_dir + std::to_string(i) + "_les_roi" + ".jpg", image_roi);
 			cv::imwrite(img_out_dir + std::to_string(i) + "_les_mask" + ".jpg", image_roi_mask);
+			*/
 			/*
 			///------------- TESTING / DEBUG ---------------------
 			printf("entropy bg: %f \n", local_entropy);
@@ -230,6 +235,7 @@ void filter_lesions_by_entropy(const cv::Mat1b & src_gray, const std::vector<std
 			fprintf(pFile, "perc_diff_entroppy: %f \n\n", perc_diff_entropy);
 			///---------------------------------------------------
 			*/
+			/*
 			if (perc_diff_entropy > thresh) {
 				fprintf(pFile, "lesion%d is different enough \n\n", i);
 				dst.push_back(src_contours[i]);
@@ -244,6 +250,7 @@ void filter_lesions_by_entropy(const cv::Mat1b & src_gray, const std::vector<std
 	}
 	
 	fprintf(pFile, "size of contours now: %f \n\n", dst.size());
-
+	*/
 	return;
+	
 }
