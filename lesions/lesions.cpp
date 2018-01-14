@@ -6,7 +6,7 @@ Lesion::Lesion( std::vector<cv::Point> init_contour, const cv::Mat &mat, cv::Mat
 	contour = init_contour;
 	id = id_num;
 	find_area();
-	roi_size = mat.cols*roi_scale;
+	roi_size = ((mat.cols+mat.rows)/2)*roi_scale;
 	find_roi(mat);
 	find_colors(mat, mask);
 	
@@ -14,26 +14,24 @@ Lesion::Lesion( std::vector<cv::Point> init_contour, const cv::Mat &mat, cv::Mat
 
 //copy constructor
 Lesion::Lesion(const Lesion& copy_from) {
+	contour = copy_from.contour;
 	id = copy_from.id;
 	roi_size = copy_from.roi_size;
 	roi = copy_from.roi;
-	area = copy_from.area;
-	contour = copy_from.contour;
 	color = copy_from.color;
 	bg_color = copy_from.bg_color;
-	
+	area = copy_from.area;
 }
 
 //copy assignment
 Lesion& Lesion::operator=(const Lesion &copy_from) {
+	contour = copy_from.contour;
 	id = copy_from.id;
 	roi_size = copy_from.roi_size;
 	roi = copy_from.roi;
-	area = copy_from.area;
-	contour = copy_from.contour;
 	color = copy_from.color;
 	bg_color = copy_from.bg_color;
-	
+	area = copy_from.area;
 	return *this;
 }
 
@@ -42,6 +40,14 @@ Lesion& Lesion::operator=(const Lesion &copy_from) {
 //accessor functions
 std::vector<cv::Point> Lesion::get_contour() const {
 	return contour;
+}
+
+int Lesion::get_id() const {
+	return id;
+}
+
+cv::Rect Lesion::get_roi() const {
+	return roi;
 }
 
 cv::Scalar Lesion::get_color() const {
@@ -54,6 +60,10 @@ cv::Scalar Lesion::get_bg_color() const {
 
 double Lesion::get_area() const {
 	return area;
+}
+
+double Lesion::get_inertia_ratio() const {
+	return inertia_ratio;
 }
 
 ///-------------------------------------------------------
@@ -79,6 +89,30 @@ void Lesion::draw(cv::Mat &mat) {
 
 void Lesion::find_area() {
 	area = cv::contourArea(contour);
+}
+
+void Lesion::find_inertia_ratio() {
+		cv::Moments moms = moments(cv::Mat(contour));
+		double denominator = std::sqrt(std::pow(2 * moms.mu11, 2) + std::pow(moms.mu20 - moms.mu02, 2));
+		const double eps = 1e-2;
+		double ratio;
+		if (denominator > eps)
+		{
+			double cosmin = (moms.mu20 - moms.mu02) / denominator;
+			double sinmin = 2 * moms.mu11 / denominator;
+			double cosmax = -cosmin;
+			double sinmax = -sinmin;
+
+			double imin = 0.5 * (moms.mu20 + moms.mu02) - 0.5 * (moms.mu20 - moms.mu02) * cosmin - moms.mu11 * sinmin;
+			double imax = 0.5 * (moms.mu20 + moms.mu02) - 0.5 * (moms.mu20 - moms.mu02) * cosmax - moms.mu11 * sinmax;
+			ratio = imin / imax;
+		}
+		else
+		{
+			ratio = 1;
+		}
+
+		inertia_ratio = ratio;
 }
 
 void Lesion::find_roi(const cv::Mat &mat) {
