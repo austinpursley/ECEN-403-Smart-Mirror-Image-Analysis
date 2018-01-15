@@ -4,7 +4,7 @@ Date: 12/2017
 Author: Austin Pursley
 Course: ECEN 403, Senior Design Smart Mirror
 
-Uses computer vision to analyze thermal images of someone
+Purpose: Uses computer vision to analyze thermal images of someone
 to get a skin temperature metric.
 */
 
