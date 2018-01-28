@@ -53,10 +53,9 @@ void blob_detect(const cv::Mat1b &src_1b, cv::Mat1b &bin_mask, std::vector<std::
 	/*
 	1: guassian blur filter to reduce image noise and detail
 	2: adaptive thresholding, binarization
-	3: close to fill in gaps
-	4: open removes smaller blobs
-	5: erosion to make blobs smaller, fit better
-	6: find contours, the points that make up border of area on the original image
+	3: open removes smaller blobs
+	4: erosion to make blobs smaller, fit better
+	5: find contours, the points that make up border of area on the original image
 	*/
 	cv::GaussianBlur(src_1b, blur_img, ksize, 0);
 	cv::adaptiveThreshold(blur_img, bin_img, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY_INV, blocksize, 2);
