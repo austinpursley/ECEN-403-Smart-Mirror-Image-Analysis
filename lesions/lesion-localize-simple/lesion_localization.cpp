@@ -34,10 +34,7 @@ void blob_detect(const cv::Mat1b &src_1b, cv::Mat1b &bin_mask, std::vector<std::
 	//mix tuning/performance parameters in one place.
 	int gauss_ksize = 15;
 	int blocksize = 39;
-	int size_close = 0;
 	int size_open = 4;
-	int size_close2 = 0;
-	int size_open2 = 0;
 	int size_erode = 1;
 	//guassian blur
 	cv::Size ksize;
@@ -45,20 +42,9 @@ void blob_detect(const cv::Mat1b &src_1b, cv::Mat1b &bin_mask, std::vector<std::
 	ksize.width = ksize.height;
 	//morphology
 	int shape = cv::MORPH_ELLIPSE;
-	cv::Mat elem_close = cv::getStructuringElement(shape,
-		cv::Size(2 * size_close + 1, 2 * size_close + 1),
-		cv::Point(size_close, size_close));
 	cv::Mat elem_open = cv::getStructuringElement(shape,
 		cv::Size(2 * size_open + 1, 2 * size_open + 1),
 		cv::Point(size_open, size_open));
-
-	cv::Mat elem_open2 = cv::getStructuringElement(shape,
-		cv::Size(2 * size_open2 + 1, 2 * size_open2 + 1),
-		cv::Point(size_open2, size_open2));
-	cv::Mat elem_close2 = cv::getStructuringElement(shape,
-		cv::Size(2 * size_close2 + 1, 2 * size_close2 + 1),
-		cv::Point(size_close2, size_close2));
-
 	cv::Mat elem_erode = cv::getStructuringElement(shape,
 		cv::Size(2 * size_erode + 1, 2 * size_erode + 1),
 		cv::Point(size_erode, size_erode));
@@ -74,10 +60,7 @@ void blob_detect(const cv::Mat1b &src_1b, cv::Mat1b &bin_mask, std::vector<std::
 	*/
 	cv::GaussianBlur(src_1b, blur_img, ksize, 0);
 	cv::adaptiveThreshold(blur_img, bin_img, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY_INV, blocksize, 2);
-	cv::morphologyEx(bin_img, close_img, cv::MORPH_CLOSE, elem_close);
 	cv::morphologyEx(close_img, open_img, cv::MORPH_OPEN, elem_open);
-	cv::morphologyEx(open_img, close_img, cv::MORPH_CLOSE, elem_close2);
-	cv::morphologyEx(close_img, open_img, cv::MORPH_OPEN, elem_open2);
 	cv::morphologyEx(open_img, bin_mask, cv::MORPH_ERODE, elem_erode);
 	cv::findContours(bin_mask, contours_output, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
 	

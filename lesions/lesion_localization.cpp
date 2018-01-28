@@ -32,10 +32,10 @@ void lesion_draw_contours(const std::vector<Lesion > &lesions, cv::Mat &img) {
 void blob_detect(const cv::Mat1b &src_1b, cv::Mat1b &bin_mask, std::vector<std::vector<cv::Point>> &contours_output) {
 	///VARIABLES / SETTINGS
 	//mix tuning/performance parameters in one place.
-	int gauss_ksize = 15;
-	int blocksize = 39;
-	int size_close = 0;
-	int size_open = 4;
+	int gauss_ksize = 9;
+	int blocksize = 49;
+	int size_close = 1;
+	int size_open = 3;
 	int size_close2 = 0;
 	int size_open2 = 0;
 	int size_erode = 1;
@@ -82,7 +82,7 @@ void blob_detect(const cv::Mat1b &src_1b, cv::Mat1b &bin_mask, std::vector<std::
 	cv::findContours(bin_mask, contours_output, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
 	
 	///OUTPUT / DEBUG
-	/*std::string img_out_dir = output_dir + "/lesion_localization/";
+	std::string img_out_dir = output_dir + "/lesion_localization/";
 	_mkdir(img_out_dir.c_str());
 	img_out_dir = img_out_dir + "/blob_detect/";
 	_mkdir(img_out_dir.c_str());
@@ -134,8 +134,18 @@ std::vector<std::vector<cv::Point>> lesion_localization(const cv::Mat &image, in
 		cv::cvtColor(image, lab_img, CV_BGR2Lab, 3);
 		cv::split(lab_img, lab);
 		cv::Mat AB;
-		cv::addWeighted(lab[1], 0.2, lab[2], 0.8, 0, AB);
-		cv::addWeighted(AB, 0.4, lab[0], 0.6, 0, mix_img);
+		cv::addWeighted(lab[1], 0.5, lab[2], 0.5, 0, AB);
+		cv::addWeighted(AB, 0, lab[0], 1, 0, mix_img);
+	}
+	else if (type == 1) {
+		//red lesions
+		cv::Mat lab_img = cv::Mat(image.rows, image.cols, CV_8UC3);
+		std::vector<cv::Mat1b> lab(3);
+		cv::cvtColor(image, lab_img, CV_BGR2Lab, 3);
+		cv::split(lab_img, lab);
+		bitwise_not(lab[2], lab[2]);
+		bitwise_not(lab[1], lab[1]);
+		cv::addWeighted(lab[1], 0.95, lab[2], 0.05, 0, mix_img);
 	}
 	else {
 		printf("other cases not here! \n");
