@@ -48,7 +48,7 @@ void blob_detect(const cv::Mat1b &src_1b, cv::Mat1b &bin_mask, std::vector<std::
 	cv::Mat elem_erode = cv::getStructuringElement(shape,
 		cv::Size(2 * size_erode + 1, 2 * size_erode + 1),
 		cv::Point(size_erode, size_erode));
-	cv::Mat gr_img, lab_img, mix_img, gray_img, blur_img, bin_img, close_img, open_img;
+	cv::Mat lab_img, mix_img, blur_img, bin_img, open_img;
 	///PROCESS
 	/*
 	1: guassian blur filter to reduce image noise and detail
@@ -60,7 +60,7 @@ void blob_detect(const cv::Mat1b &src_1b, cv::Mat1b &bin_mask, std::vector<std::
 	*/
 	cv::GaussianBlur(src_1b, blur_img, ksize, 0);
 	cv::adaptiveThreshold(blur_img, bin_img, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY_INV, blocksize, 2);
-	cv::morphologyEx(close_img, open_img, cv::MORPH_OPEN, elem_open);
+	cv::morphologyEx(bin_img, open_img, cv::MORPH_OPEN, elem_open);
 	cv::morphologyEx(open_img, bin_mask, cv::MORPH_ERODE, elem_erode);
 	cv::findContours(bin_mask, contours_output, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
 	
