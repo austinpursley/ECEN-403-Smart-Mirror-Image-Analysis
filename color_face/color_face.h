@@ -1,3 +1,7 @@
+#define NOMINMAX
+#include "stdafx.h"
+#include <opencv2/opencv.hpp>
+
 double otsu_8u_with_mask(const cv::Mat1b src, const cv::Mat1b& mask)
 {
 	const int N = 256;
@@ -34,7 +38,7 @@ double otsu_8u_with_mask(const cv::Mat1b src, const cv::Mat1b& mask)
 		q1 += p_i;
 		q2 = 1. - q1;
 
-		if (std::min(q1, q2) < FLT_EPSILON || std::max(q1, q2) > 1. - FLT_EPSILON)
+		if (min(q1, q2) < FLT_EPSILON || max(q1, q2) > 1. - FLT_EPSILON)
 			continue;
 
 		mu1 = (mu1 + i*p_i) / q1;
@@ -49,12 +53,12 @@ double otsu_8u_with_mask(const cv::Mat1b src, const cv::Mat1b& mask)
 	return max_val;
 }
 
-double threshold_with_mask(cv::Mat1b& src, cv::Mat1b& dst, double thresh, double maxval, int type, const cv::Mat1b& mask = cv::Mat1b())
+double threshold_with_mask(cv::Mat1b& src, cv::Mat1b& dst, double thresh, double maxBal, int type, const cv::Mat1b& mask = cv::Mat1b())
 {
 	if (mask.empty() || (mask.rows == src.rows && mask.cols == src.cols && cv::countNonZero(mask) == src.rows * src.cols))
 	{
 		// If empty mask, or all-white mask, use cv::threshold
-		thresh = cv::threshold(src, dst, thresh, maxval, type);
+		thresh = cv::threshold(src, dst, thresh, maxBal, type);
 	}
 	else
 	{
@@ -69,7 +73,7 @@ double threshold_with_mask(cv::Mat1b& src, cv::Mat1b& dst, double thresh, double
 		}
 
 		// Apply cv::threshold on all image
-		thresh = cv::threshold(src, dst, thresh, maxval, type);
+		thresh = cv::threshold(src, dst, thresh, maxBal, type);
 
 		// Copy original image on inverted mask
 		src.copyTo(dst, ~mask);
