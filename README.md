@@ -1,2 +1,2 @@
 # ECEN-403-Senior-Design-Smart-Mirror-Data-Analysis
-Digital RGB camera and thermal camera provide imaging data. Extract health metrics from that data. Track those health metrics over time.
+The senior design project I have been working on in school is a "smart mirror". Equipped with a thermal and RGB camera, it's primary purpose is to analyze a user's face and give health feedback. The subsystem I was responsible for was image processing and my goal was to analyze the images to obtain health metrics. These image processes include include: skin temperature metric from thermal image, skin extraction, skin lesion detection, and skin lesion identification.
