@@ -1,6 +1,0 @@
-Might be doing better than what I currently got going on.
-
-However, there isn't an output option for the contours. Instead you get "centers", not clear yet if that is what I want.
-
-Later I would like to modify to copy the simpleBlobDetector into my own code and modify to work with so that I can see 
-the results more clearly. Study the original code more. Maybe I just have to understand more about keypoints
