@@ -1,0 +1,5 @@
+test 1: 0.4 scale
+
+test 2: 0.25 scale
+
+test 3: added otsu thresh on crop

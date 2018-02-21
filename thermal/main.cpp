@@ -13,7 +13,7 @@ to get a skin temperature metric.
 
 int main() {
 	//location of text file with thermal imaging data matrix
-	std::string dir = "C:/Users/Austin Pursley/Desktop/ECEN-403-Smart-Mirror-Image-Analysis/thermal/data/";
+	std::string dir = "C:/Users/Austin Pursley/Desktop/ECEN-Senior-Design-Smart-Mirror-Image-Processing/thermal/data/";
 	std::string file = dir + "input/snapshotdata1.txt";
 
 	//Mat to hold thermal image pixel values
