@@ -4,17 +4,17 @@
 // Function main
 int main(void)
 {
-	std::string dir = "C:/Users/Austin Pursley/Desktop/ECEN-Senior-Design-Smart-Mirror-Image-Processing/face_feature_extract_(James)/";
+	std::string dir = "C:/Users/Austin Pursley/Desktop/ECEN-Senior-Design-Smart-Mirror-Image-Processing/rgb/face_feature_extract/";
 	std::string input_dir = dir + "input/";
 	std::string output_dir = dir + "output/";
 
 
-	string face_cascade_name = "C:/Users/Austin Pursley/Documents/opencv/build/etc/haarcascades/haarcascade_frontalface_alt.xml";
-	string eyes_cascade_name = "C:/Users/Austin Pursley/Documents/opencv/build/etc/haarcascades/haarcascade_eye.xml";
-	string mouth_cascade_name = "C:/Users/Austin Pursley/Documents/opencv/build/etc/haarcascades/Mouth.xml";
-	CascadeClassifier face_cascade;
-	CascadeClassifier eyes_cascade;
-	CascadeClassifier mouth_cascade;
+	std::string face_cascade_name = "C:/Users/Austin Pursley/Documents/opencv/build/etc/haarcascades/haarcascade_frontalface_alt.xml";
+	std::string eyes_cascade_name = "C:/Users/Austin Pursley/Documents/opencv/build/etc/haarcascades/haarcascade_eye.xml";
+	std::string mouth_cascade_name = "C:/Users/Austin Pursley/Documents/opencv/build/etc/haarcascades/Mouth.xml";
+	cv::CascadeClassifier face_cascade;
+	cv::CascadeClassifier eyes_cascade;
+	cv::CascadeClassifier mouth_cascade;
 
 	// Load the face cascade
 	if (!face_cascade.load(face_cascade_name)) {
@@ -37,11 +37,11 @@ int main(void)
 	// Read the image file
 	std::string img_file = "austin (2).jpg"; //e.g. name.jpg
 	std::string img_dir(input_dir.c_str() + img_file);
-	Mat frame = imread(img_dir, cv::IMREAD_COLOR);
+	cv::Mat frame = imread(img_dir, cv::IMREAD_COLOR);
 
 	// Apply the classifier to the frame
 	if (!frame.empty()) {
-		std::vector<Rect> features;
+		std::vector<cv::Rect> features;
 		get_face_features(frame, face_cascade, eyes_cascade, mouth_cascade, features);
 	}
 	else {
@@ -49,7 +49,7 @@ int main(void)
 		exit(1);
 	}
 
-	int c = waitKey(10);
+	int c = cv::waitKey(10);
 
 	if (27 == char(c)) {
 		exit(1);

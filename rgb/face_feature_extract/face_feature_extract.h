@@ -7,11 +7,8 @@
 #include <map>
 #include <stdio.h>
 
-using namespace std;
-using namespace cv;
-
 // Function Headers
-void get_face_features(Mat frame, CascadeClassifier &face_cascade, CascadeClassifier &eyes_cascade, extern CascadeClassifier &mouth_cascade, std::vector<Rect>& features);
+void get_face_features(cv::Mat frame, cv::CascadeClassifier &face_cascade, cv::CascadeClassifier &eyes_cascade, cv::CascadeClassifier &mouth_cascade, std::map<std::string, cv::Rect>& features);
 
 // Global variables
 // Copy this file from opencv/data/haarscascades to target folder
