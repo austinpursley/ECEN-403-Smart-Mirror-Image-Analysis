@@ -41,7 +41,8 @@ int main(void)
 
 	// Apply the classifier to the frame
 	if (!frame.empty()) {
-		detectAndDisplay(frame, face_cascade, eyes_cascade, mouth_cascade);
+		std::vector<Rect> features;
+		get_face_features(frame, face_cascade, eyes_cascade, mouth_cascade, features);
 	}
 	else {
 		printf(" --(!) No captured frame -- Break!");

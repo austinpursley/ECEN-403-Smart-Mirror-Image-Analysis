@@ -11,7 +11,7 @@ using namespace std;
 using namespace cv;
 
 // Function Headers
-void detectAndDisplay(Mat frame, CascadeClassifier &face_cascade, CascadeClassifier &eyes_cascade, extern CascadeClassifier &mouth_cascade);
+void get_face_features(Mat frame, CascadeClassifier &face_cascade, CascadeClassifier &eyes_cascade, extern CascadeClassifier &mouth_cascade, std::vector<Rect>& features);
 
 // Global variables
 // Copy this file from opencv/data/haarscascades to target folder
