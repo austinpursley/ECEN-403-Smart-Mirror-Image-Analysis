@@ -6,7 +6,7 @@ Course: ECEN 403, Senior Design Smart Mirror
 
 Purpose: Header, documentation for lesion localization functions.
 */
-
+#include "stdafx.h"
 #include <opencv2/opencv.hpp>
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
@@ -14,7 +14,7 @@ Purpose: Header, documentation for lesion localization functions.
 #include "lesion.hpp"
 
 void mask_image(const cv::Mat &mask, cv::Mat &masked_out);
-void lesion_draw_contours(const std::vector<Lesion > &lesions, cv::Mat &img);
+void lesion_draw_contours(const std::vector<Lesion> &lesions, cv::Mat &img);
 
 /** @brief Find "blobs" of the an image, dark spots on lighter background.
 
@@ -57,4 +57,4 @@ void lesion_intertia_filter(std::vector<Lesion> &lesions, const double min_inert
 
 The purpose is find skin lesions, those being area of skin that are discolored and stand out, such as acne or moles.
 */
-std::vector<std::vector<cv::Point>> lesion_localization(const cv::Mat &image, int type = 0);
+void lesion_localization(const cv::Mat &image, std::vector<Lesion>& lesions, int type = 0);

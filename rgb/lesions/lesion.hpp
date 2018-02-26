@@ -7,6 +7,8 @@ Course: ECEN 403, Senior Design Smart Mirror
 Purpose: Lesion class helps with filtering and classifying skin lesions.
 */
 
+
+#include "stdafx.h"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "my_in_out_directory.hpp"
@@ -15,8 +17,11 @@ Purpose: Lesion class helps with filtering and classifying skin lesions.
 
 Lesions are defined by contours. The contour itself has properties about its 
 shape e.g. area and intertia ratio. The area of the image associated with 
-the contour has also has properties e.g. color.
+the contour also has other properties e.g. color.
 */
+
+#ifndef LESION_H
+#define LESION_H
 class Lesion
 {
 public:
@@ -56,3 +61,5 @@ private:
 	void find_colors(const cv::Mat &mat, const cv::Mat &mask);
 	void find_roi(const cv::Mat &mat);
 };
+
+#endif /* lLESION_H */

@@ -1,0 +1,132 @@
+------lesion0------ 
+lesion0 size is 182.00 
+hue:     193.965530 
+satur:   0.281553 
+value:   1.990338 
+perc_diff_hue: -7.322093 
+perc_diff_sat: -4.088405 
+perc_diff_val: -97.133614 
+
+lesion-1 is too similar to skin 
+
+------lesion1------ 
+lesion1 size is 66.00 
+hue:     216.175858 
+satur:   0.276392 
+value:   195.061722 
+perc_diff_hue: 0.005852 
+perc_diff_sat: -5.283314 
+perc_diff_val: 53.972553 
+
+lesion0 is dark 
+
+------lesion2------ 
+lesion2 size is 61.00 
+hue:     208.097702 
+satur:   0.334848 
+value:   155.179489 
+perc_diff_hue: -2.980413 
+perc_diff_sat: 18.982487 
+perc_diff_val: 41.207104 
+
+lesion1 is dark 
+
+------lesion3------ 
+lesion3 size is 78.50 
+hue:     210.519821 
+satur:   0.305295 
+value:   196.835052 
+perc_diff_hue: -0.597232 
+perc_diff_sat: 12.563714 
+perc_diff_val: 92.307243 
+
+lesion2 is dark 
+
+------lesion4------ 
+lesion4 size is 105.50 
+hue:     207.206757 
+satur:   0.251955 
+value:   201.104843 
+perc_diff_hue: -1.844332 
+perc_diff_sat: 0.118247 
+perc_diff_val: 99.998436 
+
+lesion3 is dark 
+
+------lesion5------ 
+lesion5 size is 168.00 
+hue:     208.619781 
+satur:   0.253958 
+value:   198.990005 
+perc_diff_hue: -0.351130 
+perc_diff_sat: 5.913640 
+perc_diff_val: 110.215630 
+
+lesion4 is dark 
+
+------lesion6------ 
+lesion6 size is 35.50 
+hue:     218.585205 
+satur:   0.354214 
+value:   149.446808 
+perc_diff_hue: 2.667181 
+perc_diff_sat: 24.564331 
+perc_diff_val: -8.116588 
+
+lesion5 is red, but light 
+
+------lesion7------ 
+lesion7 size is 99.00 
+hue:     206.403381 
+satur:   0.347626 
+value:   190.127121 
+perc_diff_hue: -1.477734 
+perc_diff_sat: 29.898952 
+perc_diff_val: 61.857830 
+
+lesion6 is dark 
+
+------lesion8------ 
+lesion8 size is 57.00 
+hue:     208.671967 
+satur:   0.250926 
+value:   195.055557 
+perc_diff_hue: -1.086116 
+perc_diff_sat: -11.428685 
+perc_diff_val: 33.434513 
+
+lesion7 is dark 
+
+------lesion9------ 
+lesion9 size is 71.00 
+hue:     204.090820 
+satur:   0.306519 
+value:   198.183914 
+perc_diff_hue: -2.402502 
+perc_diff_sat: 13.937553 
+perc_diff_val: 77.568352 
+
+lesion8 is dark 
+
+------lesion10------ 
+lesion10 size is 38.00 
+hue:     204.986603 
+satur:   0.335097 
+value:   200.360001 
+perc_diff_hue: -2.140446 
+perc_diff_sat: 25.405460 
+perc_diff_val: 67.968651 
+
+lesion9 is dark 
+
+------lesion11------ 
+lesion11 size is 34.00 
+hue:     209.277618 
+satur:   0.453291 
+value:   132.553192 
+perc_diff_hue: -0.268083 
+perc_diff_sat: 45.965237 
+perc_diff_val: 55.572140 
+
+lesion10 is dark 
+

@@ -21,7 +21,7 @@ void get_face_features(cv::Mat frame, cv::CascadeClassifier &face_cascade, cv::C
 	//equalizeHist(frame_gray, frame_gray);
 
 	///----------------------FACE------------------------------
-	face_cascade.detectMultiScale(frame_gray, faces, 1.05, 3, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(100, 100));
+	face_cascade.detectMultiScale(frame_gray, faces, 1.05, 3, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(300, 300));
 	cv::Rect roi_face;
 	if (faces.size() >= 1) {
 		printf("face detect\n");
@@ -44,7 +44,7 @@ void get_face_features(cv::Mat frame, cv::CascadeClassifier &face_cascade, cv::C
 	roi_upper_face.height = roi_face.height*0.7;
 	upper_face_gray = frame_gray(roi_upper_face);
 	//imshow("upperFace", upper_face_gray);
-	eyes_cascade.detectMultiScale(upper_face_gray, eyes, 1.05, 3, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(5, 5), cv::Size(60, 60));
+	eyes_cascade.detectMultiScale(upper_face_gray, eyes, 1.05, 3, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(75, 75));
 	
 	// Set Region of Interest
 	cv::Rect roi_c1; //current element
@@ -70,10 +70,10 @@ void get_face_features(cv::Mat frame, cv::CascadeClassifier &face_cascade, cv::C
 	roi_lower_face.x = roi_face.x;
 	roi_lower_face.y = roi_face.y + roi_face.height*0.6;
 	roi_lower_face.width = roi_face.width;
-	roi_lower_face.height = roi_face.height*0.6;
+	roi_lower_face.height = roi_face.height*0.4;
 	cv::Mat  lower_face = frame_gray(roi_lower_face);
 	
-	mouth_cascade.detectMultiScale(lower_face, mouths, 1.05, 3, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(20, 20), cv::Size(75, 75));
+	mouth_cascade.detectMultiScale(lower_face, mouths, 1.05, 3, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(75, 75));
 	cv::Rect roi_mouth;
 	if (mouths.size() >= 1) {
 		 roi_mouth = mouths[0];
@@ -85,26 +85,7 @@ void get_face_features(cv::Mat frame, cv::CascadeClassifier &face_cascade, cv::C
 		printf("ERROR: no mouth detected \n");
 	}
 	
-	return;
-}
+	cv::waitKey();
 
-void mask_features(cv::Mat face, std::map<std::string, cv::Rect> features, cv::Mat& masked_face) {
-	printf("here \n");
-	//resize(face, face, cv::Size(128, 128), 0, 0, cv::INTER_LINEAR);
-	face.copyTo(masked_face);
-	double escale = 0.4;
-	cv::Point center(features["eye1"].x + features["eye1"].width / 2, features["eye1"].y + features["eye1"].height / 2);
-	cv::Size axes(features["eye1"].height * escale, features["eye1"].width * escale);
-	ellipse(masked_face, center, axes, 90, 0, 360, 0, -1);
-	
-	center = cv::Point(features["eye2"].x + features["eye2"].width / 2, features["eye2"].y + features["eye2"].height / 2);
-	axes = cv::Size(features["eye2"].height * escale, features["eye2"].width * escale);
-	ellipse(masked_face, center, axes, 90, 0, 360, 0, -1);
-
-	double mscale = 0.5;
-	center = cv::Point(features["mouth"].x + features["mouth"].width / 2, features["mouth"].y + features["mouth"].height / 2);
-	axes = cv::Size(features["mouth"].height * mscale, features["mouth"].width * mscale);
-	ellipse(masked_face, center, axes, 90, 0, 360, 0, -1);
-	
 	return;
 }

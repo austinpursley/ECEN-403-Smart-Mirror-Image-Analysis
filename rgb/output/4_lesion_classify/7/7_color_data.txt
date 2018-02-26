@@ -1,0 +1,209 @@
+------lesion0------ 
+lesion0 size is 137.00 
+hue:     219.002441 
+satur:   0.296142 
+value:   181.100006 
+perc_diff_hue: -0.110687 
+perc_diff_sat: -2.261165 
+perc_diff_val: 99.976227 
+
+lesion-1 is dark 
+
+------lesion1------ 
+lesion1 size is 66.00 
+hue:     224.211945 
+satur:   0.415166 
+value:   133.012344 
+perc_diff_hue: 0.729638 
+perc_diff_sat: 10.113677 
+perc_diff_val: 135.139008 
+
+lesion0 is dark 
+
+------lesion2------ 
+lesion2 size is 72.50 
+hue:     228.630066 
+satur:   0.467321 
+value:   97.456520 
+perc_diff_hue: 2.677038 
+perc_diff_sat: 22.021187 
+perc_diff_val: 100.467537 
+
+lesion1 is dark 
+
+------lesion3------ 
+lesion3 size is 64.00 
+hue:     218.810410 
+satur:   0.451542 
+value:   143.278488 
+perc_diff_hue: -1.723086 
+perc_diff_sat: 19.300955 
+perc_diff_val: 138.460693 
+
+lesion2 is dark 
+
+------lesion4------ 
+lesion4 size is 47.00 
+hue:     223.080170 
+satur:   0.416398 
+value:   113.833336 
+perc_diff_hue: 0.960479 
+perc_diff_sat: 16.792784 
+perc_diff_val: 3.335237 
+
+lesion3 is red, but light 
+
+------lesion5------ 
+lesion5 size is 168.50 
+hue:     219.878082 
+satur:   0.360917 
+value:   144.517944 
+perc_diff_hue: -0.425120 
+perc_diff_sat: 0.826310 
+perc_diff_val: 44.037079 
+
+lesion4 is dark 
+
+------lesion6------ 
+lesion6 size is 67.00 
+hue:     213.945145 
+satur:   0.297967 
+value:   189.536591 
+perc_diff_hue: -2.715568 
+perc_diff_sat: -13.566483 
+perc_diff_val: 136.238144 
+
+lesion5 is dark 
+
+------lesion7------ 
+lesion7 size is 122.50 
+hue:     222.774673 
+satur:   0.463577 
+value:   107.437500 
+perc_diff_hue: 0.882648 
+perc_diff_sat: 28.786224 
+perc_diff_val: 17.570835 
+
+lesion6 is dark 
+
+------lesion8------ 
+lesion8 size is 82.00 
+hue:     216.689987 
+satur:   0.303816 
+value:   174.020004 
+perc_diff_hue: -1.711417 
+perc_diff_sat: -14.218007 
+perc_diff_val: 96.039574 
+
+lesion7 is dark 
+
+------lesion9------ 
+lesion9 size is 55.50 
+hue:     217.576523 
+satur:   0.349127 
+value:   160.399994 
+perc_diff_hue: -1.411973 
+perc_diff_sat: -2.609535 
+perc_diff_val: 68.494659 
+
+lesion8 is dark 
+
+------lesion10------ 
+lesion10 size is 90.00 
+hue:     216.533081 
+satur:   0.403749 
+value:   137.324081 
+perc_diff_hue: -1.927284 
+perc_diff_sat: 12.247016 
+perc_diff_val: 36.192104 
+
+lesion9 is dark 
+
+------lesion11------ 
+lesion11 size is 76.50 
+hue:     226.448639 
+satur:   0.489945 
+value:   99.989250 
+perc_diff_hue: 2.426113 
+perc_diff_sat: 33.054264 
+perc_diff_val: 16.457008 
+
+lesion10 is dark 
+
+------lesion12------ 
+lesion12 size is 124.50 
+hue:     226.152542 
+satur:   0.523339 
+value:   91.523811 
+perc_diff_hue: 2.114202 
+perc_diff_sat: 37.072414 
+perc_diff_val: 24.281815 
+
+lesion11 is dark 
+
+------lesion13------ 
+lesion13 size is 87.00 
+hue:     215.745575 
+satur:   0.383599 
+value:   140.523804 
+perc_diff_hue: -2.212929 
+perc_diff_sat: 6.470129 
+perc_diff_val: 37.661709 
+
+lesion12 is dark 
+
+------lesion14------ 
+lesion14 size is 136.50 
+hue:     222.771378 
+satur:   0.445617 
+value:   111.427673 
+perc_diff_hue: 0.964162 
+perc_diff_sat: 23.720125 
+perc_diff_val: 6.466439 
+
+lesion13 is dark 
+
+------lesion15------ 
+lesion15 size is 53.00 
+hue:     224.060196 
+satur:   0.441713 
+value:   91.098595 
+perc_diff_hue: 1.470499 
+perc_diff_sat: 19.968172 
+perc_diff_val: -3.579700 
+
+lesion14 is red, but light 
+
+------lesion16------ 
+lesion16 size is 67.00 
+hue:     223.455276 
+satur:   0.420513 
+value:   121.034485 
+perc_diff_hue: 1.336671 
+perc_diff_sat: 16.697601 
+perc_diff_val: 10.008788 
+
+lesion15 is dark 
+
+------lesion17------ 
+lesion17 size is 91.00 
+hue:     219.685760 
+satur:   0.404027 
+value:   133.181824 
+perc_diff_hue: -0.347382 
+perc_diff_sat: 12.396208 
+perc_diff_val: 25.591028 
+
+lesion16 is dark 
+
+------lesion18------ 
+lesion18 size is 134.00 
+hue:     220.157684 
+satur:   0.370391 
+value:   152.191360 
+perc_diff_hue: -0.005662 
+perc_diff_sat: 3.889562 
+perc_diff_val: 65.536842 
+
+lesion17 is dark 
+

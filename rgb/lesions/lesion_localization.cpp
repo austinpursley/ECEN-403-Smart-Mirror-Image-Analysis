@@ -82,7 +82,7 @@ void blob_detect(const cv::Mat1b &src_1b, cv::Mat1b &bin_mask, std::vector<std::
 	cv::findContours(bin_mask, contours_output, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
 	
 	///OUTPUT / DEBUG
-	std::string img_out_dir = output_dir + "/lesion_localization/";
+	std::string img_out_dir = output_dir + "/3_lesion_localization/";
 	_mkdir(img_out_dir.c_str());
 	img_out_dir = img_out_dir + "/blob_detect/";
 	_mkdir(img_out_dir.c_str());
@@ -125,20 +125,9 @@ void lesion_intertia_filter(std::vector<Lesion > &lesions, const double min_iner
 }
 
 //Function to find lesions spots from an image of skin.
-std::vector<std::vector<cv::Point>> lesion_localization(const cv::Mat &image, int type) {
+void lesion_localization(const cv::Mat &image, std::vector<Lesion> &lesions, int type) {
 	cv::Mat mix_img;
-	if (type == 0) {
-		//dark lesions on light background
-		cv::Mat lab_img = cv::Mat(image.rows, image.cols, CV_8UC3);
-		std::vector<cv::Mat1b> lab(3);
-		cv::cvtColor(image, lab_img, CV_BGR2Lab, 3);
-		cv::split(lab_img, lab);
-		cv::Mat AB;
-		cv::addWeighted(lab[1], 0.5, lab[2], 0.5, 0, AB);
-		cv::addWeighted(AB, 0, lab[0], 1, 0, mix_img);
-	}
-	else if (type == 1) {
-		//red lesions
+	if (type == 1) {
 		cv::Mat lab_img = cv::Mat(image.rows, image.cols, CV_8UC3);
 		std::vector<cv::Mat1b> lab(3);
 		cv::cvtColor(image, lab_img, CV_BGR2Lab, 3);
@@ -148,7 +137,14 @@ std::vector<std::vector<cv::Point>> lesion_localization(const cv::Mat &image, in
 		cv::addWeighted(lab[1], 0.95, lab[2], 0.05, 0, mix_img);
 	}
 	else {
-		printf("other cases not here! \n");
+		//defualt, dark lesions on light background
+		cv::Mat lab_img = cv::Mat(image.rows, image.cols, CV_8UC3);
+		std::vector<cv::Mat1b> lab(3);
+		cv::cvtColor(image, lab_img, CV_BGR2Lab, 3);
+		cv::split(lab_img, lab);
+		cv::Mat AB;
+		cv::addWeighted(lab[1], 0.5, lab[2], 0.5, 0, AB);
+		cv::addWeighted(AB, 0, lab[0], 1, 0, mix_img);
 	}
 
 	//blob detection on our mixed, single channel image
@@ -157,13 +153,12 @@ std::vector<std::vector<cv::Point>> lesion_localization(const cv::Mat &image, in
 	blob_detect(mix_img, bin_mask, les_contours);
 
 	//Lesion class, stores properties of lesion like color and area
-	std::vector<Lesion> lesions;
 	for (int i = 0; i < les_contours.size(); i++) {
 		int id_num = i;
 		lesions.push_back(Lesion(les_contours[i], image, bin_mask, id_num));
 		
 		///OUTPUT / DEBUG 
-		/* std::string img_out_dir = output_dir + "/lesion_localization/";
+		std::string img_out_dir = output_dir + "/3_lesion_localization/";
 		_mkdir(img_out_dir.c_str());
 		img_out_dir = img_out_dir + "/lesions/";
 		_mkdir(img_out_dir.c_str());
@@ -172,17 +167,17 @@ std::vector<std::vector<cv::Point>> lesion_localization(const cv::Mat &image, in
 		cv::Mat show = image.clone();
 		lesions[i].draw(show);
 		cv::imwrite(img_out_dir + std::to_string(i) + "_les" + ".jpg", show);
-		///--------------- */
+		///--------------- 
 	}
 	cv::Mat drawn_lesions = cv::Mat::zeros(image.rows, image.cols, CV_8UC1);
 	double min_area = std::sqrt(image.rows * image.cols)*0.05;
-	double max_area = 10000;
+	double max_area = 200;
 	lesion_area_filter(lesions, min_area, max_area);
 	lesion_intertia_filter(lesions, 0.04);
 	lesion_draw_contours(lesions, drawn_lesions);
 	
 	///OUTPUT / DEBUG
-	std::string img_out_dir = output_dir + "/lesion_localization/";
+	std::string img_out_dir = output_dir + "/3_lesion_localization/";
 	_mkdir(img_out_dir.c_str());
 	cv::Mat masked, filter_masked;
 	image.copyTo(masked);
@@ -193,6 +188,4 @@ std::vector<std::vector<cv::Point>> lesion_localization(const cv::Mat &image, in
 	cv::imwrite(img_out_dir + std::to_string(Lesion::img_id) + "_1_masked" + ".jpg", masked);
 	cv::imwrite(img_out_dir + std::to_string(Lesion::img_id) + "_2_filtered_les" + ".jpg", filter_masked);
 	///---------------
-
-	return les_contours;
 }
