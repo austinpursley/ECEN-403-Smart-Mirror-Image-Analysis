@@ -49,6 +49,14 @@ The more elongated a contour is, the closer to 0 it's intertia ratio will be.
 */
 void lesion_intertia_filter(std::vector<Lesion> &lesions, const double min_inertia_ratio = 0.1f, const double max_inertia_ratio = 100000);
 
+/** @brief Filter a vector of Lesion objects by how similar they are to surrounding skin color
+
+@param lesions The vector of Lesion objects.
+
+The purpose is to filter out lesions that are too similar to the background,
+*/
+void lesion_color_filter(std::vector<Lesion> &lesions);
+
 /** @brief Function to find lesions spots from an image of skin.
 
 @param image The input image of skin. Assumes skin is only thing in image.

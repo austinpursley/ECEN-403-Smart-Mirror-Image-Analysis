@@ -40,24 +40,28 @@ void lesion_classify(std::vector<Lesion>& lesions) {
 	std::string text_file = img_out_dir + std::to_string(Lesion::img_id) + "_color_data.txt";
 	pFile = fopen(text_file.c_str(), "w");
 	for (int i = 0; i < lesions.size();i++) {
-		//----------------------testing----------------------------
-		fprintf(pFile, "------lesion%d------ \n", (i));
-		fprintf(pFile, "lesion%d size is %.2f \n", (i), lesions[i].get_area());
+		
 
 		cv::Mat les_color_mat(64, 64, CV_32FC3);
 		les_color_mat = cv::Scalar(lesions[i].get_color());
-		cv::imwrite(img_out_dir + "les_color_" + std::to_string(i) + ".jpg", les_color_mat);
+		
 		cv::Mat les_hsv_mat(64, 64, CV_32FC3);
 		cv::cvtColor(les_color_mat, les_hsv_mat, CV_RGB2HSV);
 		cv::Vec3f hsv_color = les_hsv_mat.at<cv::Vec3f>(cv::Point(0, 0));
 
 		cv::Mat les_bg_color_mat(64, 64, CV_32FC3);
 		les_bg_color_mat = cv::Scalar(lesions[i].get_bg_color());
-		cv::imwrite(img_out_dir + "les_color_" + std::to_string(i) + ".jpg", les_bg_color_mat);
+		
 		cv::Mat les_bg_hsv_mat(64, 64, CV_32FC3);
 		cv::cvtColor(les_bg_color_mat, les_bg_hsv_mat, CV_RGB2HSV);
 		cv::Vec3f bg_hsv_color = les_bg_hsv_mat.at<cv::Vec3f>(cv::Point(0, 0));
-
+		//----------------------testing----------------------------
+		/*
+		fprintf(pFile, "------lesion%d------ \n", (i));
+		fprintf(pFile, "lesion%d size is %.2f \n", (i), lesions[i].get_area());
+		cv::imwrite(img_out_dir + "les_color_" + std::to_string(i) + ".jpg", les_bg_color_mat);
+		cv::imwrite(img_out_dir + "les_color_" + std::to_string(i) + ".jpg", les_color_mat);
+		*/
 		//--------------------testing-----------------------------
 		double perc_diff_hue = ((hsv_color[0] - bg_hsv_color[0]) / bg_hsv_color[0]) * 100;
 		double perc_diff_sat = ((hsv_color[1] - bg_hsv_color[1]) / bg_hsv_color[1]) * 100;

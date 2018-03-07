@@ -151,6 +151,7 @@ void Lesion::find_colors(const cv::Mat &mat, const cv::Mat &mask) {
 
 		///OUTPUT / DEBUG
 		//use one image at a time in input directory (not passing image name / id, yet)
+		/*
 		std::string img_out_dir = output_dir + "/lesion_class/";
 		_mkdir(img_out_dir.c_str());
 		img_out_dir = img_out_dir + std::to_string(img_id) + "/";
@@ -161,6 +162,7 @@ void Lesion::find_colors(const cv::Mat &mat, const cv::Mat &mask) {
 		cv::imwrite(img_out_dir  + std::to_string(id) + "_0_les_roi" + ".jpg", mat_roi);
 		cv::imwrite(img_out_dir + std::to_string(id) + "_1_les_mask" + ".jpg", mat_roi_mask);
 		cv::imwrite(img_out_dir + std::to_string(id) + "_2_masked" + ".jpg", masked);
+		*/
 		///-------------- 
 	}
 

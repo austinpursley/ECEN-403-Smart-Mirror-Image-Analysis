@@ -116,6 +116,7 @@ void extract_skin(cv::Mat img, std::map<std::string, cv::Rect> features, cv::Mat
 
 	cvtColor(crop, crop, cv::COLOR_HSV2RGB);
 	cv::Mat crop_mask;
-	face.copyTo(skin, range);
+	range.copyTo(skin);
+	//face.copyTo(skin, range);
 	//img.copyTo(skin, range);
 }

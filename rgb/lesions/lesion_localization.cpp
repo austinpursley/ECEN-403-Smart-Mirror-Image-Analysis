@@ -82,15 +82,17 @@ void blob_detect(const cv::Mat1b &src_1b, cv::Mat1b &bin_mask, std::vector<std::
 	cv::findContours(bin_mask, contours_output, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
 	
 	///OUTPUT / DEBUG
+	
 	std::string img_out_dir = output_dir + "/3_lesion_localization/";
 	_mkdir(img_out_dir.c_str());
 	img_out_dir = img_out_dir + "/blob_detect/";
 	_mkdir(img_out_dir.c_str());
+	/*
 	cv::imwrite(img_out_dir + std::to_string(Lesion::img_id) + "_1_src1b_" + ".jpg", src_1b);
 	cv::imwrite(img_out_dir + std::to_string(Lesion::img_id) + "_2_blur_" + ".jpg", blur_img);
 	cv::imwrite(img_out_dir + std::to_string(Lesion::img_id) + "_3_thresh_" +  ".jpg", bin_img);
+	*////--------------- */
 	cv::imwrite(img_out_dir + std::to_string(Lesion::img_id) + "_4_morph_" + ".jpg",   bin_mask);
-	///--------------- */
 	return;
 }
 
@@ -124,6 +126,24 @@ void lesion_intertia_filter(std::vector<Lesion > &lesions, const double min_iner
 	lesions = new_lesions;
 }
 
+//Filter a vector of Lesion objects by their color similarity  to background
+/*
+void lesion_color_filter(std::vector<Lesion > &lesions) {
+	std::vector<Lesion> new_lesions;
+	for (int i = 0; i < lesions.size(); i++) {
+		cv::Scalar color = lesions[i].get_color();
+		cv::Scalar bg_color = lesions[i].get_bg_color();
+		double ratio = lesions[i].get_inertia_ratio();
+		if () {
+			continue;
+		}
+		else {
+			new_lesions.push_back(lesions[i]);
+		}
+	}
+	lesions = new_lesions;
+}
+*/
 //Function to find lesions spots from an image of skin.
 void lesion_localization(const cv::Mat &image, std::vector<Lesion> &lesions, int type) {
 	cv::Mat mix_img;
@@ -157,7 +177,8 @@ void lesion_localization(const cv::Mat &image, std::vector<Lesion> &lesions, int
 		int id_num = i;
 		lesions.push_back(Lesion(les_contours[i], image, bin_mask, id_num));
 		
-		///OUTPUT / DEBUG 
+		///OUTPUT / DEBUG: each individual lesion 
+		/*
 		std::string img_out_dir = output_dir + "/3_lesion_localization/";
 		_mkdir(img_out_dir.c_str());
 		img_out_dir = img_out_dir + "/lesions/";
@@ -167,11 +188,13 @@ void lesion_localization(const cv::Mat &image, std::vector<Lesion> &lesions, int
 		cv::Mat show = image.clone();
 		lesions[i].draw(show);
 		cv::imwrite(img_out_dir + std::to_string(i) + "_les" + ".jpg", show);
+		*/
 		///--------------- 
 	}
 	cv::Mat drawn_lesions = cv::Mat::zeros(image.rows, image.cols, CV_8UC1);
-	double min_area = std::sqrt(image.rows * image.cols)*0.05;
-	double max_area = 200;
+	//double min_area = std::sqrt(image.rows * image.cols)*0.04;
+	double min_area = 5;
+	double max_area = 300;
 	lesion_area_filter(lesions, min_area, max_area);
 	lesion_intertia_filter(lesions, 0.04);
 	lesion_draw_contours(lesions, drawn_lesions);

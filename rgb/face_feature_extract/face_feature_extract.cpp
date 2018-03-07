@@ -35,7 +35,6 @@ void get_face_features(cv::Mat frame, cv::CascadeClassifier &face_cascade, cv::C
 	}
 
 	///----------------------EYES------------------------------
-	
 	cv::Mat upper_face_gray;
 	cv::Rect roi_upper_face;
 	roi_upper_face.x = roi_face.x;
@@ -61,6 +60,7 @@ void get_face_features(cv::Mat frame, cv::CascadeClassifier &face_cascade, cv::C
 		//upper_face_gray(eyes_roi[0]) = 0;
 		printf("only one eye detected \n");
 	}
+
 	else {
 		printf("ERROR: no eyes detected \n");
 	}
