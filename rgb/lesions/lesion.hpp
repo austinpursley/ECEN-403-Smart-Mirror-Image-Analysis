@@ -33,8 +33,9 @@ public:
 	//image id number, remeber to use in .cpp
 	static int img_id;
 	//accessor functions
-	std::vector<cv::Point>  get_contour() const;
+	std::vector<cv::Point> get_contour() const;
 	int get_id() const;
+	int get_lesion_class() const;
 	cv::Rect Lesion::get_roi() const;
 	cv::Scalar get_color() const;
 	cv::Scalar get_bg_color() const;
@@ -50,6 +51,7 @@ private:
 	std::vector<cv::Point> contour;
 	int id;
 	int roi_size;
+	int les_class;
 	cv::Rect roi;
 	cv::Scalar color;
 	cv::Scalar bg_color; //local roi background color
@@ -60,6 +62,7 @@ private:
 	void find_inertia_ratio();
 	void find_colors(const cv::Mat &mat, const cv::Mat &mask);
 	void find_roi(const cv::Mat &mat);
+	void find_class();
 };
 
 #endif /* lLESION_H */

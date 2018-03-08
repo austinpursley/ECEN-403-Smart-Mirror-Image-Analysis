@@ -22,15 +22,15 @@ void get_face_features(cv::Mat frame, cv::CascadeClassifier &face_cascade, cv::C
 
 	///----------------------FACE------------------------------
 	face_cascade.detectMultiScale(frame_gray, faces, 1.05, 3, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(300, 300));
-	cv::Rect roi_face;
+	cv::Rect roi_face(0,0,0,0);
 	if (faces.size() >= 1) {
-		printf("face detect\n");
+		//printf("face detect\n");
 		roi_face = faces[0];
 		features["face"] = roi_face;
 		face_gray = frame_gray(roi_face);
 	}
 	else {
-		printf("ERROR: no fadce detected\n");
+		//printf("ERROR: no fadce detected\n");
 		return;
 	}
 
@@ -58,11 +58,11 @@ void get_face_features(cv::Mat frame, cv::CascadeClassifier &face_cascade, cv::C
 	else if (eyes.size() == 2) {
 		features["eye1"] = eyes[0];
 		//upper_face_gray(eyes_roi[0]) = 0;
-		printf("only one eye detected \n");
+		//printf("only one eye detected \n");
 	}
 
 	else {
-		printf("ERROR: no eyes detected \n");
+		//printf("ERROR: no eyes detected \n");
 	}
 	
 	///----------------------MOUTH------------------------------
@@ -82,7 +82,7 @@ void get_face_features(cv::Mat frame, cv::CascadeClassifier &face_cascade, cv::C
 		//imshow("lowerFace", lower_face);
 	}
 	else {
-		printf("ERROR: no mouth detected \n");
+		//printf("ERROR: no mouth detected \n");
 	}
 	
 	cv::waitKey();

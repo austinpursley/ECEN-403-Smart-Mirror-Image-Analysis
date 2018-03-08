@@ -6,12 +6,12 @@ Course: ECEN 403, Senior Design Smart Mirror
 
 Purpose: Implementation of Lesion class.
 */
-
+#define _CRT_SECURE_NO_WARNINGS
 #include "stdafx.h"
 #include "lesion.hpp"
 
 //constructor
-Lesion::Lesion( std::vector<cv::Point> init_contour, const cv::Mat &mat, cv::Mat &mask, int id_num, const double roi_scale) {
+Lesion::Lesion(std::vector<cv::Point> init_contour, const cv::Mat &mat, cv::Mat &mask, int id_num, const double roi_scale) {
 	contour = init_contour;
 	id = id_num;
 	find_area();
@@ -19,7 +19,7 @@ Lesion::Lesion( std::vector<cv::Point> init_contour, const cv::Mat &mat, cv::Mat
 	roi_size = ((mat.cols+mat.rows)/2)*roi_scale;
 	find_roi(mat);
 	find_colors(mat, mask);
-	
+	find_class();
 }
 
 //copy constructor
@@ -32,6 +32,7 @@ Lesion::Lesion(const Lesion& copy_from) {
 	bg_color = copy_from.bg_color;
 	area = copy_from.area;
 	inertia_ratio = copy_from.inertia_ratio;
+	les_class = copy_from.les_class;
 }
 
 //copy assignment
@@ -44,6 +45,7 @@ Lesion& Lesion::operator=(const Lesion &copy_from) {
 	bg_color = copy_from.bg_color;
 	area = copy_from.area;
 	inertia_ratio = copy_from.inertia_ratio;
+	les_class = copy_from.les_class;
 	return *this;
 }
 
@@ -55,6 +57,9 @@ std::vector<cv::Point> Lesion::get_contour() const {
 }
 int Lesion::get_id() const {
 	return id;
+}
+int Lesion::get_lesion_class() const {
+	return les_class;
 }
 cv::Rect Lesion::get_roi() const {
 	return roi;
@@ -82,6 +87,7 @@ void Lesion::update(cv::Mat &mat, std::vector<cv::Point> new_contour, cv::Mat &m
 	find_inertia_ratio();
 	find_roi(mat);
 	find_colors(mat, mask);
+	find_class();
 }
 
 //draw a contour onto image mat
@@ -182,4 +188,74 @@ void Lesion::find_colors(const cv::Mat &mat, const cv::Mat &mask) {
 		///---- */
 	}
 	return;
+}
+
+void Lesion::find_class() {
+	std::string img_out_dir = "C:/Users/Austin Pursley/Desktop/ECEN-Senior-Design-Smart-Mirror-Image-Processing/rgb/output/4_lesion_classify/" + std::to_string(Lesion::img_id) + "/";
+	_mkdir(img_out_dir.c_str());
+	FILE * pFile;
+	std::string text_file = img_out_dir + std::to_string(Lesion::img_id) + "_color_data.txt";
+	pFile = fopen(text_file.c_str(), "w");
+	cv::Mat les_color_mat(64, 64, CV_32FC3);
+	les_color_mat = color;
+
+	cv::Mat les_hsv_mat(64, 64, CV_32FC3);
+	cv::cvtColor(les_color_mat, les_hsv_mat, CV_RGB2HSV);
+	cv::Vec3f hsv_color = les_hsv_mat.at<cv::Vec3f>(cv::Point(0, 0));
+
+	cv::Mat les_bg_color_mat(64, 64, CV_32FC3);
+	les_bg_color_mat = bg_color;
+
+	cv::Mat les_bg_hsv_mat(64, 64, CV_32FC3);
+	cv::cvtColor(les_bg_color_mat, les_bg_hsv_mat, CV_RGB2HSV);
+	cv::Vec3f bg_hsv_color = les_bg_hsv_mat.at<cv::Vec3f>(cv::Point(0, 0));
+
+	double perc_diff_hue = ((hsv_color[0] - bg_hsv_color[0]) / bg_hsv_color[0]) * 100;
+	double perc_diff_sat = ((hsv_color[1] - bg_hsv_color[1]) / bg_hsv_color[1]) * 100;
+	double perc_diff_val = ((hsv_color[2] - bg_hsv_color[2]) / bg_hsv_color[2]) * 100;
+	//----------------------testing----------------------------
+	/*
+	fprintf(pFile, "------lesion%d------ \n", (i));
+	fprintf(pFile, "lesion%d size is %.2f \n", (i), lesions[i].get_area());
+	cv::imwrite(img_out_dir + "les_color_" + std::to_string(i) + ".jpg", les_bg_color_mat);
+	cv::imwrite(img_out_dir + "les_color_" + std::to_string(i) + ".jpg", les_color_mat);
+
+	fprintf(pFile, "hue:     %f \n", hsv_color[0]);
+	fprintf(pFile, "satur:   %f \n", hsv_color[1]);
+	fprintf(pFile, "value:   %f \n", hsv_color[2]);
+	fprintf(pFile, "perc_diff_hue: %f \n", perc_diff_hue);
+	fprintf(pFile, "perc_diff_sat: %f \n", perc_diff_sat);
+	fprintf(pFile, "perc_diff_val: %f \n\n", perc_diff_val);
+	*/
+	//--------------------testing-----------------------------
+	if (perc_diff_sat > 12.0 || perc_diff_val > 25.0) {
+		if ((perc_diff_hue > 3.25)) {
+			if (perc_diff_val < 10.0) {
+				//red
+				les_class = 1;
+			}
+			else if ((perc_diff_sat < 25.0) && (perc_diff_val < 30.0)) {
+				//red
+				les_class = 1;
+			}
+			else {
+				//dark
+				les_class = 0;
+			}
+		}
+		else {
+			if (perc_diff_val < 5.0) {
+				//red
+				les_class = 1;
+			}
+			else {
+				//dark
+				les_class = 0;
+			}
+		}
+	}
+	else {
+		//lesion is similar to skin (but we'll say it's dark for now)
+		les_class = 0;
+	}
 }
