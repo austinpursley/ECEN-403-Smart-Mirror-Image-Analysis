@@ -133,25 +133,25 @@ void Lesion::find_roi(const cv::Mat &mat) {
 }
 
 //find the average color of the area within the lesion contour and the local backgroun color
-void Lesion::find_colors(const cv::Mat &mat, const cv::Mat &mask) {	
+void Lesion::find_colors(const cv::Mat &img, const cv::Mat &mask) {	
 	//pad image and mask so roi doesn't overbound
 	cv::Mat pad_mask, not_mask;
 	cv::bitwise_not(mask, not_mask);
 	cv::copyMakeBorder(not_mask, pad_mask, roi_size, roi_size, roi_size, roi_size, cv::BORDER_CONSTANT, 0);
-	cv::Mat pad_mat;
-	cv::copyMakeBorder(mat, pad_mat, roi_size, roi_size, roi_size, roi_size, cv::BORDER_REPLICATE, 0);
+	cv::Mat pad_img;
+	cv::copyMakeBorder(img, pad_img, roi_size, roi_size, roi_size, roi_size, cv::BORDER_REPLICATE, 0);
 
 	//should make this a seperate function, filter lesion that do not pass this test
-	if (roi.x >= 0 && roi.y >= 0 && roi.width + roi.x <= pad_mat.cols && roi.height + roi.y <= pad_mat.rows) {
+	if (roi.x >= 0 && roi.y >= 0 && roi.width + roi.x <= pad_img.cols && roi.height + roi.y <= pad_img.rows) {
 		//vector because drawContours only works with vector of contours
 		std::vector < std::vector<cv::Point>> contour_vec;
 		contour_vec.push_back(contour);
 		//lesion color
-		cv::Mat single_mask = cv::Mat::zeros(mat.rows, mat.cols, CV_8UC1);
+		cv::Mat single_mask = cv::Mat::zeros(img.rows, img.cols, CV_8UC1);
 		cv::drawContours(single_mask, contour_vec, 0, cv::Scalar(255), -1);
-		color = cv::mean(mat, single_mask);
+		color = cv::mean(img, single_mask);
 		//background color
-		cv::Mat mat_roi = pad_mat(roi);
+		cv::Mat mat_roi = pad_img(roi);
 		cv::Mat mat_roi_mask = pad_mask(roi);
 		bg_color = cv::mean(mat_roi, mat_roi_mask);
 
