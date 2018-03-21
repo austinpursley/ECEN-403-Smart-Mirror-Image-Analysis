@@ -191,7 +191,7 @@ void Lesion::find_colors(const cv::Mat &img, const cv::Mat &mask) {
 }
 
 void Lesion::find_class() {
-	std::string img_out_dir = "C:/Users/Austin Pursley/Desktop/ECEN-Senior-Design-Smart-Mirror-Image-Processing/rgb/output/4_lesion_classify/" + std::to_string(Lesion::img_id) + "/";
+	std::string img_out_dir = output_dir + "/4_lesion_classify/" + std::to_string(Lesion::img_id) + "/";
 	_mkdir(img_out_dir.c_str());
 	FILE * pFile;
 	std::string text_file = img_out_dir + std::to_string(Lesion::img_id) + "_color_data.txt";

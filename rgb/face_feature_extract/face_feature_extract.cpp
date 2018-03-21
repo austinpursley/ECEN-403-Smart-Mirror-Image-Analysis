@@ -84,8 +84,6 @@ void get_face_features(cv::Mat frame, cv::CascadeClassifier &face_cascade, cv::C
 	else {
 		//printf("ERROR: no mouth detected \n");
 	}
-	
-	cv::waitKey();
 
 	return;
 }

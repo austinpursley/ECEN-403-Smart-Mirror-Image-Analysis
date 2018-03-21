@@ -10,7 +10,7 @@ Purpose: Header, documentation for lesion localization functions.
 #include <opencv2/opencv.hpp>
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
-#include "my_in_out_directory.hpp"
+#include "../my_in_out_directory.hpp"
 #include "lesion.hpp"
 
 void mask_image(const cv::Mat &mask, cv::Mat &masked_out);

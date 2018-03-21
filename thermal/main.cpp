@@ -27,6 +27,7 @@ int main() {
 	cv::imshow("Thermal Image", thermal_show);
 	//image processing function to get temperature metric
 	double skin_temp = temp_from_thermal_img(thermal);
+	skin_temp = 0.0487*skin_temp - 312.98;
 	printf("skin temp: %f \n", skin_temp);
 	
 	cv::waitKey();

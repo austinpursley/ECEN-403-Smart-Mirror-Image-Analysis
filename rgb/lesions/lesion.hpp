@@ -11,7 +11,8 @@ Purpose: Lesion class helps with filtering and classifying skin lesions.
 #include "stdafx.h"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
-#include "my_in_out_directory.hpp"
+#include "../my_in_out_directory.hpp"
+#include "direct.h"
 
 /** @brief Skin lesion class that contains its properties like shape and color. Helps with filtering and classifying skin lesions.
 
@@ -36,7 +37,7 @@ public:
 	std::vector<cv::Point> get_contour() const;
 	int get_id() const;
 	int get_lesion_class() const;
-	cv::Rect Lesion::get_roi() const;
+	cv::Rect get_roi() const;
 	cv::Scalar get_color() const;
 	cv::Scalar get_bg_color() const;
 	double get_area() const;

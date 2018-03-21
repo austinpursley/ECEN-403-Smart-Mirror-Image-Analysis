@@ -82,7 +82,6 @@ void blob_detect(const cv::Mat1b &src_1b, cv::Mat1b &bin_mask_out, std::vector<s
 	cv::findContours(bin_mask_out, contours_output, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0,0));
 	
 	///OUTPUT / DEBUG
-	
 	std::string img_out_dir = output_dir + "/3_lesion_localization/";
 	_mkdir(img_out_dir.c_str());
 	img_out_dir = img_out_dir + "/blob_detect/";
@@ -235,8 +234,8 @@ void lesion_localization(const cv::Mat &image, std::vector<Lesion> &lesions, int
 	//double min_area = std::sqrt(image.rows * image.cols)*0.04;
 	double min_area = 5;
 	double max_area = 300;
-	//lesion_area_filter(lesions, min_area, max_area);
-	//lesion_intertia_filter(lesions, 0.04);
+	lesion_area_filter(lesions, min_area, max_area);
+	lesion_intertia_filter(lesions, 0.04);
 	lesion_color_filter(lesions);
 	lesion_draw_contours(lesions, drawn_lesions);
 	
