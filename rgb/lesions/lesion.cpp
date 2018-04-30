@@ -213,21 +213,6 @@ void Lesion::find_class() {
 	double perc_diff_hue = ((hsv_color[0] - bg_hsv_color[0]) / bg_hsv_color[0]) * 100;
 	double perc_diff_sat = ((hsv_color[1] - bg_hsv_color[1]) / bg_hsv_color[1]) * 100;
 	double perc_diff_val = ((hsv_color[2] - bg_hsv_color[2]) / bg_hsv_color[2]) * 100;
-	//----------------------testing----------------------------
-	/*
-	fprintf(pFile, "------lesion%d------ \n", (i));
-	fprintf(pFile, "lesion%d size is %.2f \n", (i), lesions[i].get_area());
-	cv::imwrite(img_out_dir + "les_color_" + std::to_string(i) + ".jpg", les_bg_color_mat);
-	cv::imwrite(img_out_dir + "les_color_" + std::to_string(i) + ".jpg", les_color_mat);
-
-	fprintf(pFile, "hue:     %f \n", hsv_color[0]);
-	fprintf(pFile, "satur:   %f \n", hsv_color[1]);
-	fprintf(pFile, "value:   %f \n", hsv_color[2]);
-	fprintf(pFile, "perc_diff_hue: %f \n", perc_diff_hue);
-	fprintf(pFile, "perc_diff_sat: %f \n", perc_diff_sat);
-	fprintf(pFile, "perc_diff_val: %f \n\n", perc_diff_val);
-	*/
-	//--------------------testing-----------------------------
 	if (perc_diff_sat > 12.0 || perc_diff_val > 25.0) {
 		if ((perc_diff_hue > 3.25)) {
 			if (perc_diff_val < 10.0) {
@@ -258,4 +243,20 @@ void Lesion::find_class() {
 		//lesion is similar to skin (but we'll say it's dark for now)
 		les_class = 0;
 	}
+	//----------------------testing----------------------------
+	/*
+	fprintf(pFile, "------lesion%d------ \n", (id));
+	cv::imwrite(img_out_dir + "les_color_" + std::to_string(id) + ".jpg", les_bg_color_mat);
+	cv::imwrite(img_out_dir + "les_color_" + std::to_string(id) + ".jpg", les_color_mat);
+
+	fprintf(pFile, "hue:     %f \n", hsv_color[0]);
+	fprintf(pFile, "satur:   %f \n", hsv_color[1]);
+	fprintf(pFile, "value:   %f \n", hsv_color[2]);
+	fprintf(pFile, "perc_diff_hue: %f \n", perc_diff_hue);
+	fprintf(pFile, "perc_diff_sat: %f \n", perc_diff_sat);
+	fprintf(pFile, "perc_diff_val: %f \n\n", perc_diff_val);
+	fprintf(pFile, "CLASS: %f \n\n", les_class);
+	*/
+	//--------------------testing-----------------------------
+
 }

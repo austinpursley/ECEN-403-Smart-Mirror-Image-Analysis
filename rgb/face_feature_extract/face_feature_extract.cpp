@@ -21,7 +21,7 @@ void get_face_features(cv::Mat frame, cv::CascadeClassifier &face_cascade, cv::C
 	//equalizeHist(frame_gray, frame_gray);
 
 	///----------------------FACE------------------------------
-	face_cascade.detectMultiScale(frame_gray, faces, 1.05, 3, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(300, 300));
+	face_cascade.detectMultiScale(frame_gray, faces, 1.001, 3, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(300, 300));
 	cv::Rect roi_face(0,0,0,0);
 	if (faces.size() >= 1) {
 		//printf("face detect\n");
@@ -43,7 +43,7 @@ void get_face_features(cv::Mat frame, cv::CascadeClassifier &face_cascade, cv::C
 	roi_upper_face.height = roi_face.height*0.7;
 	upper_face_gray = frame_gray(roi_upper_face);
 	//imshow("upperFace", upper_face_gray);
-	eyes_cascade.detectMultiScale(upper_face_gray, eyes, 1.05, 3, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(75, 75));
+	eyes_cascade.detectMultiScale(upper_face_gray, eyes, 1.01, 3, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(75, 75));
 	
 	// Set Region of Interest
 	cv::Rect roi_c1; //current element
@@ -73,7 +73,7 @@ void get_face_features(cv::Mat frame, cv::CascadeClassifier &face_cascade, cv::C
 	roi_lower_face.height = roi_face.height*0.4;
 	cv::Mat  lower_face = frame_gray(roi_lower_face);
 	
-	mouth_cascade.detectMultiScale(lower_face, mouths, 1.05, 3, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(75, 75));
+	mouth_cascade.detectMultiScale(lower_face, mouths, 1.01, 3, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(75, 75));
 	cv::Rect roi_mouth;
 	if (mouths.size() >= 1) {
 		 roi_mouth = mouths[0];

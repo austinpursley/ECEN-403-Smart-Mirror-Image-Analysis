@@ -1,6 +1,0 @@
-Face detected: yes 
-Skin Color: #159 126 69 
-Lesion count: 41 
-Dark lesion count: 33 
-Red lesion count: 8 
-
