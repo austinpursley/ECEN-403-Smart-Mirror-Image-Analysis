@@ -175,7 +175,7 @@ void lesion_color_filter(std::vector<Lesion > &lesions) {
 	//printf("\n");
 }
 
-//Function to find lesions spots from an image of skin.
+// Function to find lesions spots from an image of skin.
 void lesion_localization(const cv::Mat &image, std::vector<Lesion> &lesions, int type) {
 	cv::Mat mix_img;
 	if (type == 1) {
@@ -188,7 +188,7 @@ void lesion_localization(const cv::Mat &image, std::vector<Lesion> &lesions, int
 		cv::addWeighted(lab[1], 0.95, lab[2], 0.05, 0, mix_img);
 	}
 	else {
-		//defualt, dark lesions on light background
+		// Defualt, dark lesions on light background
 		cv::Mat lab_img = cv::Mat(image.rows, image.cols, CV_8UC3);
 		std::vector<cv::Mat1b> lab(3);
 		cv::cvtColor(image, lab_img, CV_BGR2Lab, 3);
@@ -198,7 +198,7 @@ void lesion_localization(const cv::Mat &image, std::vector<Lesion> &lesions, int
 		cv::addWeighted(AB, 0, lab[0], 1, 0, mix_img);
 	}
 
-	//blob detection on our mixed, single channel image
+	// Blob detection on our mixed, single channel image
 	cv::Mat1b bin_mask;
 	std::vector<std::vector<cv::Point>> les_contours;
 	blob_detect(mix_img, bin_mask, les_contours);
