@@ -27,8 +27,8 @@ void lesion_draw_contours(const std::vector<Lesion > &lesions, cv::Mat &img) {
 	cv::drawContours(img, lesion_contours, -1, cv::Scalar(255), -1);
 }
 
-//Find "blobs" of the an image, dark spots on lighter background.
-//to do: some sort of struct for parameters, and make it an input.
+// Find "blobs" of the an image, dark spots on lighter background.
+// to do: some sort of struct for parameters, and make it an input.
 void blob_detect(const cv::Mat1b &src_1b, cv::Mat1b &bin_mask, std::vector<std::vector<cv::Point>> &contours_output) {
 	///VARIABLES / SETTINGS
 	//mix tuning/performance parameters in one place.
@@ -76,7 +76,7 @@ void blob_detect(const cv::Mat1b &src_1b, cv::Mat1b &bin_mask, std::vector<std::
 	return;
 }
 
-//Filter a vector of Lesion objects by how big or small their contours are.
+// Filter a vector of Lesion objects by how big or small their contours are.
 void lesion_area_filter(std::vector<Lesion > &lesions, const double min_area, const double max_area) {
 	std::vector<Lesion> new_lesions;
 	for (int i = 0; i < lesions.size(); i++) {
@@ -91,7 +91,7 @@ void lesion_area_filter(std::vector<Lesion > &lesions, const double min_area, co
 	lesions = new_lesions;
 }
 
-//Filter a vector of Lesion objects by how elongated they are.
+// Filter a vector of Lesion objects by how elongated they are.
 void lesion_intertia_filter(std::vector<Lesion > &lesions, const double min_inertia_ratio, const double max_inertia_ratio) {
 	std::vector<Lesion> new_lesions;
 	for (int i = 0; i < lesions.size(); i++) {
@@ -106,7 +106,7 @@ void lesion_intertia_filter(std::vector<Lesion > &lesions, const double min_iner
 	lesions = new_lesions;
 }
 
-//Function to find lesions spots from an image of skin.
+// Function to find lesions spots from an image of skin.
 std::vector<std::vector<cv::Point>> lesion_localization(const cv::Mat &image, int type) {
 	cv::Mat mix_img;
 	if (type == 0) {
@@ -123,12 +123,12 @@ std::vector<std::vector<cv::Point>> lesion_localization(const cv::Mat &image, in
 		printf("other cases not here! \n");
 	}
 
-	//blob detection on our mixed, single channel image
+	// blob detection on our mixed, single channel image
 	cv::Mat1b bin_mask;
 	std::vector<std::vector<cv::Point>> les_contours;
 	blob_detect(mix_img, bin_mask, les_contours);
 
-	//Lesion class, stores properties of lesion like color and area
+	// Lesion class, stores properties of lesion like color and area
 	std::vector<Lesion> lesions;
 	for (int i = 0; i < les_contours.size(); i++) {
 		int id_num = i;

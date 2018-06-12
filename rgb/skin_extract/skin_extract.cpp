@@ -1,8 +1,17 @@
-#include "stdafx.h"
-#include "skin_extract.h"
+/*
+Name: skin_extract.cpp
+Date: 06/2018
+Author: Austin Pursley
+Course: ECEN 403/404, Senior Design Smart Mirror
 
+Purpose: Image processing to extract portion of face image that is skin.
+*/
+
+#include "stdafx.h"
+#include "skin_extract.hpp"
+
+// Cover up lips and eyes of a face with black ellipses.
 void mask_features(cv::Mat face, std::map<std::string, cv::Rect> features, cv::Mat& masked_face) {
-	//this function covers up the mouth and lips with black ellipses.
 	face.copyTo(masked_face);
 	double escale = 0.4;
 	cv::Point center(features["eye1"].x + features["eye1"].width / 2, features["eye1"].y + features["eye1"].height / 2);
@@ -20,16 +29,7 @@ void mask_features(cv::Mat face, std::map<std::string, cv::Rect> features, cv::M
 	return;
 }
 
-cv::Mat getPaddedROI(const cv::Mat &input, int top_left_x, int top_left_y, int width, int height, cv::Scalar paddingColor) {
-	int bottom_right_x = top_left_x + width;
-	int bottom_right_y = top_left_y + height;
-	cv::Mat output;
-	if (top_left_x < 0 || top_left_y < 0 || bottom_right_x > input.cols || bottom_right_y > input.rows) {
-
-	}
-	return output;
-}
-
+// Apply some morphological operations to binary skin mask.
 void skin_morph(cv::Mat& mask) {
 	int shape = cv::MORPH_ELLIPSE;
 	cv::bitwise_not(mask, mask);
@@ -43,6 +43,7 @@ void skin_morph(cv::Mat& mask) {
 	cv::bitwise_not(mask, mask);
 }
 
+// Determine skin area based on known face color.
 void extract_skin(cv::Mat img, std::map<std::string, cv::Rect> features, cv::Mat& skin_mask) {
 	cv::Mat face = img(features["face"]);
 	cv::Mat face_masked;
