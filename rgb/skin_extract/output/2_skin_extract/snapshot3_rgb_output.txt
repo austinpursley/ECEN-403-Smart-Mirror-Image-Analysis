@@ -1,2 +1,0 @@
-Face detected: yes 
-Skin Color: #165 136 94 

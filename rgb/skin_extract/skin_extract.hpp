@@ -16,11 +16,11 @@ Purpose: Header, documentation for skin extraction functions.
 
 @param face An image of a face.
 @param features Vector of extracted face features associated with the image.
-@param masked_face Output image of face with eyes and lips covered with black ellipses.
+@param masked_face Output image of skin.
 
 Purpose is to remove the eyes and lips as part of skin extraction of a face.
 */
-void mask_features(cv::Mat face, std::map<std::string, cv::Rect> features, cv::Mat& masked_face);
+void mask_features(cv::Mat face, std::map<std::string, cv::Rect> features, cv::Mat& skin_face);
 
 /** @brief Apply some morphological operations to binary skin mask.
 

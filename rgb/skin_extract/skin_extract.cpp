@@ -44,7 +44,7 @@ void skin_morph(cv::Mat& mask) {
 }
 
 // Determine skin area based on known face color.
-void extract_skin(cv::Mat img, std::map<std::string, cv::Rect> features, cv::Mat& skin_mask) {
+void extract_skin(cv::Mat img, std::map<std::string, cv::Rect> features, cv::Mat& skin_face) {
 	cv::Mat face = img(features["face"]);
 	cv::Mat face_masked;
 	mask_features(face, features, face_masked);
@@ -84,14 +84,14 @@ void extract_skin(cv::Mat img, std::map<std::string, cv::Rect> features, cv::Mat
 	cvtColor(img, hsv_img, cv::COLOR_BGR2HSV, 3);
 	cv::inRange(hsv_img, lower, upper, range);
 	skin_morph(range); // Morphology
-	cv::Mat skin_macro, skin_face;
+	cv::Mat skin_macro;
 	img.copyTo(skin_macro, range);
 	skin_face = skin_macro(features["face"]);
 
-	// Mask features (mouth and eyes)
-	cv::Mat feat_masked, gray_img, thresh_img;
-	mask_features(skin_face, features, feat_masked);
-	cvtColor(feat_masked, gray_img, cv::COLOR_BGR2GRAY);
-	cv::threshold(gray_img, thresh_img, 1, 255, cv::THRESH_BINARY);
-	thresh_img.convertTo(skin_mask, CV_8U);
+	//// Mask features (mouth and eyes)
+	//cv::Mat feat_masked, gray_img, thresh_img;
+	//mask_features(skin_face, features, feat_masked);
+	//cvtColor(feat_masked, gray_img, cv::COLOR_BGR2GRAY);
+	//cv::threshold(gray_img, thresh_img, 1, 255, cv::THRESH_BINARY);
+	//thresh_img.convertTo(skin_mask, CV_8U);
 }
